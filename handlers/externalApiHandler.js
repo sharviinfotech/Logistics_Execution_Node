@@ -22,5 +22,7 @@ module.exports = (() => {
     typeTest: (req, res) => externalApiMethods.typeTest(req.body, res),
     Coois:(req, res) => externalApiMethods.Coois(req.body, res),
     Co11:(req, res) => externalApiMethods.Co11(req.body, res),
+    OrderInfoInwardOutward:(req, res) => externalApiMethods.OrderInfoInwardOutward(req.body, res),
+    OrderInfoOutwardSave:(req, res) => externalApiMethods.OrderInfoOutwardSave(req.body, res),
   };
 })();

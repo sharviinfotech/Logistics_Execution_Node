@@ -17,5 +17,10 @@ module.exports = (() => {
   router.post("/typeTest", externalApiHandler.typeTest);
   router.post('/orderconfirmation/coois',externalApiHandler.Coois);
   router.post('/orderconfirmationzco11n/co11',externalApiHandler.Co11);
+   router.post('/LE/orderInfo/Outward/fetchInvoiceList',externalApiHandler.OrderInfoInwardOutward);
+   router.post('/LE/orderInfo/Outward/fetchInvoiceList/Save',externalApiHandler.OrderInfoOutwardSave);
+
+      // router.post('/LE/orderInfo/Inward/fetchPoList',externalApiHandler.OrderInfoInward);
+
   return router;
 })();

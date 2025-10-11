@@ -29,6 +29,8 @@ module.exports = (() => {
         MatReservation:(req, res) => externalApiMethods.MatReservation(req.body, res),
         OrderConfirmation:(req, res) => externalApiMethods.OrderConfirmation(req.body, res),
         OrderConfirmationZcolln:(req, res) => externalApiMethods.OrderConfirmationZcolln(req.body, res),
+        OrderInfoOutward:(req, res) => externalApiMethods.OrderInfoOutward(req.body, res),
+        OrderInfoOutwardSave:(req, res) => externalApiMethods.OrderInfoOutwardSave(req.body, res),
 
        
     };

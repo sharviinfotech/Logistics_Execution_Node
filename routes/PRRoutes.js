@@ -31,6 +31,11 @@ module.exports = (() => {
     router.post('/pr/MB21',externalApiHandler.MatReservation);
     router.post('/coois/orderconfirmation',externalApiHandler.OrderConfirmation);
     router.post('/co11/orderconfirmation/zco11n',externalApiHandler.OrderConfirmationZcolln);
+     router.post('/LE/orderInfo/Outward/fetchInvoiceList',externalApiHandler.OrderInfoOutward);
+     router.post('/LE/orderInfo/Outward/fetchInvoiceList/Save',externalApiHandler.OrderInfoOutwardSave);
+
+      // router.post('/LE/orderInfo/Inward/fetchPoList',externalApiHandler.OrderInfoInward);
+
 
 
 
