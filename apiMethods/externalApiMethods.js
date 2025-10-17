@@ -1,3 +1,4 @@
+const { getpdb, OrderInfoNonSap, custgroup } = require("../handlers/externalApiHandler");
 const { OrderConfirmationZcolln } = require("./PrExternalApiMethods");
 
 module.exports = (() => {
@@ -268,109 +269,307 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process POST request" });
       }
     },
-     Coois: async (body, res) => {
-  try {
-    console.log(
-      "Sending POST payload to Coois API:",
-      JSON.stringify(body, null, 2)
-    );
-    const agent = new https.Agent({ rejectUnauthorized: false }); // <-- Add this line
-    const response = await axios.post(
-      config.THIRD_PARTY_API_URL_POST_COOIS_Order_Confirmation,
-      body,
-      {
-        headers: {
-          Authorization: getAuthHeader(),
-        },
-        httpsAgent: agent, 
+    Coois: async (body, res) => {
+      try {
+        console.log(
+          "Sending POST payload to Coois API:",
+          JSON.stringify(body, null, 2)
+        );
+        const agent = new https.Agent({ rejectUnauthorized: false }); // <-- Add this line
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_COOIS_Order_Confirmation,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+            httpsAgent: agent,
+          }
+        );
+        console.log(
+          "POST Response from Coois API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Coois");
+        res.status(500).json({ error: "Failed to process POST request" });
       }
-    );
-    console.log(
-      "POST Response from Coois API:",
-      JSON.stringify(response.data, null, 2)
-    );
-    res.json(response.data);
-  } catch (error) {
-    handleAxiosError(error, "Coois");
-    res.status(500).json({ error: "Failed to process POST request" });
-  }
-},
-   Co11: async (body, res) => {
-  try {
-    console.log(
-      "Sending POST payload to Co11 API:",
-      JSON.stringify(body, null, 2)
-    );
-    const agent = new https.Agent({ rejectUnauthorized: false }); // Add this line
-    const response = await axios.post(
-      config.THIRD_PARTY_API_URL_POST_CO11_Order_Confirmation_ZCO11N,
-      body,
-      {
-        headers: {
-          Authorization: getAuthHeader(),
-        },
-        httpsAgent: agent, // Add this line
+    },
+    Co11: async (body, res) => {
+      try {
+        console.log(
+          "Sending POST payload to Co11 API:",
+          JSON.stringify(body, null, 2)
+        );
+        const agent = new https.Agent({ rejectUnauthorized: false }); // Add this line
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_CO11_Order_Confirmation_ZCO11N,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+            httpsAgent: agent, // Add this line
+          }
+        );
+        console.log(
+          "POST Response from Co11 API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Co11");
+        res.status(500).json({ error: "Failed to process POST request" });
       }
-    );
-    console.log(
-      "POST Response from Co11 API:",
-      JSON.stringify(response.data, null, 2)
-    );
-    res.json(response.data);
-  } catch (error) {
-    handleAxiosError(error, "Co11");
-    res.status(500).json({ error: "Failed to process POST request" });
-  }
-},
-    OrderInfoInwardOutward:async (body, res) => {
-        try {
-          console.log(
-            "Sending  Post payload to Pr Reject  API:",
-            JSON.stringify(body, null, 2)
-          );
-          const response = await axios.post(
-            config.THIRD_PARTY_API_URL_POST_LE_OrderInfo_Inward_Outward,
-            body,
-            {
-              headers: {
-                Authorization: getAuthHeader(),
-              },
-            }
-          );
-          console.log(
-            "PUT Response from PurchaseCreate API:",
-            JSON.stringify(response.data, null, 2)
-          );
-          res.json(response.data);
-        } catch (error) {
-          handleAxiosError(error, "PurchaseCreate");
-          res.status(500).json({ error: "Failed to process PUT request" });
-        }
-      },
-       OrderInfoOutwardSave:async (body, res) => {
-        try {
-          console.log(
-            "Sending  Post payload to Pr Reject  API:",
-            JSON.stringify(body, null, 2)
-          );
-          const response = await axios.post(
-            config.THIRD_PARTY_API_URL_POST_LE_OrderInfo_Outward_Save,
-            body,
-            {
-              headers: {
-                Authorization: getAuthHeader(),
-              },
-            }
-          );
-          console.log(
-            "PUT Response from PurchaseCreate API:",
-            JSON.stringify(response.data, null, 2)
-          );
-          res.json(response.data);
-        } catch (error) {
-          handleAxiosError(error, "PurchaseCreate");
-          res.status(500).json({ error: "Failed to process PUT request" });
-        }
-      },
+    },
+    OrderInfoInwardOutward: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_OrderInfo_Outward_sapfetch,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "PurchaseCreate");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    OrderInfoOutwardSave: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_PUT_LE_OrderInfo_Outword_NonSap_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "PurchaseCreate");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    OrderInfoNonSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_OrderInfo_Outword_NonSap_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "PurchaseCreate");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    getpdb: async (body, res) => {
+      try {
+        // console.log(
+        //   "Sending GET payload to plant API:",
+        //   JSON.stringify(body, null, 2)
+        // );
+        const response = await axios.get(config.THIRD_PARTY_API_URL_GET_LE_OrderInfo_plant_division_Biltype, {
+          headers: {
+            Authorization: getAuthHeader(),
+          },
+        });
+        // console.log(
+        //   "GET Response from plant API:",
+        //   JSON.stringify(response.data, null, 2)
+        // );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "plant");
+        res.status(500).json({ error: "Failed to process GET request" });
+      }
+    },
+    fetchzone: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_OrderInfo_getzone,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "PurchaseCreate");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    custgroup: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_OrderInfo_custGroup,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "PurchaseCreate");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+
+    shipmentdetailsfetch: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_ShipmentDetails_Outword_sapfetch,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "PurchaseCreate");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    ShipmentOutwardSave: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_ShipmentDetails_Outward_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "PurchaseCreate");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    SegmentInfoInwardOutward: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_SegmentInfo_Outward_sapfetch,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "PurchaseCreate");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    SegmentInfoOutwardSave: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_SegmentInfo_Outward_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "PurchaseCreate");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+
   };
 })();

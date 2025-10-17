@@ -6,19 +6,19 @@ module.exports = (() => {
   };
   const login = "http://10.10.6.115:8000";
   const baseUrl = baseUrls[server];
-  
+
 
   return {
     // Credentials for 115
     THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "Dev00", //"ims113"
     THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Th!nk#1025",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
- 
+
     // THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "110203",
     // THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Venp0rt@Hps234",
- 
+
     // THIRD_PARTY_USERNAME2: process.env.THIRD_PARTY_USERNAME2 || "ims113",
     // THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "Ims$0425",
- 
+
     // Credentials for 113
     THIRD_PARTY_USERNAME2: process.env.THIRD_PARTY_USERNAME2 || "Dev00", //"Dev00",
     THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "Th!nk#0725", //"HBL@2025",//"$bx#@113",
@@ -37,7 +37,17 @@ module.exports = (() => {
     // THIRD_PARTY_API_URL_POST_TYPE_TEST: `${baseUrl}/qm/type_test/typetest?sap-client=400`,
     // THIRD_PARTY_API_URL_POST_COOIS_Order_Confirmation: `${baseUrl}/sipl_pp/coois/porder?sap-client=100`,
     // THIRD_PARTY_API_URL_POST_CO11_Order_Confirmation_ZCO11N: `${baseUrl}/sipl_pp/prod_order/zco11n?sap-client=100`,
-    THIRD_PARTY_API_URL_POST_LE_OrderInfo_Inward_Outward: `${baseUrl}/le/order_info/list?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_OrderInfo_Outward_sapfetch: `${baseUrl}/le/order_info/list?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_OrderInfo_Outward_Save: `${baseUrl}/le/order_info/list?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_OrderInfo_Outword_NonSap_Save: `${baseUrl}/le/order_info/list?sap-client=234`,
+    THIRD_PARTY_API_URL_GET_LE_OrderInfo_plant_division_Biltype: `${baseUrl}/le/order_info/list?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_OrderInfo_getzone: `${baseUrl}/le/order_info/list?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_OrderInfo_custGroup: `${baseUrl}/le/order_info/list?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_ShipmentDetails_Outword_sapfetch: `${baseUrl}/le/shipment_sap/det?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_ShipmentDetails_Outward_Save: `${baseUrl}/le/shipment_sap/det?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_SegmentInfo_Outward_sapfetch: `${baseUrl}/le/segment_sap/det?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_SegmentInfo_Outward_Save: `${baseUrl}/le/segment_sap/det?sap-client=234`,
+
+
   };
 })();
