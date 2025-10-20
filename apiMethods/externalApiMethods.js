@@ -323,6 +323,7 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process POST request" });
       }
     },
+
     OrderInfoInwardOutward: async (body, res) => {
       try {
         console.log(
@@ -339,12 +340,12 @@ module.exports = (() => {
           }
         );
         console.log(
-          "PUT Response from PurchaseCreate API:",
+          "PUT Response from order info API:",
           JSON.stringify(response.data, null, 2)
         );
         res.json(response.data);
       } catch (error) {
-        handleAxiosError(error, "PurchaseCreate");
+        handleAxiosError(error, "order info");
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
@@ -364,12 +365,12 @@ module.exports = (() => {
           }
         );
         console.log(
-          "PUT Response from PurchaseCreate API:",
+          "PUT Response from order info save API:",
           JSON.stringify(response.data, null, 2)
         );
         res.json(response.data);
       } catch (error) {
-        handleAxiosError(error, "PurchaseCreate");
+        handleAxiosError(error, "order info save");
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
@@ -389,12 +390,12 @@ module.exports = (() => {
           }
         );
         console.log(
-          "PUT Response from PurchaseCreate API:",
+          "PUT Response from order info create API:",
           JSON.stringify(response.data, null, 2)
         );
         res.json(response.data);
       } catch (error) {
-        handleAxiosError(error, "PurchaseCreate");
+        handleAxiosError(error, "order info create");
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
@@ -486,12 +487,12 @@ module.exports = (() => {
           }
         );
         console.log(
-          "PUT Response from PurchaseCreate API:",
+          "PUT Response from shipment fetch API:",
           JSON.stringify(response.data, null, 2)
         );
         res.json(response.data);
       } catch (error) {
-        handleAxiosError(error, "PurchaseCreate");
+        handleAxiosError(error, "shipment fetch");
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
@@ -511,12 +512,12 @@ module.exports = (() => {
           }
         );
         console.log(
-          "PUT Response from PurchaseCreate API:",
+          "PUT Response from shipment save API:",
           JSON.stringify(response.data, null, 2)
         );
         res.json(response.data);
       } catch (error) {
-        handleAxiosError(error, "PurchaseCreate");
+        handleAxiosError(error, "shipment create");
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
@@ -536,7 +537,7 @@ module.exports = (() => {
           }
         );
         console.log(
-          "PUT Response from PurchaseCreate API:",
+          "PUT Response from segment fetch API:",
           JSON.stringify(response.data, null, 2)
         );
         res.json(response.data);
@@ -561,12 +562,12 @@ module.exports = (() => {
           }
         );
         console.log(
-          "PUT Response from PurchaseCreate API:",
+          "PUT Response from segment save API:",
           JSON.stringify(response.data, null, 2)
         );
         res.json(response.data);
       } catch (error) {
-        handleAxiosError(error, "PurchaseCreate");
+        handleAxiosError(error, "segment save");
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },

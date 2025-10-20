@@ -17,19 +17,27 @@ module.exports = (() => {
   router.post("/typeTest", externalApiHandler.typeTest);
   router.post('/orderconfirmation/coois', externalApiHandler.Coois);
   router.post('/orderconfirmationzco11n/co11', externalApiHandler.Co11);
+
+
+
+   router.get('/LE/orderInfo/f4_getAllDetails', externalApiHandler.getpdb);
+  router.put('/LE/orderInfo/Outward/withoutsap/fetchzone', externalApiHandler.fetchzone);
+  router.put('/LE/orderInfo/Outward/withoutsap/custgroup', externalApiHandler.custgroup);
+
+  // order info  outward
   router.post('/LE/orderInfo/Outward/fetchInvoiceList', externalApiHandler.OrderInfoInwardOutward);
   router.post('/LE/orderInfo/Outward/withsap/Save', externalApiHandler.OrderInfoOutwardSave);
   router.put('/LE/orderInfo/Outward/withoutsap/Save', externalApiHandler.OrderInfoNonSap);
-  router.get('/LE/orderInfo/plant_division_Biltype', externalApiHandler.getpdb);
-  router.put('/LE/orderInfo/Outward/withoutsap/fetchzone', externalApiHandler.fetchzone);
-  router.put('/LE/orderInfo/Outward/withoutsap/custgroup', externalApiHandler.custgroup);
-  router.post('/LE/ShipmentDetails/Outword/sapfetch', externalApiHandler.shipmentdetailsfetch);
+ 
+  // shipment  outward
+  router.post('/LE/ShipmentDetails/Outword/fetchInvoiceList', externalApiHandler.shipmentdetailsfetch);
   router.post('/LE/ShipmentDetails/Outward/Save', externalApiHandler.ShipmentOutwardSave);
+
+// segment outward
   router.post('/LE/segmentInfo/Outward/fetchInvoiceList', externalApiHandler.SegmentInfoInwardOutward);
   router.post('/LE/segmentInfo/Outward/withsap/Save', externalApiHandler.SegmentInfoOutwardSave);
 
 
-  // router.post('/LE/orderInfo/Inward/fetchPoList',externalApiHandler.OrderInfoInward);
 
   return router;
 })();
