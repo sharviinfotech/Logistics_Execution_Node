@@ -32,6 +32,8 @@ module.exports = (() => {
     ShipmentOutwardSave: (req, res) => externalApiMethods.ShipmentOutwardSave(req.body, res),
     SegmentInfoInwardOutward: (req, res) => externalApiMethods.SegmentInfoInwardOutward(req.body, res),
     SegmentInfoOutwardSave: (req, res) => externalApiMethods.SegmentInfoOutwardSave(req.body, res),
-
+    SegmentInfoNonSap: (req, res) => externalApiMethods.SegmentInfoNonSap(req.body, res),
+    getssc: (req, res) => externalApiMethods.getssc(req.body, res),
+    fetchzoneTat: (req, res) => externalApiMethods.fetchzoneTat(req.body, res),
   };
 })();

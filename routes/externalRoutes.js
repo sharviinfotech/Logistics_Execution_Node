@@ -20,7 +20,7 @@ module.exports = (() => {
 
 
 
-   router.get('/LE/orderInfo/f4_getAllDetails', externalApiHandler.getpdb);
+  router.get('/LE/orderInfo/f4_getAllDetails', externalApiHandler.getpdb);
   router.put('/LE/orderInfo/Outward/withoutsap/fetchzone', externalApiHandler.fetchzone);
   router.put('/LE/orderInfo/Outward/withoutsap/custgroup', externalApiHandler.custgroup);
 
@@ -28,15 +28,17 @@ module.exports = (() => {
   router.post('/LE/orderInfo/Outward/fetchInvoiceList', externalApiHandler.OrderInfoInwardOutward);
   router.post('/LE/orderInfo/Outward/withsap/Save', externalApiHandler.OrderInfoOutwardSave);
   router.put('/LE/orderInfo/Outward/withoutsap/Save', externalApiHandler.OrderInfoNonSap);
- 
+
   // shipment  outward
   router.post('/LE/ShipmentDetails/Outword/fetchInvoiceList', externalApiHandler.shipmentdetailsfetch);
   router.post('/LE/ShipmentDetails/Outward/Save', externalApiHandler.ShipmentOutwardSave);
 
-// segment outward
+  // segment outward
   router.post('/LE/segmentInfo/Outward/fetchInvoiceList', externalApiHandler.SegmentInfoInwardOutward);
   router.post('/LE/segmentInfo/Outward/withsap/Save', externalApiHandler.SegmentInfoOutwardSave);
-
+  router.put('/LE/segmentInfo/Outward/withoutsap/Save', externalApiHandler.SegmentInfoNonSap);
+  router.get('/LE/segmentInfo/f4_getAllDetails', externalApiHandler.getssc);
+  router.put('/LE/segmentInfo/Outward/withoutsap/fetchzone', externalApiHandler.fetchzoneTat);
 
 
   return router;
