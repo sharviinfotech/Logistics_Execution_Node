@@ -30,6 +30,8 @@ module.exports = (() => {
     custgroup: (req, res) => externalApiMethods.custgroup(req.body, res),
     shipmentdetailsfetch: (req, res) => externalApiMethods.shipmentdetailsfetch(req.body, res),
     ShipmentOutwardSave: (req, res) => externalApiMethods.ShipmentOutwardSave(req.body, res),
+    getTypeofmaterial: (req, res) => externalApiMethods.getTypeofmaterial(req.body, res),
+     Incoterms: (req, res) => externalApiMethods.Incoterms(req.body, res),
     SegmentInfoInwardOutward: (req, res) => externalApiMethods.SegmentInfoInwardOutward(req.body, res),
     SegmentInfoOutwardSave: (req, res) => externalApiMethods.SegmentInfoOutwardSave(req.body, res),
     SegmentInfoNonSap: (req, res) => externalApiMethods.SegmentInfoNonSap(req.body, res),
