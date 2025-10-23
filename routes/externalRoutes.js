@@ -46,6 +46,10 @@ module.exports = (() => {
   router.post('/LE/TransitInfo/Outward/WithSap/Save', externalApiHandler.TransitInfoSave);
   router.put('/LE/TransitInfo/NonSap/Save', externalApiHandler.TransitInfoNonSap);
 
+  // Freight Billing With Sap
+  router.post('/LE/FreightBilling/Outward/WithSap/Save', externalApiHandler.FreightBillingSave);
+  router.put('/LE/FreightBilling/Outward/NonSap/Create', externalApiHandler.FreightBillingNonSap);
+
 
   return router;
 })();

@@ -39,5 +39,7 @@ module.exports = (() => {
     fetchzoneTat: (req, res) => externalApiMethods.fetchzoneTat(req.body, res),
     TransitInfoSave: (req, res) => externalApiMethods.TransitInfoSave(req.body, res),
     TransitInfoNonSap: (req, res) => externalApiMethods.TransitInfoNonSap(req.body, res),
+    FreightBillingSave: (req, res) => externalApiMethods.FreightBillingSave(req.body, res),
+    FreightBillingNonSap: (req, res) => externalApiMethods.FreightBillingNonSap(req.body, res),
   };
 })();
