@@ -37,5 +37,7 @@ module.exports = (() => {
     SegmentInfoNonSap: (req, res) => externalApiMethods.SegmentInfoNonSap(req.body, res),
     getssc: (req, res) => externalApiMethods.getssc(req.body, res),
     fetchzoneTat: (req, res) => externalApiMethods.fetchzoneTat(req.body, res),
+    TransitInfoSave: (req, res) => externalApiMethods.TransitInfoSave(req.body, res),
+    TransitInfoNonSap: (req, res) => externalApiMethods.TransitInfoNonSap(req.body, res),
   };
 })();

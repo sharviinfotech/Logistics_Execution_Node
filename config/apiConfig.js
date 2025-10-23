@@ -49,7 +49,7 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_ShipmentDetails_Outward_Save: `${baseUrl}/le/shipment_sap/det?sap-client=234`,
     THIRD_PARTY_API_URL_GET_LE_ShipmentDetails_NonSap_typeofmaterial: `${baseUrl}/le/shpmnt_nonsap/details?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_ShipmentDetails_NonSap_Incoterms: `${baseUrl}/le/shpmnt_nonsap/details?sap-client=234`,
-    THIRD_PARTY_API_URL_PUT_LE_ShipmentDetails_NonSap_Incoterms: `${baseUrl}/le/shpmnt_nonsap/details?sap-client=234`,
+    // THIRD_PARTY_API_URL_PUT_LE_ShipmentDetails_NonSap_Incoterms: `${baseUrl}/le/shpmnt_nonsap/details?sap-client=234`,
 
 
     THIRD_PARTY_API_URL_POST_LE_SegmentInfo_Outward_sapfetch: `${baseUrl}/le/segment_sap/det?sap-client=234`,
@@ -57,6 +57,9 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_Outword_NonSap_Save: `${baseUrl}/le/segment_sap/det?sap-client=234`,
     THIRD_PARTY_API_URL_GET_LE_SegmentInfo_supplier_segment_custgrp: `${baseUrl}/le/segment_sap/det?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_getzone: `${baseUrl}/le/segment_sap/det?sap-client=234`,
+
+     THIRD_PARTY_API_URL_POST_LE_TransitInfo_WithSap_Save: `${baseUrl}/le/transit_info/info?sap-client=234`,
+     THIRD_PARTY_API_URL_PUT_LE_TransitInfo_NonSap: `${baseUrl}/le/transit_info/info?sap-client=234`,
 
   };
 })();

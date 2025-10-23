@@ -42,6 +42,10 @@ module.exports = (() => {
   router.get('/LE/segmentInfo/f4_getAllDetails', externalApiHandler.getssc);
   router.put('/LE/segmentInfo/Outward/withoutsap/fetchzone', externalApiHandler.fetchzoneTat);
 
+  //Transit Info OutWard
+  router.post('/LE/TransitInfo/Outward/WithSap/Save', externalApiHandler.TransitInfoSave);
+  router.put('/LE/TransitInfo/NonSap/Save', externalApiHandler.TransitInfoNonSap);
+
 
   return router;
 })();

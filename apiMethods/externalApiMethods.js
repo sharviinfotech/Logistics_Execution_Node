@@ -527,7 +527,7 @@ module.exports = (() => {
         //   "Sending GET payload to plant API:",
         //   JSON.stringify(body, null, 2)
         // );
-        const response = await axios.get(config.THIRD_PARTY_API_URL_GET_LE_ShipmentDetails_Outward_NonSap_typeofmaterial, {
+        const response = await axios.get(config.THIRD_PARTY_API_URL_GET_LE_ShipmentDetails_NonSap_typeofmaterial, {
           headers: {
             Authorization: getAuthHeader(),
           },
@@ -685,6 +685,56 @@ module.exports = (() => {
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "PurchaseCreate");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    TransitInfoSave: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_TransitInfo_WithSap_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from TransitInfoSave fetch API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "PurchaseCreate");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+    TransitInfoNonSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_TransitInfo_NonSap,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Data Saved");
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
