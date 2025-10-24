@@ -738,7 +738,7 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
-      FreightBillingSave: async (body, res) => {
+    FreightBillingSave: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Pr Reject  API:",
@@ -763,7 +763,7 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process POST request" });
       }
     },
-     FreightBillingNonSap: async (body, res) => {
+    FreightBillingNonSap: async (body, res) => {
       try {
         console.log(
           "Sending  Put payload to Pr Reject  API:",
@@ -785,6 +785,81 @@ module.exports = (() => {
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "PurchaseCreate");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    VehicleInfofetch: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_Vehicleinfo_Outward_sapfetch,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from shipment fetch API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "shipment fetch");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    VehicleInfosave: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_Vehicleinfo_Outward_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from shipment fetch API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "shipment fetch");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    VehicleInfoNonSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_Vehicleinfo_Outword_NonSap_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Data Saved");
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },

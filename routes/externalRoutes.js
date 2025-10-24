@@ -50,6 +50,10 @@ module.exports = (() => {
   router.post('/LE/FreightBilling/Outward/WithSap/Save', externalApiHandler.FreightBillingSave);
   router.put('/LE/FreightBilling/Outward/NonSap/Create', externalApiHandler.FreightBillingNonSap);
 
+  // vechile info outward
+  router.post('/LE/Vehicleinfo/Outward/fetchInvoiceList', externalApiHandler.VehicleInfofetch);
+  router.post('/LE/Vehicleinfo/Outward/Save', externalApiHandler.VehicleInfosave);
+  router.put('/LE/Vehicleinfo/NonSap/Save', externalApiHandler.VehicleInfoNonSap);
 
   return router;
 })();

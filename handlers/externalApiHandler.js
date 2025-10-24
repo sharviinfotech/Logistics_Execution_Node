@@ -31,7 +31,7 @@ module.exports = (() => {
     shipmentdetailsfetch: (req, res) => externalApiMethods.shipmentdetailsfetch(req.body, res),
     ShipmentOutwardSave: (req, res) => externalApiMethods.ShipmentOutwardSave(req.body, res),
     getTypeofmaterial: (req, res) => externalApiMethods.getTypeofmaterial(req.body, res),
-     Incoterms: (req, res) => externalApiMethods.Incoterms(req.body, res),
+    Incoterms: (req, res) => externalApiMethods.Incoterms(req.body, res),
     SegmentInfoInwardOutward: (req, res) => externalApiMethods.SegmentInfoInwardOutward(req.body, res),
     SegmentInfoOutwardSave: (req, res) => externalApiMethods.SegmentInfoOutwardSave(req.body, res),
     SegmentInfoNonSap: (req, res) => externalApiMethods.SegmentInfoNonSap(req.body, res),
@@ -41,5 +41,8 @@ module.exports = (() => {
     TransitInfoNonSap: (req, res) => externalApiMethods.TransitInfoNonSap(req.body, res),
     FreightBillingSave: (req, res) => externalApiMethods.FreightBillingSave(req.body, res),
     FreightBillingNonSap: (req, res) => externalApiMethods.FreightBillingNonSap(req.body, res),
+    VehicleInfofetch: (req, res) => externalApiMethods.VehicleInfofetch(req.body, res),
+    VehicleInfosave: (req, res) => externalApiMethods.VehicleInfosave(req.body, res),
+    VehicleInfoNonSap: (req, res) => externalApiMethods.VehicleInfoNonSap(req.body, res),
   };
 })();

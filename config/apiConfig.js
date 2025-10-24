@@ -58,11 +58,14 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_GET_LE_SegmentInfo_supplier_segment_custgrp: `${baseUrl}/le/segment_sap/det?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_getzone: `${baseUrl}/le/segment_sap/det?sap-client=234`,
 
-     THIRD_PARTY_API_URL_POST_LE_TransitInfo_WithSap_Save: `${baseUrl}/le/transit_info/info?sap-client=234`,
-     THIRD_PARTY_API_URL_PUT_LE_TransitInfo_NonSap: `${baseUrl}/le/transit_info/info?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_TransitInfo_WithSap_Save: `${baseUrl}/le/transit_info/info?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_TransitInfo_NonSap: `${baseUrl}/le/transit_info/info?sap-client=234`,
 
-     THIRD_PARTY_API_URL_POST_LE_FreightBilling_WithSap_Save: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
-      THIRD_PARTY_API_URL_PUT_LE_FreightBilling_NonSap_Create: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_FreightBilling_WithSap_Save: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_FreightBilling_NonSap_Create: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
 
+    THIRD_PARTY_API_URL_POST_LE_Vehicleinfo_Outward_sapfetch: `${baseUrl}/le/vehicle/info?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_Vehicleinfo_Outward_Save: `${baseUrl}/le/vehicle/info?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_Vehicleinfo_Outword_NonSap_Save: `${baseUrl}/le/vehicle/info?sap-client=234`,
   };
 })();
