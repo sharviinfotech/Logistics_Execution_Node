@@ -34,6 +34,9 @@ module.exports = (() => {
   router.post('/LE/ShipmentDetails/Outward/Save', externalApiHandler.ShipmentOutwardSave);
   router.get('/LE/ShipmentDetails/Nonsap/f4_Typeofmaterial', externalApiHandler.getTypeofmaterial);
   router.put('/LE/ShipmentDetails/Nonsap/f4_Incoterms', externalApiHandler.Incoterms);
+  router.post('/LE/ShipmentDetails/Nonsap/Save', externalApiHandler.shipmentdetailsNonSapSave);
+  router.post('/LE/ShipmentDetails/Nonsap/Reports', externalApiHandler.shipmentdetailsNonSapReports);
+
 
   // segment outward
   router.post('/LE/segmentInfo/Outward/fetchInvoiceList', externalApiHandler.SegmentInfoInwardOutward);
