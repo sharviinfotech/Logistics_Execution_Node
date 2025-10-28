@@ -58,5 +58,12 @@ module.exports = (() => {
   router.post('/LE/Vehicleinfo/Outward/Save', externalApiHandler.VehicleInfosave);
   router.put('/LE/Vehicleinfo/NonSap/Save', externalApiHandler.VehicleInfoNonSap);
 
+  //InvoiceLoad details
+  router.post('/LE/InvoiceloadDetails/Outward/fetchInvoiceList', externalApiHandler.Invoiceloaddetailsfetch);
+  router.post('/LE/InvoiceloadDetails/Outward/sapget', externalApiHandler.sapget);
+  router.post('/LE/InvoiceloadDetails/Outward/save', externalApiHandler.InvoiceloaddetailsSave);
+  router.post('/LE/InvoiceloadDetails/NonSap/Save', externalApiHandler.InvoiceloaddetailsNonSap);
+
+
   return router;
 })();

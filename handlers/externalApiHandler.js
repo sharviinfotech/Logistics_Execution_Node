@@ -46,5 +46,10 @@ module.exports = (() => {
     VehicleInfofetch: (req, res) => externalApiMethods.VehicleInfofetch(req.body, res),
     VehicleInfosave: (req, res) => externalApiMethods.VehicleInfosave(req.body, res),
     VehicleInfoNonSap: (req, res) => externalApiMethods.VehicleInfoNonSap(req.body, res),
+    Invoiceloaddetailsfetch: (req, res) => externalApiMethods.Invoiceloaddetailsfetch(req.body, res),
+    sapget: (req, res) => externalApiMethods.sapget(req.body, res),
+    InvoiceloaddetailsSave: (req, res) => externalApiMethods.InvoiceloaddetailsSave(req.body, res),
+    InvoiceloaddetailsNonSap: (req, res) => externalApiMethods.InvoiceloaddetailsNonSap(req.body, res),
+
   };
 })();
