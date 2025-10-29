@@ -50,6 +50,7 @@ module.exports = (() => {
     sapget: (req, res) => externalApiMethods.sapget(req.body, res),
     InvoiceloaddetailsSave: (req, res) => externalApiMethods.InvoiceloaddetailsSave(req.body, res),
     InvoiceloaddetailsNonSap: (req, res) => externalApiMethods.InvoiceloaddetailsNonSap(req.body, res),
+    InsuranceClaimTrackingfetch: (req, res) => externalApiMethods.InsuranceClaimTrackingfetch(req.body, res),
 
   };
 })();

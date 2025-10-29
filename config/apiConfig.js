@@ -74,5 +74,7 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_InvoiceloadDetails_Outward_Save: `${baseUrl}/le/inv_load/det?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_InvoiceloadDetails_Outword_NonSap_Save: `${baseUrl}/le/inv_load/det?sap-client=234`,
 
+    THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_fetchinvoicelist: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
+
   };
 })();

@@ -64,6 +64,9 @@ module.exports = (() => {
   router.post('/LE/InvoiceloadDetails/Outward/save', externalApiHandler.InvoiceloaddetailsSave);
   router.post('/LE/InvoiceloadDetails/NonSap/Save', externalApiHandler.InvoiceloaddetailsNonSap);
 
+  // Insurance Claim Tracking
+  router.post('/LE/InsuranceClaimTracking/Outward/fetchinvoicelist', externalApiHandler.InsuranceClaimTrackingfetch);
+
 
   return router;
 })();
