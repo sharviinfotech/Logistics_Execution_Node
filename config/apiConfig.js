@@ -43,6 +43,7 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_GET_LE_OrderInfo_plant_division_Biltype: `${baseUrl}/le/order_info/list?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_OrderInfo_getzone: `${baseUrl}/le/order_info/list?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_OrderInfo_custGroup: `${baseUrl}/le/order_info/list?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_OrderInfo_Physicaldispatch: `${baseUrl}/le/order_info/list?sap-client=234`,
 
 
     THIRD_PARTY_API_URL_POST_LE_ShipmentDetails_Outward_sapfetch: `${baseUrl}/le/shipment_sap/det?sap-client=234`,
