@@ -11,7 +11,7 @@ module.exports = (() => {
   return {
     // Credentials for 115
     THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "Dev00", //"ims113"
-    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Th!nk#1025",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
+    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Th!nk#1125",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
 
     // THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "110203",
     // THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Venp0rt@Hps234",
@@ -73,8 +73,17 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_InvoiceloadDetails_Outward_sapget: `${baseUrl}/le/inv_load/det?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_InvoiceloadDetails_Outward_Save: `${baseUrl}/le/inv_load/det?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_InvoiceloadDetails_Outword_NonSap_Save: `${baseUrl}/le/inv_load/det?sap-client=234`,
+    THIRD_PARTY_API_URL_GET_LE_InvoiceloadDetails_typeofvehicle: `${baseUrl}/le/inv_load/det?sap-client=234`,
 
     THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_fetchinvoicelist: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_Save: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outword_fetchinvoicelistnonsap: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outword_Nonsapsave: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
+
+    THIRD_PARTY_API_URL_POST_LE_TransitDamageInfo_Outward_fetchinvoicelist: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_TransitDamageInfo_Outward_Save: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_fetchinvoicelistnonsap: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_WithoutsapSave: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
 
   };
 })();

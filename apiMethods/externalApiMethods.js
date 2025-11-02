@@ -1014,7 +1014,29 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
-     InsuranceClaimTrackingfetch: async (body, res) => {
+
+    gettypeofvehicle: async (body, res) => {
+      try {
+        // console.log(
+        //   "Sending GET payload to plant API:",
+        //   JSON.stringify(body, null, 2)
+        // );
+        const response = await axios.get(config.THIRD_PARTY_API_URL_GET_LE_InvoiceloadDetails_typeofvehicle, {
+          headers: {
+            Authorization: getAuthHeader(),
+          },
+        });
+        // console.log(
+        //   "GET Response from plant API:",
+        //   JSON.stringify(response.data, null, 2)
+        // );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "plant");
+        res.status(500).json({ error: "Failed to process GET request" });
+      }
+    },
+    InsuranceClaimTrackingfetch: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Pr Reject  API:",
@@ -1037,6 +1059,181 @@ module.exports = (() => {
       } catch (error) {
         handleAxiosError(error, "Insurance Claim");
         res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+    InsuranceClaimTrackingSave: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Insurance Claim API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Insurance Claim");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+    fetchinvoicelistnonsap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outword_fetchinvoicelistnonsap,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Data Saved");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    Nonsapsave: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outword_Nonsapsave,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Data Saved");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    TransitDamageInfofetch: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_TransitDamageInfo_Outward_fetchinvoicelist,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Insurance Claim API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Insurance Claim");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+    TransitDamageInfoSave: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_TransitDamageInfo_Outward_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Insurance Claim API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Insurance Claim");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+    fetchinvoicelistnonsapwosp: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_fetchinvoicelistnonsap,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Data Saved");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    withoutsapSave: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_WithoutsapSave,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Data Saved");
+        res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
 

@@ -63,9 +63,19 @@ module.exports = (() => {
   router.post('/LE/InvoiceloadDetails/Outward/sapget', externalApiHandler.sapget);
   router.post('/LE/InvoiceloadDetails/Outward/save', externalApiHandler.InvoiceloaddetailsSave);
   router.post('/LE/InvoiceloadDetails/NonSap/Save', externalApiHandler.InvoiceloaddetailsNonSap);
+  router.get('/LE/InvoiceloadDetails/f4_getAllDetails', externalApiHandler.gettypeofvehicle);
 
   // Insurance Claim Tracking
   router.post('/LE/InsuranceClaimTracking/Outward/fetchinvoicelist', externalApiHandler.InsuranceClaimTrackingfetch);
+  router.post('/LE/InsuranceClaimTracking/Outward/save', externalApiHandler.InsuranceClaimTrackingSave);
+  router.put('/LE/InsuranceClaimTracking/NonSap/fetchinvoicelistnonsap', externalApiHandler.fetchinvoicelistnonsap);
+  router.put('/LE/InsuranceClaimTracking/NonSap/Nonsapsave', externalApiHandler.Nonsapsave);
+
+  //Transit Damage Info
+  router.post('/LE/TransitDamageInfo/Outward/fetchinvoicelist', externalApiHandler.TransitDamageInfofetch);
+  router.post('/LE/TransitDamageInfo/Outward/Save', externalApiHandler.TransitDamageInfoSave);
+  router.put('/LE/TransitDamageInfo/NonSap/fetchinvoicelistnonsap', externalApiHandler.fetchinvoicelistnonsapwosp);
+  router.put('/LE/TransitDamageInfo/NonSap/withoutsapSave', externalApiHandler.withoutsapSave);
 
 
   return router;

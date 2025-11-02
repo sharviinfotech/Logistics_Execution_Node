@@ -50,7 +50,16 @@ module.exports = (() => {
     sapget: (req, res) => externalApiMethods.sapget(req.body, res),
     InvoiceloaddetailsSave: (req, res) => externalApiMethods.InvoiceloaddetailsSave(req.body, res),
     InvoiceloaddetailsNonSap: (req, res) => externalApiMethods.InvoiceloaddetailsNonSap(req.body, res),
+    gettypeofvehicle: (req, res) => externalApiMethods.gettypeofvehicle(req.body, res),
     InsuranceClaimTrackingfetch: (req, res) => externalApiMethods.InsuranceClaimTrackingfetch(req.body, res),
+    InsuranceClaimTrackingSave: (req, res) => externalApiMethods.InsuranceClaimTrackingSave(req.body, res),
+    fetchinvoicelistnonsap: (req, res) => externalApiMethods.fetchinvoicelistnonsap(req.body, res),
+    Nonsapsave: (req, res) => externalApiMethods.Nonsapsave(req.body, res),
+    TransitDamageInfofetch: (req, res) => externalApiMethods.TransitDamageInfofetch(req.body, res),
+    TransitDamageInfoSave: (req, res) => externalApiMethods.TransitDamageInfoSave(req.body, res),
+    fetchinvoicelistnonsapwosp: (req, res) => externalApiMethods.fetchinvoicelistnonsapwosp(req.body, res),
+    withoutsapSave: (req, res) => externalApiMethods.withoutsapSave(req.body, res),
+
 
   };
 })();
