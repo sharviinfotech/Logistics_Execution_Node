@@ -86,5 +86,7 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_fetchinvoicelistnonsap: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_WithoutsapSave: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
 
+    THIRD_PARTY_API_URL_POST_LE_Dispatch_Outward_Save: `${baseUrl}/le/dispatch/ref?sap-client=234`,
+
   };
 })();

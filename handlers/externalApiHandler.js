@@ -28,7 +28,7 @@ module.exports = (() => {
     getpdb: (req, res) => externalApiMethods.getpdb(req.body, res),
     fetchzone: (req, res) => externalApiMethods.fetchzone(req.body, res),
     custgroup: (req, res) => externalApiMethods.custgroup(req.body, res),
-      OrderInfoPhysicaldispatch: (req, res) => externalApiMethods.OrderInfoPhysicaldispatch(req.body, res),
+    OrderInfoPhysicaldispatch: (req, res) => externalApiMethods.OrderInfoPhysicaldispatch(req.body, res),
     shipmentdetailsfetch: (req, res) => externalApiMethods.shipmentdetailsfetch(req.body, res),
     ShipmentOutwardSave: (req, res) => externalApiMethods.ShipmentOutwardSave(req.body, res),
     getTypeofmaterial: (req, res) => externalApiMethods.getTypeofmaterial(req.body, res),
@@ -60,6 +60,7 @@ module.exports = (() => {
     TransitDamageInfoSave: (req, res) => externalApiMethods.TransitDamageInfoSave(req.body, res),
     fetchinvoicelistnonsapwosp: (req, res) => externalApiMethods.fetchinvoicelistnonsapwosp(req.body, res),
     withoutsapSave: (req, res) => externalApiMethods.withoutsapSave(req.body, res),
+    DispatchSave: (req, res) => externalApiMethods.DispatchSave(req.body, res),
 
 
   };
