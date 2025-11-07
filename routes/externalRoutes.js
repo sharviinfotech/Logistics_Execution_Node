@@ -40,11 +40,13 @@ module.exports = (() => {
 
 
   // segment outward
-  router.post('/LE/segmentInfo/Outward/fetchInvoiceList', externalApiHandler.SegmentInfoInwardOutward);
+  router.post('/LE/segmentInfo/Outward/fetchInvoiceList', externalApiHandler.SegmentInfoOutwardFetch);
   router.post('/LE/segmentInfo/Outward/withsap/Save', externalApiHandler.SegmentInfoOutwardSave);
   router.put('/LE/segmentInfo/Outward/withoutsap/Save', externalApiHandler.SegmentInfoNonSap);
   router.get('/LE/segmentInfo/f4_getAllDetails', externalApiHandler.getssc);
   router.put('/LE/segmentInfo/Outward/withoutsap/fetchzone', externalApiHandler.fetchzoneTat);
+  router.put('/LE/segmentInfo/Outward/withSap/TAT_Type', externalApiHandler.fetchTAT);
+  router.put('/LE/segmentInfo/Outward/NonSap/TAT_Type', externalApiHandler.fetchNonSapTAT);
 
   //Transit Info OutWard
   router.post('/LE/TransitInfo/Outward/WithSap/Save', externalApiHandler.TransitInfoSave);
@@ -79,8 +81,8 @@ module.exports = (() => {
   router.put('/LE/TransitDamageInfo/NonSap/withoutsapSave', externalApiHandler.withoutsapSave);
 
   //Dispatch
-  router.post('/LE/Dispatch/Outward/Save', externalApiHandler.DispatchSave);
-
+  router.post('/LE/Dispatch/Outward/withsap/Save', externalApiHandler.DispatchWithSapSave);
+  router.put('/LE/Dispatch/Outward/withoutsap/Save', externalApiHandler.DispatchWithoutSapSave);
 
   return router;
 })();

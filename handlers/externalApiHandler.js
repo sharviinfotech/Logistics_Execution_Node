@@ -35,10 +35,12 @@ module.exports = (() => {
     Incoterms: (req, res) => externalApiMethods.Incoterms(req.body, res),
     shipmentdetailsNonSapSave: (req, res) => externalApiMethods.shipmentdetailsNonSapSave(req.body, res),
     shipmentdetailsNonSapReports: (req, res) => externalApiMethods.shipmentdetailsNonSapReports(req.body, res),
-    SegmentInfoInwardOutward: (req, res) => externalApiMethods.SegmentInfoInwardOutward(req.body, res),
+    SegmentInfoOutwardFetch: (req, res) => externalApiMethods.SegmentInfoOutwardFetch(req.body, res),
     SegmentInfoOutwardSave: (req, res) => externalApiMethods.SegmentInfoOutwardSave(req.body, res),
     SegmentInfoNonSap: (req, res) => externalApiMethods.SegmentInfoNonSap(req.body, res),
     getssc: (req, res) => externalApiMethods.getssc(req.body, res),
+    fetchTAT: (req, res) => externalApiMethods.fetchTAT(req.body, res),
+    fetchNonSapTAT: (req, res) => externalApiMethods.fetchNonSapTAT(req.body, res),
     fetchzoneTat: (req, res) => externalApiMethods.fetchzoneTat(req.body, res),
     TransitInfoSave: (req, res) => externalApiMethods.TransitInfoSave(req.body, res),
     TransitInfoNonSap: (req, res) => externalApiMethods.TransitInfoNonSap(req.body, res),
@@ -60,7 +62,8 @@ module.exports = (() => {
     TransitDamageInfoSave: (req, res) => externalApiMethods.TransitDamageInfoSave(req.body, res),
     fetchinvoicelistnonsapwosp: (req, res) => externalApiMethods.fetchinvoicelistnonsapwosp(req.body, res),
     withoutsapSave: (req, res) => externalApiMethods.withoutsapSave(req.body, res),
-    DispatchSave: (req, res) => externalApiMethods.DispatchSave(req.body, res),
+    DispatchWithSapSave: (req, res) => externalApiMethods.DispatchWithSapSave(req.body, res),
+     DispatchWithoutSapSave: (req, res) => externalApiMethods.DispatchWithoutSapSave(req.body, res),
 
 
   };

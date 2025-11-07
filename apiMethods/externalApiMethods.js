@@ -644,7 +644,7 @@ module.exports = (() => {
       }
     },
 
-    SegmentInfoInwardOutward: async (body, res) => {
+    SegmentInfoOutwardFetch: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Pr Reject  API:",
@@ -738,6 +738,56 @@ module.exports = (() => {
       } catch (error) {
         handleAxiosError(error, "plant");
         res.status(500).json({ error: "Failed to process GET request" });
+      }
+    },
+      fetchTAT: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_Outward_WithSap_TAT_Type,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from TAT_Type create API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "TAT_Type create");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+     fetchNonSapTAT: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_Outward_NonSap_TAT_Type,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from TAT_Type create API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "TAT_Type create");
+        res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
     fetchzoneTat: async (body, res) => {
@@ -1262,14 +1312,14 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
-    DispatchSave: async (body, res) => {
+    DispatchWithSapSave: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
         );
         const response = await axios.post(
-          config.THIRD_PARTY_API_URL_POST_LE_Dispatch_Outward_Save,
+          config.THIRD_PARTY_API_URL_POST_LE_Dispatch_Outward_WithSap_Save,
           body,
           {
             headers: {
@@ -1285,6 +1335,31 @@ module.exports = (() => {
       } catch (error) {
         handleAxiosError(error, "Insurance Claim");
         res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+      DispatchWithoutSapSave: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_Dispatch_Outward_WithoutSap_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Data Saved");
+        res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
 
