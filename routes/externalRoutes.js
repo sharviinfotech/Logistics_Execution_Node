@@ -83,6 +83,10 @@ module.exports = (() => {
   //Dispatch
   router.post('/LE/Dispatch/Outward/withsap/Save', externalApiHandler.DispatchWithSapSave);
   router.put('/LE/Dispatch/Outward/withoutsap/Save', externalApiHandler.DispatchWithoutSapSave);
+  router.get('/LE/Dispatch/Outward/F4Vendorcode/fetch', externalApiHandler.Dispatchf4_vendorCode);
+  router.post('/LE/Dispatch/Outward/ReferenceNumber/fetch', externalApiHandler.DispatchReferenceNumber);
+  router.post('/LE/Dispatch/Outward/ReferenceNumber/edit', externalApiHandler.DispatchReferenceNumberEdit);
+
 
   return router;
 })();

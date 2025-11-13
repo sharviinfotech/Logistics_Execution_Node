@@ -1362,7 +1362,76 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
-
-
+     Dispatchf4_vendorCode: async (body, res) => {
+      try {
+        // console.log(
+        //   "Sending GET payload to plant API:",
+        //   JSON.stringify(body, null, 2)
+        // );
+        const response = await axios.get(config.THIRD_PARTY_API_URL_GET_LE_Dispatch_Outward_Fetch_VendorCode, {
+          headers: {
+            Authorization: getAuthHeader(),
+          },
+        });
+        // console.log(
+        //   "GET Response from plant API:",
+        //   JSON.stringify(response.data, null, 2)
+        // );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "VendorCode");
+        res.status(500).json({ error: "Failed to process GET request" });
+      }
+    },
+    DispatchReferenceNumber: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_Dispatch_Outward_Fetch_ReferenceNumber,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Dispatch  API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Dispatch Reference Number");
+        res.status(500).json({ error: "Failed to process Post request" });
+      }
+    },
+    DispatchReferenceNumberEdit: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_Dispatch_Outward_Edit_ReferenceNumber,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Dispatch  API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Dispatch Reference Number Edit");
+        res.status(500).json({ error: "Failed to process Post request" });
+      }
+    },
   };
 })();

@@ -63,7 +63,10 @@ module.exports = (() => {
     fetchinvoicelistnonsapwosp: (req, res) => externalApiMethods.fetchinvoicelistnonsapwosp(req.body, res),
     withoutsapSave: (req, res) => externalApiMethods.withoutsapSave(req.body, res),
     DispatchWithSapSave: (req, res) => externalApiMethods.DispatchWithSapSave(req.body, res),
-     DispatchWithoutSapSave: (req, res) => externalApiMethods.DispatchWithoutSapSave(req.body, res),
+    DispatchWithoutSapSave: (req, res) => externalApiMethods.DispatchWithoutSapSave(req.body, res),
+    Dispatchf4_vendorCode: (req, res) => externalApiMethods.Dispatchf4_vendorCode(req.body, res),
+    DispatchReferenceNumber: (req, res) => externalApiMethods.DispatchReferenceNumber(req.body, res),
+    DispatchReferenceNumberEdit: (req, res) => externalApiMethods.DispatchReferenceNumberEdit(req.body, res),
 
 
   };
