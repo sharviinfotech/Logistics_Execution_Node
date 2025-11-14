@@ -86,7 +86,12 @@ module.exports = (() => {
   router.get('/LE/Dispatch/Outward/F4Vendorcode/fetch', externalApiHandler.Dispatchf4_vendorCode);
   router.post('/LE/Dispatch/Outward/ReferenceNumber/fetch', externalApiHandler.DispatchReferenceNumber);
   router.post('/LE/Dispatch/Outward/ReferenceNumber/edit', externalApiHandler.DispatchReferenceNumberEdit);
+  router.post('/LE/orderinfo/GlobalReferenceNoFetch', externalApiHandler.ReferenceNoFetch);
+    router.post('/LE/orderinfo/global_Fields_SearchOption', externalApiHandler.global_Fields_SearchOption);
 
+
+
+  
 
   return router;
 })();
