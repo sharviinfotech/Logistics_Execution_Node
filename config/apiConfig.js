@@ -11,7 +11,7 @@ module.exports = (() => {
   return {
     // Credentials for 115
     THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "Dev00", //"ims113"
-    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Th!nk#1125",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
+    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Th!nk#1225",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
 
     // THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "110203",
     // THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Venp0rt@Hps234",
@@ -45,7 +45,9 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_PUT_LE_OrderInfo_custGroup: `${baseUrl}/le/order_info/list?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_OrderInfo_Physicaldispatch: `${baseUrl}/le/order_info/list?sap-client=234`,
     ReferenceNoFetch: `${baseUrl}/le/order_info/list?sap-client=234`,
-    global_Fields_SearchOption: `${baseUrl}/le/order_info/list?sap-client=234`,
+    // global_Fields_SearchOption: `${baseUrl}/le/order_info/list?sap-client=234`,
+    global_Fields_SearchOption: `${baseUrl}/le/search/display?sap-client=234`,                          
+    THIRD_PARTY_API_URL_PUT_LE_OrderInfo_PlantBasedDivison: `${baseUrl}/le/order_info/list?sap-client=234`,
 
 
 

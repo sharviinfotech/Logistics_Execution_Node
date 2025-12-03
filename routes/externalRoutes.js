@@ -29,6 +29,7 @@ module.exports = (() => {
   router.post('/LE/orderInfo/Outward/withsap/Save', externalApiHandler.OrderInfoOutwardSave);
   router.put('/LE/orderInfo/Outward/withoutsap/Save', externalApiHandler.OrderInfoNonSap);
   router.put('/LE/orderInfo/Outward/Physicaldispatch', externalApiHandler.OrderInfoPhysicaldispatch);
+  router.put('/LE/orderInfo/Outward/withoutsap/PlantBasedDivison', externalApiHandler.OrderInfoPlantBasedDivison);
 
   // shipment  outward
   router.post('/LE/ShipmentDetails/Outward/fetchInvoiceList', externalApiHandler.shipmentdetailsfetch);
@@ -87,7 +88,7 @@ module.exports = (() => {
   router.post('/LE/Dispatch/Outward/ReferenceNumber/fetch', externalApiHandler.DispatchReferenceNumber);
   router.post('/LE/Dispatch/Outward/ReferenceNumber/edit', externalApiHandler.DispatchReferenceNumberEdit);
   router.post('/LE/orderinfo/GlobalReferenceNoFetch', externalApiHandler.ReferenceNoFetch);
-    router.post('/LE/orderinfo/global_Fields_SearchOption', externalApiHandler.global_Fields_SearchOption);
+  router.post('/LE/orderinfo/global_Fields_SearchOption', externalApiHandler.global_Fields_SearchOption);
 
 
 

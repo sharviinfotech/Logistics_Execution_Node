@@ -495,6 +495,31 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
+    OrderInfoPlantBasedDivison: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_OrderInfo_PlantBasedDivison,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from order info create API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "order info create");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
 
 
     shipmentdetailsfetch: async (body, res) => {
@@ -1062,7 +1087,7 @@ module.exports = (() => {
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "shipment fetch");
-        res.status(500).json({ error: "Failed to process PUT request" });
+        res.status(500).json({ error: "Failed to process POST request" });
       }
     },
     InvoiceloaddetailsNonSap: async (body, res) => {
