@@ -45,8 +45,9 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_PUT_LE_OrderInfo_custGroup: `${baseUrl}/le/order_info/list?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_OrderInfo_Physicaldispatch: `${baseUrl}/le/order_info/list?sap-client=234`,
     ReferenceNoFetch: `${baseUrl}/le/order_info/list?sap-client=234`,
+    ReferenceNoFetch_Withoutsap: `${baseUrl}/le/order_info/list?sap-client=234`,
     // global_Fields_SearchOption: `${baseUrl}/le/order_info/list?sap-client=234`,
-    global_Fields_SearchOption: `${baseUrl}/le/search/display?sap-client=234`,                          
+    global_Fields_SearchOption: `${baseUrl}/le/search/display?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_OrderInfo_PlantBasedDivison: `${baseUrl}/le/order_info/list?sap-client=234`,
 
 
@@ -65,7 +66,7 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_GET_LE_SegmentInfo_supplier_segment_custgrp: `${baseUrl}/le/segment_sap/det?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_getzone: `${baseUrl}/le/segment_sap/det?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_Outward_WithSap_TAT_Type: `${baseUrl}/le/segment_sap/det?sap-client=234`,
-     THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_Outward_NonSap_TAT_Type: `${baseUrl}/le/segment_sap/det?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_Outward_NonSap_TAT_Type: `${baseUrl}/le/segment_sap/det?sap-client=234`,
 
     THIRD_PARTY_API_URL_POST_LE_TransitInfo_WithSap_Save: `${baseUrl}/le/transit_info/info?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_TransitInfo_NonSap: `${baseUrl}/le/transit_info/info?sap-client=234`,

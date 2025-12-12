@@ -67,9 +67,10 @@ module.exports = (() => {
     DispatchWithoutSapSave: (req, res) => externalApiMethods.DispatchWithoutSapSave(req.body, res),
     Dispatchf4_vendorCode: (req, res) => externalApiMethods.Dispatchf4_vendorCode(req.body, res),
     DispatchReferenceNumber: (req, res) => externalApiMethods.DispatchReferenceNumber(req.body, res),
-    DispatchReferenceNumberWithoutsap : (req, res) => externalApiMethods.DispatchReferenceNumberWithoutsap(req.body, res),
+    DispatchReferenceNumberWithoutsap: (req, res) => externalApiMethods.DispatchReferenceNumberWithoutsap(req.body, res),
     DispatchReferenceNumberEdit: (req, res) => externalApiMethods.DispatchReferenceNumberEdit(req.body, res),
     ReferenceNoFetch: (req, res) => externalApiMethods.ReferenceNoFetch(req.body, res),
+    ReferenceNoFetch_Withoutsap: (req, res) => externalApiMethods.ReferenceNoFetch_Withoutsap(req.body, res),
     global_Fields_SearchOption: (req, res) => externalApiMethods.global_Fields_SearchOption(req.body, res),
 
 
