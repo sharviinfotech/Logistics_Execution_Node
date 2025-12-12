@@ -1433,6 +1433,31 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process Post request" });
       }
     },
+    DispatchReferenceNumberWithoutsap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_Dispatch_Outward_WithoutSap_Fetch_ReferenceNumber,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from Dispatch  API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Dispatch Reference Number Without Sap");
+        res.status(500).json({ error: "Failed to process Put request" });
+      }
+    },
     DispatchReferenceNumberEdit: async (body, res) => {
       try {
         console.log(
