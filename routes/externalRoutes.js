@@ -61,6 +61,7 @@ module.exports = (() => {
   router.post('/LE/Vehicleinfo/Outward/fetchInvoiceList', externalApiHandler.VehicleInfofetch);
   router.post('/LE/Vehicleinfo/Outward/Save', externalApiHandler.VehicleInfosave);
   router.put('/LE/Vehicleinfo/NonSap/Save', externalApiHandler.VehicleInfoNonSap);
+  router.post('/LE/Vehicleinfo/Outward/Mapid', externalApiHandler.VehicleInfoMapid);
 
   //InvoiceLoad details
   router.post('/LE/InvoiceloadDetails/Outward/fetchInvoiceList', externalApiHandler.Invoiceloaddetailsfetch);
