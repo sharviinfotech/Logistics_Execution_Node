@@ -1583,5 +1583,30 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
+    global_Fields_SearchOption_WithoutSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.global_Fields_SearchOption_WithoutSap,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from order info create API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "order info create");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
   };
 })();

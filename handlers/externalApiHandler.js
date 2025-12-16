@@ -73,6 +73,7 @@ module.exports = (() => {
     ReferenceNoFetch: (req, res) => externalApiMethods.ReferenceNoFetch(req.body, res),
     ReferenceNoFetch_Withoutsap: (req, res) => externalApiMethods.ReferenceNoFetch_Withoutsap(req.body, res),
     global_Fields_SearchOption: (req, res) => externalApiMethods.global_Fields_SearchOption(req.body, res),
+    global_Fields_SearchOption_WithoutSap: (req, res) => externalApiMethods.global_Fields_SearchOption_WithoutSap(req.body, res),
 
 
   };

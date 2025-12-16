@@ -48,6 +48,7 @@ module.exports = (() => {
     ReferenceNoFetch_Withoutsap: `${baseUrl}/le/order_info/list?sap-client=234`,
     // global_Fields_SearchOption: `${baseUrl}/le/order_info/list?sap-client=234`,
     global_Fields_SearchOption: `${baseUrl}/le/search/display?sap-client=234`,
+    global_Fields_SearchOption_WithoutSap: `${baseUrl}/le/search/display?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_OrderInfo_PlantBasedDivison: `${baseUrl}/le/order_info/list?sap-client=234`,
 
 

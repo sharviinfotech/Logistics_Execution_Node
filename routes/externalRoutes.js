@@ -92,6 +92,7 @@ module.exports = (() => {
   router.post('/LE/orderinfo/GlobalReferenceNoFetch', externalApiHandler.ReferenceNoFetch);
   router.put('/LE/orderinfo/GlobalReferenceNoFetchwithoutsap', externalApiHandler.ReferenceNoFetch_Withoutsap);
   router.post('/LE/orderinfo/global_Fields_SearchOption', externalApiHandler.global_Fields_SearchOption);
+  router.put('/LE/orderinfo/global_Fields_SearchOption_WithoutSap', externalApiHandler.global_Fields_SearchOption_WithoutSap);
 
 
 
