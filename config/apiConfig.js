@@ -103,6 +103,8 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_Dispatch_Outward_Fetch_ReferenceNumber: `${baseUrl}/le/dispatch/ref?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_Dispatch_Outward_WithoutSap_Fetch_ReferenceNumber: `${baseUrl}/le/dispatch/ref?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_Dispatch_Outward_Edit_ReferenceNumber: `${baseUrl}/le/dispatch/ref?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_Dispatch_Outward_Filter_Creation: `${baseUrl}/le/dispatch/ref?sap-client=234`,
+
 
   };
 })();

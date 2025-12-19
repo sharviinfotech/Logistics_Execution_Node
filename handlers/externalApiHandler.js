@@ -74,6 +74,7 @@ module.exports = (() => {
     ReferenceNoFetch_Withoutsap: (req, res) => externalApiMethods.ReferenceNoFetch_Withoutsap(req.body, res),
     global_Fields_SearchOption: (req, res) => externalApiMethods.global_Fields_SearchOption(req.body, res),
     global_Fields_SearchOption_WithoutSap: (req, res) => externalApiMethods.global_Fields_SearchOption_WithoutSap(req.body, res),
+    Filter_Creation: (req, res) => externalApiMethods.Filter_Creation(req.body, res),
 
 
   };
