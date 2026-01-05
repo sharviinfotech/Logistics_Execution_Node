@@ -1633,6 +1633,31 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process POST request" });
       }
     },
+    Filter_Creation_NonSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_Dispatch_Outward_Filter_Creation_NonSap,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from Dispatch Filter Creation NonSap API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Dispatch Filter Creation");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
     OrderInfoFilterCreation: async (body, res) => {
       try {
         console.log(
@@ -1656,6 +1681,31 @@ module.exports = (() => {
       } catch (error) {
         handleAxiosError(error, "Order Info Filter Creation");
         res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+    GlobalFilterCreationNonSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_Global_Outward_Filter_Creation_NonSap,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from Global Filter Creation NonSap API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Global  NonSap Filter Creation");
+        res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
   };

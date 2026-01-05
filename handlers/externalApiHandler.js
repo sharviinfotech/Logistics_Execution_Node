@@ -75,7 +75,9 @@ module.exports = (() => {
     global_Fields_SearchOption: (req, res) => externalApiMethods.global_Fields_SearchOption(req.body, res),
     global_Fields_SearchOption_WithoutSap: (req, res) => externalApiMethods.global_Fields_SearchOption_WithoutSap(req.body, res),
     Filter_Creation: (req, res) => externalApiMethods.Filter_Creation(req.body, res),
+    Filter_Creation_NonSap: (req, res) => externalApiMethods.Filter_Creation_NonSap(req.body, res),
     OrderInfoFilterCreation: (req, res) => externalApiMethods.OrderInfoFilterCreation(req.body, res),
+    GlobalFilterCreationNonSap: (req, res) => externalApiMethods.GlobalFilterCreationNonSap(req.body, res),
 
 
   };

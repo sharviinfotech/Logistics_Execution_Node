@@ -96,9 +96,11 @@ module.exports = (() => {
 
   // Filter Creation For Dispatch
   router.post('/LE/orderinfo/Filter_Creation', externalApiHandler.Filter_Creation);
+  router.put('/LE/Dispatch/Outward/Filter_Creation_NonSap', externalApiHandler.Filter_Creation_NonSap);
 
   // Filter Creation For Order Info
   router.post('/LE/orderinfo/Outward/Filter_Creation', externalApiHandler.OrderInfoFilterCreation);
+  router.put('/LE/Global/Outward/Filter_Creation_NonSap', externalApiHandler.GlobalFilterCreationNonSap);
 
 
 
