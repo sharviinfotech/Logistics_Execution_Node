@@ -1015,6 +1015,31 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
+    DCReferenceNo: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_Vehicleinfo_Outword_NonSap_DCNO,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Data Saved");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
     VehicleInfoMapid: async (body, res) => {
       try {
         console.log(
@@ -1022,7 +1047,7 @@ module.exports = (() => {
           JSON.stringify(body, null, 2)
         );
         const response = await axios.post(
-          config.THIRD_PARTY_API_URL_POST_LE_Vehicleinfo_Mapid,
+          config.THIRD_PARTY_API_URL_POST_LE_Vehicleinfo_Outward_Mapid,
           body,
           {
             headers: {
@@ -1037,6 +1062,31 @@ module.exports = (() => {
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "shipment fetch");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    VehicleInfoMapidForNonsap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_Vehicleinfo_Outward_Mapidfornonsap,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from PurchaseCreate API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Data Saved");
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
