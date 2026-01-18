@@ -30,6 +30,8 @@ module.exports = (() => {
     custgroup: (req, res) => externalApiMethods.custgroup(req.body, res),
     OrderInfoPhysicaldispatch: (req, res) => externalApiMethods.OrderInfoPhysicaldispatch(req.body, res),
     OrderInfoPlantBasedDivison: (req, res) => externalApiMethods.OrderInfoPlantBasedDivison(req.body, res),
+    OrderInfoDeleteWithSap: (req, res) => externalApiMethods.OrderInfoDeleteWithSap(req.body, res),
+    OrderInfoDeleteWithoutSap: (req, res) => externalApiMethods.OrderInfoDeleteWithoutSap(req.body, res),
     shipmentdetailsfetch: (req, res) => externalApiMethods.shipmentdetailsfetch(req.body, res),
     ShipmentOutwardSave: (req, res) => externalApiMethods.ShipmentOutwardSave(req.body, res),
     getTypeofmaterial: (req, res) => externalApiMethods.getTypeofmaterial(req.body, res),

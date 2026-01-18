@@ -30,6 +30,8 @@ module.exports = (() => {
   router.put('/LE/orderInfo/Outward/withoutsap/Save', externalApiHandler.OrderInfoNonSap);
   router.put('/LE/orderInfo/Outward/Physicaldispatch', externalApiHandler.OrderInfoPhysicaldispatch);
   router.put('/LE/orderInfo/Outward/withoutsap/PlantBasedDivison', externalApiHandler.OrderInfoPlantBasedDivison);
+  router.post('/LE/orderInfo/Outward/DeleteWithSap', externalApiHandler.OrderInfoDeleteWithSap);
+  router.put('/LE/orderInfo/Outward/DeleteWithoutSap', externalApiHandler.OrderInfoDeleteWithoutSap);
 
   // shipment  outward
   router.post('/LE/ShipmentDetails/Outward/fetchInvoiceList', externalApiHandler.shipmentdetailsfetch);
