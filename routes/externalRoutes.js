@@ -40,6 +40,8 @@ module.exports = (() => {
   router.put('/LE/ShipmentDetails/Nonsap/f4_Incoterms', externalApiHandler.Incoterms);
   router.post('/LE/ShipmentDetails/Nonsap/Save', externalApiHandler.shipmentdetailsNonSapSave);
   router.post('/LE/ShipmentDetails/Nonsap/Reports', externalApiHandler.shipmentdetailsNonSapReports);
+  router.post('/LE/ShipmentDetails/Outward/ShipmentDeleteWithSap', externalApiHandler.ShipmentDeleteWithSap);
+  router.post('/LE/ShipmentDetails/Outward/ShipmentDeleteWithoutSap', externalApiHandler.ShipmentDeleteWithoutSap);
 
 
   // segment outward
@@ -50,14 +52,19 @@ module.exports = (() => {
   router.put('/LE/segmentInfo/Outward/withoutsap/fetchzone', externalApiHandler.fetchzoneTat);
   router.put('/LE/segmentInfo/Outward/withSap/TAT_Type', externalApiHandler.fetchTAT);
   router.put('/LE/segmentInfo/Outward/NonSap/TAT_Type', externalApiHandler.fetchNonSapTAT);
+  router.post('/LE/segmentInfo/Outward/DeleteWithoutSap', externalApiHandler.SegmentInfoDeleteWithoutSap);
 
   //Transit Info OutWard
   router.post('/LE/TransitInfo/Outward/WithSap/Save', externalApiHandler.TransitInfoSave);
   router.put('/LE/TransitInfo/NonSap/Save', externalApiHandler.TransitInfoNonSap);
+  router.post('/LE/TransitInfo/Outward/WithSap/Delete', externalApiHandler.TransitInfoDeleteWithSap);
+  router.post('/LE/TransitInfo/Outward/WithOutSap/Delete', externalApiHandler.TransitInfoDeleteWithOutSap);
 
   // Freight Billing With Sap
   router.post('/LE/FreightBilling/Outward/WithSap/Save', externalApiHandler.FreightBillingSave);
   router.put('/LE/FreightBilling/Outward/NonSap/Create', externalApiHandler.FreightBillingNonSap);
+  router.post('/LE/FreightBilling/Outward/WithSap/Delete', externalApiHandler.FreightBillingDeleteWithSap);
+  router.put('/LE/FreightBilling/Outward/NonSap/Delete', externalApiHandler.FreightBillingDeleteWithOutSap);
 
   // vechile info outward
   router.post('/LE/Vehicleinfo/Outward/fetchInvoiceList', externalApiHandler.VehicleInfofetch);
@@ -66,6 +73,8 @@ module.exports = (() => {
   router.post('/LE/Vehicleinfo/Outward/WithSapMapid', externalApiHandler.VehicleInfoMapid);
   router.put('/LE/Vehicleinfo/Outward/WithoutSapMapid', externalApiHandler.VehicleInfoMapidForNonsap);
   router.put('/LE/Vehicleinfo/NonSap/DCNO', externalApiHandler.DCReferenceNo);
+  router.post('/LE/Vehicleinfo/Outward/DeleteWithSap', externalApiHandler.VehicleInfoDeleteWithSap);
+  router.put('/LE/Vehicleinfo/Outward/DeleteWithoutSap', externalApiHandler.VehicleInfoDeleteWithoutSap);
 
   //InvoiceLoad details
   router.post('/LE/InvoiceloadDetails/Outward/fetchInvoiceList', externalApiHandler.Invoiceloaddetailsfetch);
@@ -73,18 +82,24 @@ module.exports = (() => {
   router.post('/LE/InvoiceloadDetails/Outward/save', externalApiHandler.InvoiceloaddetailsSave);
   router.post('/LE/InvoiceloadDetails/NonSap/Save', externalApiHandler.InvoiceloaddetailsNonSap);
   router.get('/LE/InvoiceloadDetails/f4_getAllDetails', externalApiHandler.gettypeofvehicle);
+  router.post('/LE/InvoiceloadDetails/Outward/DeleteWithsap', externalApiHandler.InvoiceloaddetailsDeleteWithsap);
+  router.put('/LE/InvoiceloadDetails/Outward/DeleteWithoutsap', externalApiHandler.InvoiceloaddetailsDeleteWithoutsap);
 
   // Insurance Claim Tracking
   router.post('/LE/InsuranceClaimTracking/Outward/fetchinvoicelist', externalApiHandler.InsuranceClaimTrackingfetch);
   router.post('/LE/InsuranceClaimTracking/Outward/save', externalApiHandler.InsuranceClaimTrackingSave);
   router.put('/LE/InsuranceClaimTracking/NonSap/fetchinvoicelistnonsap', externalApiHandler.fetchinvoicelistnonsap);
   router.put('/LE/InsuranceClaimTracking/NonSap/Nonsapsave', externalApiHandler.Nonsapsave);
+  router.post('/LE/InsuranceClaimTracking/Outward/DeleteWithSap', externalApiHandler.InsuranceClaimTrackingDeleteWithSap);
+  router.put('/LE/InsuranceClaimTracking/NonSap/DeleteWithoutSap', externalApiHandler.InsuranceClaimTrackingDeleteWithoutSap);
 
   //Transit Damage Info
   router.post('/LE/TransitDamageInfo/Outward/fetchinvoicelist', externalApiHandler.TransitDamageInfofetch);
   router.post('/LE/TransitDamageInfo/Outward/Save', externalApiHandler.TransitDamageInfoSave);
   router.put('/LE/TransitDamageInfo/NonSap/fetchinvoicelistnonsap', externalApiHandler.fetchinvoicelistnonsapwosp);
   router.put('/LE/TransitDamageInfo/NonSap/withoutsapSave', externalApiHandler.withoutsapSave);
+  router.post('/LE/TransitDamageInfo/Outward/DeleteWithSap', externalApiHandler.TransitDamageInfoDeleteWithSap);
+  router.put('/LE/TransitDamageInfo/NonSap/DeleteWithoutSap', externalApiHandler.TransitDamageInfoDeleteWithoutSap);
 
   //Dispatch
   router.post('/LE/Dispatch/Outward/withsap/Save', externalApiHandler.DispatchWithSapSave);

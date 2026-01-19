@@ -61,6 +61,9 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_PUT_LE_ShipmentDetails_NonSap_Incoterms: `${baseUrl}/le/shpmnt_nonsap/details?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_ShipmentDetails_NonSap_Save: `${baseUrl}/le/shpmnt_nonsap/details?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_ShipmentDetails_NonSap_Reports: `${baseUrl}/le/shpmnt_nonsap/details?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_ShipmentDetails_Outward_ShipmentDeleteWithsap: `${baseUrl}/le/shipment_sap/det?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_ShipmentDetails_Outward_ShipmentDeleteWithoutsap: `${baseUrl}/le/shpmnt_nonsap/details?sap-client=234`,
+
 
 
     THIRD_PARTY_API_URL_POST_LE_SegmentInfo_Outward_sapfetch: `${baseUrl}/le/segment_sap/det?sap-client=234`,
@@ -70,12 +73,18 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_getzone: `${baseUrl}/le/segment_sap/det?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_Outward_WithSap_TAT_Type: `${baseUrl}/le/segment_sap/det?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_Outward_NonSap_TAT_Type: `${baseUrl}/le/segment_sap/det?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_SegmentInfo_Outward_DeleteWithSap: `${baseUrl}/le/segment_sap/det?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_Outword_DeleteWithoutSap: `${baseUrl}/le/segment_sap/det?sap-client=234`,
 
     THIRD_PARTY_API_URL_POST_LE_TransitInfo_WithSap_Save: `${baseUrl}/le/transit_info/info?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_TransitInfo_NonSap: `${baseUrl}/le/transit_info/info?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_TransitInfo_WithSap_Delete: `${baseUrl}/le/transit_info/info?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_TransitInfo_WithOutSap_Delete: `${baseUrl}/le/transit_info/info?sap-client=234`,
 
     THIRD_PARTY_API_URL_POST_LE_FreightBilling_WithSap_Save: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_FreightBilling_NonSap_Create: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_FreightBilling_WithSap_Delete: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_FreightBilling_NonSap_Delete: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
 
     THIRD_PARTY_API_URL_POST_LE_Vehicleinfo_Outward_sapfetch: `${baseUrl}/le/vehicle/info?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_Vehicleinfo_Outward_Save: `${baseUrl}/le/vehicle/info?sap-client=234`,
@@ -83,6 +92,8 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_Vehicleinfo_Outward_Mapid: `${baseUrl}/le/vehicle/info?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_Vehicleinfo_Outward_Mapidfornonsap: `${baseUrl}/le/vehicle/info?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_Vehicleinfo_Outword_NonSap_DCNO: `${baseUrl}/le/vehicle/info?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_Vehicleinfo_Outward_DeleteWithSap: `${baseUrl}/le/vehicle/info?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_Vehicleinfo_Outword_DeleteWithoutSap: `${baseUrl}/le/vehicle/info?sap-client=234`,
 
 
     THIRD_PARTY_API_URL_POST_LE_InvoiceloadDetails_Outward_sapfetch: `${baseUrl}/le/inv_load/det?sap-client=234`,
@@ -90,16 +101,23 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_InvoiceloadDetails_Outward_Save: `${baseUrl}/le/inv_load/det?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_InvoiceloadDetails_Outword_NonSap_Save: `${baseUrl}/le/inv_load/det?sap-client=234`,
     THIRD_PARTY_API_URL_GET_LE_InvoiceloadDetails_typeofvehicle: `${baseUrl}/le/inv_load/det?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_InvoiceloadDetails_Outward_DeleteWithsap: `${baseUrl}/le/inv_load/det?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_InvoiceloadDetails_Outward_DeleteWithsap: `${baseUrl}/le/vehicle/info?sap-client=234`,
+
 
     THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_fetchinvoicelist: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_Save: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outword_fetchinvoicelistnonsap: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outword_Nonsapsave: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_DeleteWithSap: `${baseUrl}/le/transit_info/info?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outword_DeleteWithoutSap: `${baseUrl}/le/transit_info/info?sap-client=234`,
 
     THIRD_PARTY_API_URL_POST_LE_TransitDamageInfo_Outward_fetchinvoicelist: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_TransitDamageInfo_Outward_Save: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_fetchinvoicelistnonsap: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_WithoutsapSave: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_TransitDamageInfo_Outward_DeleteWithSap: `${baseUrl}/le/transit_info/info?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_DeleteWithoutSap: `${baseUrl}/le/transit_info/info?sap-client=234`,
 
     THIRD_PARTY_API_URL_POST_LE_Dispatch_Outward_WithSap_Save: `${baseUrl}/le/dispatch/ref?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_Dispatch_Outward_WithoutSap_Save: `${baseUrl}/le/dispatch/ref?sap-client=234`,
