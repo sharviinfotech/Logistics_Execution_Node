@@ -40,6 +40,8 @@ module.exports = (() => {
   router.put('/LE/ShipmentDetails/Nonsap/f4_Incoterms', externalApiHandler.Incoterms);
   router.post('/LE/ShipmentDetails/Nonsap/Save', externalApiHandler.shipmentdetailsNonSapSave);
   router.post('/LE/ShipmentDetails/Nonsap/Reports', externalApiHandler.shipmentdetailsNonSapReports);
+  router.post('/LE/ShipmentDetails/Outward/ChangeWithSap', externalApiHandler.Shipmentchangewithsap);
+  router.post('/LE/ShipmentDetails/Outward/ChangeWithoutSap', externalApiHandler.Shipmentchangewithoutsap);
   router.post('/LE/ShipmentDetails/Outward/ShipmentDeleteWithSap', externalApiHandler.ShipmentDeleteWithSap);
   router.post('/LE/ShipmentDetails/Outward/ShipmentDeleteWithoutSap', externalApiHandler.ShipmentDeleteWithoutSap);
 
@@ -52,6 +54,8 @@ module.exports = (() => {
   router.put('/LE/segmentInfo/Outward/withoutsap/fetchzone', externalApiHandler.fetchzoneTat);
   router.put('/LE/segmentInfo/Outward/withSap/TAT_Type', externalApiHandler.fetchTAT);
   router.put('/LE/segmentInfo/Outward/NonSap/TAT_Type', externalApiHandler.fetchNonSapTAT);
+  router.post('/LE/segmentInfo/Outward/ChangeWithSap', externalApiHandler.SegmentInfoChangeWithSap);
+  router.put('/LE/segmentInfo/Outward/ChangeWithoutSap', externalApiHandler.SegmentInfoChangeWithoutSap);
   router.post('/LE/segmentInfo/Outward/DeleteWithoutSap', externalApiHandler.SegmentInfoDeleteWithoutSap);
 
   //Transit Info OutWard
@@ -63,6 +67,8 @@ module.exports = (() => {
   // Freight Billing With Sap
   router.post('/LE/FreightBilling/Outward/WithSap/Save', externalApiHandler.FreightBillingSave);
   router.put('/LE/FreightBilling/Outward/NonSap/Create', externalApiHandler.FreightBillingNonSap);
+  router.post('/LE/FreightBilling/Outward/ChangeWithSap', externalApiHandler.FreightBillingChangeWithSap);
+  router.put('/LE/FreightBilling/Outward/ChangeWithoutSap', externalApiHandler.FreightBillingChangeWithoutSap);
   router.post('/LE/FreightBilling/Outward/WithSap/Delete', externalApiHandler.FreightBillingDeleteWithSap);
   router.put('/LE/FreightBilling/Outward/NonSap/Delete', externalApiHandler.FreightBillingDeleteWithOutSap);
 
@@ -73,6 +79,8 @@ module.exports = (() => {
   router.post('/LE/Vehicleinfo/Outward/WithSapMapid', externalApiHandler.VehicleInfoMapid);
   router.put('/LE/Vehicleinfo/Outward/WithoutSapMapid', externalApiHandler.VehicleInfoMapidForNonsap);
   router.put('/LE/Vehicleinfo/NonSap/DCNO', externalApiHandler.DCReferenceNo);
+  router.post('/LE/Vehicleinfo/Outward/ChangeWithSap', externalApiHandler.VehicleInfoChangeWithSap);
+  router.put('/LE/Vehicleinfo/Outward/ChangeWithoutSap', externalApiHandler.VehicleInfoChangeWithoutSap);
   router.post('/LE/Vehicleinfo/Outward/DeleteWithSap', externalApiHandler.VehicleInfoDeleteWithSap);
   router.put('/LE/Vehicleinfo/Outward/DeleteWithoutSap', externalApiHandler.VehicleInfoDeleteWithoutSap);
 
