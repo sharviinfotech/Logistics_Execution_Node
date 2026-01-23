@@ -1167,14 +1167,39 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process POST request" });
       }
     },
-    TransitInfoDeleteWithOutSap: async (body, res) => {
+    TransitInfoDeleteWithoutSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_TransitInfo_WithoutSap_Delete,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from TransitInfoSave fetch API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "To Delete Without Sap");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    TransitInfoChangeWithSap: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
         );
         const response = await axios.post(
-          config.THIRD_PARTY_API_URL_POST_LE_TransitInfo_WithOutSap_Delete,
+          config.THIRD_PARTY_API_URL_POST_LE_Outward_TransitInfo_WithSap_Change,
           body,
           {
             headers: {
@@ -1188,8 +1213,33 @@ module.exports = (() => {
         );
         res.json(response.data);
       } catch (error) {
-        handleAxiosError(error, "PurchaseCreate");
+        handleAxiosError(error, "To Change");
         res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+    TransitInfoChangeWithoutSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_Outward_TransitInfo_WithOutSap_Change,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from TransitInfoChange fetch API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "To Change Without Sap");
+        res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
 
@@ -1743,11 +1793,11 @@ module.exports = (() => {
     InvoiceloaddetailsDeleteWithoutsap: async (body, res) => {
       try {
         console.log(
-          "Sending  Post payload to Pr Reject  API:",
+          "Sending  Put payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
         );
-        const response = await axios.post(
-          config.THIRD_PARTY_API_URL_PUT_LE_InvoiceloadDetails_Outward_DeleteWithsap,
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_InvoiceloadDetails_Outward_DeleteWithoutsap,
           body,
           {
             headers: {
@@ -1761,7 +1811,7 @@ module.exports = (() => {
         );
         res.json(response.data);
       } catch (error) {
-        handleAxiosError(error, "shipment fetch");
+        handleAxiosError(error, "Change Without Sap");
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
@@ -1919,6 +1969,56 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
+    InsuranceClaimTrackingChangeWithSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_Change_WithSap,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Insurance Claim API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Insurance Claim");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+    InsuranceClaimTrackingChangeWithoutSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outward_Change_WithoutSap,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from Insurance Claim API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Insurance Claim");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
     TransitDamageInfofetch: async (body, res) => {
       try {
         console.log(
@@ -2066,6 +2166,58 @@ module.exports = (() => {
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "Data Saved");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+
+    TransitDamageInfoChangeWithSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_TransitDamageInfo_Outward_Change_WithSap,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Insurance Claim API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Change With Sap");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+
+    TransitDamageInfoChangeWithoutSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outward_Change_WithoutSap,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from Insurance Claim API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Change Without Sap");
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
