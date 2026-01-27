@@ -791,7 +791,7 @@ module.exports = (() => {
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "shipment create");
-        res.status(500).json({ error: "Failed to process PUT request" });
+        res.status(500).json({ error: "Failed to process POST request" });
       }
     },
     ShipmentDeleteWithoutSap: async (body, res) => {
@@ -2567,5 +2567,33 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
+      GlobalOutwardCountWithSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_Global_Outward_CountWithSap,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Global Outward Count With Sap API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Global  Count Creation");
+        res.status(500).json({ error: "Failed to process Post request" });
+      }
+    },
+
+
+
   };
 })();

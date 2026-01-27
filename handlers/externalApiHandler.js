@@ -112,6 +112,7 @@ module.exports = (() => {
     Filter_Creation_NonSap: (req, res) => externalApiMethods.Filter_Creation_NonSap(req.body, res),
     OrderInfoFilterCreation: (req, res) => externalApiMethods.OrderInfoFilterCreation(req.body, res),
     GlobalFilterCreationNonSap: (req, res) => externalApiMethods.GlobalFilterCreationNonSap(req.body, res),
+    GlobalOutwardCountWithSap: (req, res) => externalApiMethods.GlobalOutwardCountWithSap(req.body, res),
 
 
   };

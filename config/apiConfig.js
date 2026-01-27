@@ -136,8 +136,8 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_fetchinvoicelistnonsap: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_WithoutsapSave: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
     //Transit Damage Info Delete URLs
-    THIRD_PARTY_API_URL_POST_LE_TransitDamageInfo_Outward_DeleteWithSap: `${baseUrl}/le/transit_info/info?sap-client=234`,
-    THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_DeleteWithoutSap: `${baseUrl}/le/transit_info/info?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_TransitDamageInfo_Outward_DeleteWithSap: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outword_DeleteWithoutSap: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
     // Transit Damage Info Change URLs
     THIRD_PARTY_API_URL_POST_LE_TransitDamageInfo_Outward_Change_WithSap: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_TransitDamageInfo_Outward_Change_WithoutSap: `${baseUrl}/le/transit_dmg_inf/damage?sap-client=234`,
@@ -159,6 +159,11 @@ module.exports = (() => {
     // Filter Creation For Order Info
     THIRD_PARTY_API_URL_POST_LE_OrderInfo_Outward_Filter_Creation: `${baseUrl}/le/filter/api?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_Global_Outward_Filter_Creation_NonSap: `${baseUrl}/le/filter/api?sap-client=234`,
+
+    //count API URLs
+    THIRD_PARTY_API_URL_POST_LE_Global_Outward_CountWithSap: `${baseUrl}/le/pending/count?sap-client=234`,
+
+    // THIRD_PARTY_API_URL_GET_LE_Global_Outward_CountWithoutSap: `${baseUrl}/le/filter/api?sap-client=234`,
 
 
 
