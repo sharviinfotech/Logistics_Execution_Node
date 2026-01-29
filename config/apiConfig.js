@@ -11,7 +11,7 @@ module.exports = (() => {
   return {
     // Credentials for 115
     THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "Dev00", //"ims113"
-    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "R@p!d#3125",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
+    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "R@p!d#3126",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
 
     // THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "110203",
     // THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Venp0rt@Hps234",
@@ -163,9 +163,8 @@ module.exports = (() => {
     //count API URLs
     THIRD_PARTY_API_URL_POST_LE_Global_Outward_CountWithSap: `${baseUrl}/le/pending/count?sap-client=234`,
 
-    // THIRD_PARTY_API_URL_GET_LE_Global_Outward_CountWithoutSap: `${baseUrl}/le/filter/api?sap-client=234`,
-
-
+   //API for getting user details
+    THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationLogin: `${baseUrl}/le/login/login?sap-client=234`,
 
   };
 })();

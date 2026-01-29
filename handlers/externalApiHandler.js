@@ -113,6 +113,7 @@ module.exports = (() => {
     OrderInfoFilterCreation: (req, res) => externalApiMethods.OrderInfoFilterCreation(req.body, res),
     GlobalFilterCreationNonSap: (req, res) => externalApiMethods.GlobalFilterCreationNonSap(req.body, res),
     GlobalOutwardCountWithSap: (req, res) => externalApiMethods.GlobalOutwardCountWithSap(req.body, res),
+    GlobalUserAuth: (req, res) => externalApiMethods.GlobalUserAuth(req.body, res),
 
 
   };
