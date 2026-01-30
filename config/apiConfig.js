@@ -90,7 +90,7 @@ module.exports = (() => {
     // Transit info change URLs
     THIRD_PARTY_API_URL_POST_LE_Outward_TransitInfo_WithSap_Change: `${baseUrl}/le/transit_info/info?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_Outward_TransitInfo_WithOutSap_Change: `${baseUrl}/le/transit_info/info?sap-client=234`,
-   
+
     // FreightBilling URLs
     THIRD_PARTY_API_URL_POST_LE_FreightBilling_WithSap_Save: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_FreightBilling_NonSap_Create: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
@@ -98,7 +98,7 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_PUT_LE_FreightBilling_ChangeWithoutSap: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_FreightBilling_WithSap_Delete: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_FreightBilling_NonSap_Delete: `${baseUrl}/le/freight_billing/billing?sap-client=234`,
-     
+
     //Vehicle Info Outward URLs
     THIRD_PARTY_API_URL_POST_LE_Vehicleinfo_Outward_sapfetch: `${baseUrl}/le/vehicle/info?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_Vehicleinfo_Outward_Save: `${baseUrl}/le/vehicle/info?sap-client=234`,
@@ -118,7 +118,7 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_InvoiceloadDetails_Outword_NonSap_Save: `${baseUrl}/le/inv_load/det?sap-client=234`,
     THIRD_PARTY_API_URL_GET_LE_InvoiceloadDetails_typeofvehicle: `${baseUrl}/le/inv_load/det?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_InvoiceloadDetails_Outward_DeleteWithsap: `${baseUrl}/le/inv_load/det?sap-client=234`,
-      THIRD_PARTY_API_URL_PUT_LE_InvoiceloadDetails_Outward_DeleteWithoutsap: `${baseUrl}/le/inv_load/det?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_InvoiceloadDetails_Outward_DeleteWithoutsap: `${baseUrl}/le/inv_load/det?sap-client=234`,
 
     // Insurance Claim Tracking Outward URLs
     THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_fetchinvoicelist: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
@@ -163,8 +163,11 @@ module.exports = (() => {
     //count API URLs
     THIRD_PARTY_API_URL_POST_LE_Global_Outward_CountWithSap: `${baseUrl}/le/pending/count?sap-client=234`,
 
-   //API for getting user details
+    //API for getting user details
     THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationLogin: `${baseUrl}/le/login/login?sap-client=234`,
+
+    THIRD_PARTY_API_URL_GET_LE_UserCreation_DisplayTable: `${baseUrl}/le/login/login?sap-client=234`,
+
 
   };
 })();

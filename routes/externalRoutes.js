@@ -57,7 +57,7 @@ module.exports = (() => {
   router.post('/LE/segmentInfo/Outward/ChangeWithSap', externalApiHandler.SegmentInfoChangeWithSap);
   router.put('/LE/segmentInfo/Outward/ChangeWithoutSap', externalApiHandler.SegmentInfoChangeWithoutSap);
   router.post('/LE/segmentInfo/Outward/DeleteWithSap', externalApiHandler.SegmentInfoDeleteWithSap);
-    router.put('/LE/segmentInfo/Outward/DeleteWithoutSap', externalApiHandler.SegmentInfoDeleteWithoutSap);
+  router.put('/LE/segmentInfo/Outward/DeleteWithoutSap', externalApiHandler.SegmentInfoDeleteWithoutSap);
 
   //Transit Info OutWard
   router.post('/LE/TransitInfo/Outward/WithSap/Save', externalApiHandler.TransitInfoSave);
@@ -137,11 +137,13 @@ module.exports = (() => {
   router.put('/LE/Global/Outward/Filter_Creation_NonSap', externalApiHandler.GlobalFilterCreationNonSap);
 
   // Count APIs for Global  Outward 
-  
-   router.post('/LE/Outward/GlobalScreen/CountWithSap', externalApiHandler.GlobalOutwardCountWithSap);
 
-   //API for getting user details
+  router.post('/LE/Outward/GlobalScreen/CountWithSap', externalApiHandler.GlobalOutwardCountWithSap);
+
+  //API for getting user details
   router.post('/LE/GlobalUserAuth', externalApiHandler.GlobalUserAuth);
+
+  router.get('/LE/UserCreation/DisplayTable', externalApiHandler.UserCreationDisplayTable);
 
 
 

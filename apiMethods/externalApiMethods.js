@@ -2618,6 +2618,27 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process Post request" });
       }
     },
+    UserCreationDisplayTable : async (body, res) => {
+      try {
+        // console.log(
+        //   "Sending GET payload to plant API:",
+        //   JSON.stringify(body, null, 2)
+        // );
+        const response = await axios.get(config.THIRD_PARTY_API_URL_GET_LE_UserCreation_DisplayTable, {
+          headers: {
+            Authorization: getAuthHeader(),
+          },
+        });
+        // console.log(
+        //   "GET Response from plant API:",
+        //   JSON.stringify(response.data, null, 2)
+        // );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "VendorCode");
+        res.status(500).json({ error: "Failed to process GET request" });
+      }
+    },
 
 
 
