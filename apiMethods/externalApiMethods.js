@@ -2618,7 +2618,7 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process Post request" });
       }
     },
-    UserCreationDisplayTable : async (body, res) => {
+    UserCreationDisplayTable: async (body, res) => {
       try {
         // console.log(
         //   "Sending GET payload to plant API:",
@@ -2637,6 +2637,32 @@ module.exports = (() => {
       } catch (error) {
         handleAxiosError(error, "VendorCode");
         res.status(500).json({ error: "Failed to process GET request" });
+      }
+    },
+
+    UserCreationDelete: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationDelete,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Global Outward Count With Sap API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "User Creation Login");
+        res.status(500).json({ error: "Failed to process Post request" });
       }
     },
 

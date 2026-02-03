@@ -167,6 +167,8 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationLogin: `${baseUrl}/le/login/login?sap-client=234`,
 
     THIRD_PARTY_API_URL_GET_LE_UserCreation_DisplayTable: `${baseUrl}/le/login/login?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationDelete: `${baseUrl}/le/login/login?sap-client=234`,
+
 
 
   };

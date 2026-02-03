@@ -115,6 +115,7 @@ module.exports = (() => {
     GlobalOutwardCountWithSap: (req, res) => externalApiMethods.GlobalOutwardCountWithSap(req.body, res),
     GlobalUserAuth: (req, res) => externalApiMethods.GlobalUserAuth(req.body, res),
     UserCreationDisplayTable: (req, res) => externalApiMethods.UserCreationDisplayTable(req.query, res),
+    UserCreationDelete: (req, res) => externalApiMethods.UserCreationDelete(req.body, res),
 
 
   };
