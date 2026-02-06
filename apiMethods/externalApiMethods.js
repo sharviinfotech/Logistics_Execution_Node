@@ -5,6 +5,9 @@ module.exports = (() => {
   const axios = require("axios");
   const https = require("https");
   const config = require("../config/apiConfig");
+  const agent = new https.Agent({ 
+  rejectUnauthorized: false 
+});
 
   const handleAxiosError = (error, functionName) => {
     console.error(`Error in ${functionName}:`, error.message);
@@ -330,6 +333,7 @@ module.exports = (() => {
           "Sending  Post payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
         );
+
         const response = await axios.post(
           config.THIRD_PARTY_API_URL_POST_LE_OrderInfo_Outward_sapfetch,
           body,
@@ -337,6 +341,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -362,6 +367,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -387,6 +393,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -409,6 +416,7 @@ module.exports = (() => {
           headers: {
             Authorization: getAuthHeader(),
           },
+           httpsAgent: agent, 
         });
         // console.log(
         //   "GET Response from plant API:",
@@ -433,6 +441,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -458,6 +467,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -483,6 +493,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -508,6 +519,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -533,6 +545,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -558,6 +571,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -585,6 +599,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -610,6 +625,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -632,6 +648,7 @@ module.exports = (() => {
           headers: {
             Authorization: getAuthHeader(),
           },
+           httpsAgent: agent, 
         });
         // console.log(
         //   "GET Response from plant API:",
@@ -656,6 +673,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -681,6 +699,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -706,6 +725,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -731,6 +751,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -756,6 +777,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -782,6 +804,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -807,6 +830,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -834,6 +858,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -859,6 +884,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -884,6 +910,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -906,6 +933,7 @@ module.exports = (() => {
           headers: {
             Authorization: getAuthHeader(),
           },
+           httpsAgent: agent, 
         });
         // console.log(
         //   "GET Response from plant API:",
@@ -930,6 +958,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -955,6 +984,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -980,6 +1010,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1005,6 +1036,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1030,6 +1062,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1055,6 +1088,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1080,6 +1114,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1105,6 +1140,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1130,6 +1166,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1155,6 +1192,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1180,6 +1218,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1205,6 +1244,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1230,6 +1270,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1256,6 +1297,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1281,6 +1323,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1306,6 +1349,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1331,6 +1375,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1356,6 +1401,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1381,6 +1427,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1406,6 +1453,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1431,6 +1479,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1456,6 +1505,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1481,6 +1531,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1506,6 +1557,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1531,6 +1583,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1556,6 +1609,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1581,6 +1635,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1606,6 +1661,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1631,6 +1687,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1656,6 +1713,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1681,6 +1739,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1706,6 +1765,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1731,6 +1791,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1754,6 +1815,7 @@ module.exports = (() => {
           headers: {
             Authorization: getAuthHeader(),
           },
+           httpsAgent: agent, 
         });
         // console.log(
         //   "GET Response from plant API:",
@@ -1778,6 +1840,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1803,6 +1866,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1830,6 +1894,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1855,6 +1920,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1880,6 +1946,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1905,6 +1972,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1931,6 +1999,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1957,6 +2026,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -1982,6 +2052,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2007,6 +2078,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2032,6 +2104,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2057,6 +2130,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2082,6 +2156,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2107,6 +2182,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2132,6 +2208,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2157,6 +2234,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2183,6 +2261,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2209,6 +2288,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2234,6 +2314,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2259,6 +2340,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2281,6 +2363,7 @@ module.exports = (() => {
           headers: {
             Authorization: getAuthHeader(),
           },
+           httpsAgent: agent, 
         });
         // console.log(
         //   "GET Response from plant API:",
@@ -2305,6 +2388,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2330,6 +2414,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2355,6 +2440,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2380,6 +2466,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2405,6 +2492,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2430,6 +2518,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2455,6 +2544,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2480,6 +2570,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2505,6 +2596,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2530,6 +2622,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2555,6 +2648,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2580,6 +2674,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(
@@ -2593,31 +2688,36 @@ module.exports = (() => {
       }
     },
 
-    GlobalUserAuth: async (body, res) => {
-      try {
-        console.log(
-          "Sending  Post payload to Pr Reject  API:",
-          JSON.stringify(body, null, 2)
-        );
-        const response = await axios.post(
-          config.THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationLogin,
-          body,
-          {
-            headers: {
-              Authorization: getAuthHeader(),
-            },
-          }
-        );
-        console.log(
-          "POST Response from Global Outward Count With Sap API:",
-          JSON.stringify(response.data, null, 2)
-        );
-        res.json(response.data);
-      } catch (error) {
-        handleAxiosError(error, "User Creation Login");
-        res.status(500).json({ error: "Failed to process Post request" });
+     GlobalUserAuth: async (body, res) => {
+  try {
+    console.log(
+      "Sending Post payload to GlobalUserAuth API:",
+      JSON.stringify(body, null, 2)
+    );
+    
+     
+    
+    const response = await axios.post(
+      config.THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationLogin,
+      body,
+      {
+        headers: {
+          Authorization: getAuthHeader(),
+        },
+        httpsAgent: agent,  // ADD THIS
       }
-    },
+    );
+    
+    console.log(
+      "POST Response from GlobalUserAuth API:",
+      JSON.stringify(response.data, null, 2)
+    );
+    res.json(response.data);
+  } catch (error) {
+    handleAxiosError(error, "User Creation Login");
+    res.status(500).json({ error: "Failed to process Post request" });
+  }
+},
     UserCreationDisplayTable: async (body, res) => {
       try {
         // console.log(
@@ -2628,6 +2728,7 @@ module.exports = (() => {
           headers: {
             Authorization: getAuthHeader(),
           },
+           httpsAgent: agent, 
         });
         // console.log(
         //   "GET Response from plant API:",
@@ -2653,6 +2754,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
+             httpsAgent: agent, 
           }
         );
         console.log(

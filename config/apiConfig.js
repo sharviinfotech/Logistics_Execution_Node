@@ -1,12 +1,12 @@
 module.exports = (() => {
   const server = process.env.SERVER || "dev"; //dev  //Set the server environment variable (default to 'dev')
   const baseUrls = {
-    prod: "http://10.10.6.115:8000",
-    dev: "http://10.10.6.115:8000",
+    prod: "https://10.10.6.115:44300",
+    dev: "https://10.10.6.115:44300",
   };
-  const login = "http://10.10.6.115:8000";
+  const login = "https://10.10.6.115:44300";
   const baseUrl = baseUrls[server];
-
+   
 
   return {
     // Credentials for 115
