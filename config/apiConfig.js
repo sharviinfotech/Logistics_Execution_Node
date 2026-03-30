@@ -11,8 +11,8 @@ module.exports = (() => {
 
   return {
     // Credentials for 115
-    THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "Dev00", //"ims113"
-    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "R@p!d#3128",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
+    THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "wfms_user", //"ims113"
+    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "R@p!d#3126",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
 
     // THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "110203",
     // THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Venp0rt@Hps234",
@@ -70,6 +70,7 @@ module.exports = (() => {
 
 
     THIRD_PARTY_API_URL_POST_LE_SegmentInfo_Outward_sapfetch: `${baseUrl}/le/segment_sap/det?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_SegmentInfo_Outward_WithoutSapfetch: `${baseUrl}/le/segment_sap/det?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_SegmentInfo_Outward_Save: `${baseUrl}/le/segment_sap/det?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_SegmentInfo_Outword_NonSap_Save: `${baseUrl}/le/segment_sap/det?sap-client=234`,
     THIRD_PARTY_API_URL_GET_LE_SegmentInfo_supplier_segment_custgrp: `${baseUrl}/le/segment_sap/det?sap-client=234`,

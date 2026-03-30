@@ -43,6 +43,7 @@ module.exports = (() => {
     Shipmentchangewithsap: (req, res) => externalApiMethods.Shipmentchangewithsap(req.body, res),
     Shipmentchangewithoutsap: (req, res) => externalApiMethods.Shipmentchangewithoutsap(req.body, res),
     SegmentInfoOutwardFetch: (req, res) => externalApiMethods.SegmentInfoOutwardFetch(req.body, res),
+    SegmentInfoOutwardwithoutSapFetch: (req, res) => externalApiMethods.SegmentInfoOutwardwithoutSapFetch(req.body, res),
     SegmentInfoOutwardSave: (req, res) => externalApiMethods.SegmentInfoOutwardSave(req.body, res),
     SegmentInfoNonSap: (req, res) => externalApiMethods.SegmentInfoNonSap(req.body, res),
     SegmentInfoChangeWithSap: (req, res) => externalApiMethods.SegmentInfoChangeWithSap(req.body, res),
