@@ -116,6 +116,7 @@ module.exports = (() => {
     GlobalUserAuth: (req, res) => externalApiMethods.GlobalUserAuth(req.body, res),
     UserCreationDisplayTable: (req, res) => externalApiMethods.UserCreationDisplayTable(req.query, res),
     UserCreationDelete: (req, res) => externalApiMethods.UserCreationDelete(req.body, res),
+   sendCredentials: (req, res) => externalApiMethods.sendCredentials(req, res),
 
 
   };

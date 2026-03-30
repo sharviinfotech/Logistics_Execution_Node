@@ -11,8 +11,8 @@ module.exports = (() => {
 
   return {
     // Credentials for 115
-    THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "Dev00", //"ims113"
-    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "R@p!d#3128",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
+    THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "wfms_user", //"ims113"
+    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "R@p!d#3126",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
 
     // THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "110203",
     // THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Venp0rt@Hps234",
@@ -21,8 +21,8 @@ module.exports = (() => {
     // THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "Ims$0425",
 
     // Credentials for 113
-    THIRD_PARTY_USERNAME2: process.env.THIRD_PARTY_USERNAME2 || "Dev00", //"Dev00",
-    THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "Th!nk#0725", //"HBL@2025",//"$bx#@113",
+    THIRD_PARTY_USERNAME2: process.env.THIRD_PARTY_USERNAME2 || "wfms_user", //"Dev00",
+    THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "R@p!d#3126", //"HBL@2025",//"$bx#@113",
 
     // API Calls
     THIRD_PARTY_API_URL_POST_LOGIN: `${login}/login/create?sap-client=234`,
@@ -169,6 +169,7 @@ module.exports = (() => {
 
     THIRD_PARTY_API_URL_GET_LE_UserCreation_DisplayTable: `${baseUrl}/le/login/login?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationDelete: `${baseUrl}/le/login/login?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_ForgotDetails: `${baseUrl}/le/login/login?sap-client=234`,
 
 
 

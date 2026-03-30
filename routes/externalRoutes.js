@@ -146,7 +146,7 @@ module.exports = (() => {
   router.get('/LE/UserCreation/DisplayTable', externalApiHandler.UserCreationDisplayTable);
 
   router.post('/LE/UserCreationDelete', externalApiHandler.UserCreationDelete);
-
+router.put('/LE/send-credentials', externalApiHandler.sendCredentials);
 
 
 

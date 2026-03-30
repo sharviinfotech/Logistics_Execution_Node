@@ -1,19 +1,34 @@
 const { getpdb, OrderInfoNonSap, custgroup } = require("../handlers/externalApiHandler");
 const { OrderConfirmationZcolln } = require("./PrExternalApiMethods");
 const config = require("../config/apiConfig");
+const nodemailer = require('nodemailer');
 
 module.exports = (() => {
- const axios = require("axios");
-// const https = require('https');
- 
-// const agent = new https.Agent({
-//   rejectUnauthorized: false,
-// });
- 
-// Override axios default config
-// axios.defaults.httpsAgent = agent;
- 
-// module.exports = axios;
+  const transporter = nodemailer.createTransport({
+    host: "smtp.logix.in",
+    port: 587,
+    secure: false, // Use TLS
+    requireTLS: true,
+    auth: {
+      user: "noreply.itapps@hbl.in",
+      pass: "Acc@ptMe#6547",
+    },
+    tls: {
+      rejectUnauthorized: false, // Ignore self-signed certificate errors
+    },
+  });
+
+  const axios = require("axios");
+  // const https = require('https');
+
+  // const agent = new https.Agent({
+  //   rejectUnauthorized: false,
+  // });
+
+  // Override axios default config
+  // axios.defaults.httpsAgent = agent;
+
+  // module.exports = axios;
 
   const handleAxiosError = (error, functionName) => {
     console.error(`Error in ${functionName}:`, error.message);
@@ -347,7 +362,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -373,7 +388,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -399,7 +414,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -422,7 +437,7 @@ module.exports = (() => {
           headers: {
             Authorization: getAuthHeader(),
           },
-          
+
         });
         // console.log(
         //   "GET Response from plant API:",
@@ -447,7 +462,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -473,7 +488,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -499,7 +514,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -525,7 +540,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -551,7 +566,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -577,7 +592,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -605,7 +620,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -631,7 +646,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -654,7 +669,7 @@ module.exports = (() => {
           headers: {
             Authorization: getAuthHeader(),
           },
-           
+
         });
         // console.log(
         //   "GET Response from plant API:",
@@ -679,7 +694,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -705,7 +720,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -731,7 +746,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -757,7 +772,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -783,7 +798,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -810,7 +825,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -836,7 +851,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -864,7 +879,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -890,7 +905,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -916,7 +931,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -939,7 +954,7 @@ module.exports = (() => {
           headers: {
             Authorization: getAuthHeader(),
           },
-          
+
         });
         // console.log(
         //   "GET Response from plant API:",
@@ -964,7 +979,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -990,7 +1005,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1016,7 +1031,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1042,7 +1057,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1068,7 +1083,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1094,7 +1109,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1120,7 +1135,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1146,7 +1161,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1172,7 +1187,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1198,7 +1213,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1224,7 +1239,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -1250,7 +1265,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1276,7 +1291,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -1303,7 +1318,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1329,7 +1344,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1355,7 +1370,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1381,7 +1396,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1407,7 +1422,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -1433,7 +1448,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1459,7 +1474,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1485,7 +1500,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1511,7 +1526,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -1537,7 +1552,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -1563,7 +1578,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1589,7 +1604,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1615,7 +1630,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1641,7 +1656,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1667,7 +1682,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1693,7 +1708,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1719,7 +1734,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1745,7 +1760,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1771,7 +1786,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1797,7 +1812,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1821,7 +1836,7 @@ module.exports = (() => {
           headers: {
             Authorization: getAuthHeader(),
           },
-           
+
         });
         // console.log(
         //   "GET Response from plant API:",
@@ -1846,7 +1861,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1872,7 +1887,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -1900,7 +1915,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -1926,7 +1941,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -1952,7 +1967,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -1978,7 +1993,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2005,7 +2020,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -2032,7 +2047,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -2058,7 +2073,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2084,7 +2099,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2110,7 +2125,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -2136,7 +2151,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -2162,7 +2177,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2188,7 +2203,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2214,7 +2229,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2240,7 +2255,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2267,7 +2282,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -2294,7 +2309,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2320,7 +2335,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -2346,7 +2361,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -2369,7 +2384,7 @@ module.exports = (() => {
           headers: {
             Authorization: getAuthHeader(),
           },
-           
+
         });
         // console.log(
         //   "GET Response from plant API:",
@@ -2394,7 +2409,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2420,7 +2435,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -2446,7 +2461,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2472,7 +2487,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -2498,7 +2513,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2524,7 +2539,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2550,7 +2565,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -2576,7 +2591,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2602,7 +2617,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2628,7 +2643,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -2654,7 +2669,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-            
+
           }
         );
         console.log(
@@ -2680,7 +2695,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-             
+
           }
         );
         console.log(
@@ -2694,36 +2709,36 @@ module.exports = (() => {
       }
     },
 
-     GlobalUserAuth: async (body, res) => {
-  try {
-    console.log(
-      "Sending Post payload to GlobalUserAuth API:",
-      JSON.stringify(body, null, 2)
-    );
-    
-     
-    
-    const response = await axios.post(
-      config.THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationLogin,
-      body,
-      {
-        headers: {
-          Authorization: getAuthHeader(),
-        },
-          // ADD THIS
+    GlobalUserAuth: async (body, res) => {
+      try {
+        console.log(
+          "Sending Post payload to GlobalUserAuth API:",
+          JSON.stringify(body, null, 2)
+        );
+
+
+
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationLogin,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+            // ADD THIS
+          }
+        );
+
+        console.log(
+          "POST Response from GlobalUserAuth API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "User Creation Login");
+        res.status(500).json({ error: "Failed to process Post request" });
       }
-    );
-    
-    console.log(
-      "POST Response from GlobalUserAuth API:",
-      JSON.stringify(response.data, null, 2)
-    );
-    res.json(response.data);
-  } catch (error) {
-    handleAxiosError(error, "User Creation Login");
-    res.status(500).json({ error: "Failed to process Post request" });
-  }
-},
+    },
     UserCreationDisplayTable: async (body, res) => {
       try {
         // console.log(
@@ -2734,7 +2749,7 @@ module.exports = (() => {
           headers: {
             Authorization: getAuthHeader(),
           },
-           
+
         });
         // console.log(
         //   "GET Response from plant API:",
@@ -2760,7 +2775,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-              
+
           }
         );
         console.log(
@@ -2773,6 +2788,73 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process Post request" });
       }
     },
+    // Configure email transporter
+
+    sendCredentials: async (req, res) => {
+      // Use req.body to see the payload: { ZMAIL: "..." }
+      console.log('Incoming Payload:', req);
+
+      try {
+
+
+        // 1. Pass req.body (the JSON payload), NOT req (the whole request object)
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_ForgotDetails,
+          req.body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+
+        // 2. Since the response is an ARRAY [ { ZUSER: ... } ], access index 0
+        const userData = Array.isArray(response.data) ? response.data[0] : response.data;
+
+        console.log("Extracted User Data:", userData);
+
+        if (!userData?.ZUSER || !userData?.ZPASSWORD) {
+          return res.status(404).json({
+            status: false,
+            message: 'User credentials not found in external system',
+          });
+        }
+
+        const { ZUSER, ZPASSWORD } = userData;
+        const email = req.body.ZMAIL;
+
+        const mailOptions = {
+          from: 'noreply.itapps@hbl.in',
+          to: email,
+          subject: 'Your Login Credentials',
+          html: `
+        <p>Dear User,</p>
+        <p>We are pleased to provide you with your login credentials:</p>
+        <p><strong>Username:</strong> ${ZUSER}</p>  
+        <p><strong>Password:</strong> ${ZPASSWORD}</p>  
+        <p>For security reasons, please keep this information strictly confidential.</p>  
+        <p>Best regards,<br>Sharviinfotech</p>
+      `,
+        };
+
+        // 3. Send the email
+        await transporter.sendMail(mailOptions);
+
+        res.status(200).json({
+          status: true,
+          message: 'Email sent successfully with credentials!',
+        });
+
+      } catch (error) {
+        console.error('Error sending credentials:', error.message);
+        res.status(500).json({
+          status: false,
+          message: 'Failed to process request.',
+          error: error.message,
+        });
+      }
+    }
 
 
 
