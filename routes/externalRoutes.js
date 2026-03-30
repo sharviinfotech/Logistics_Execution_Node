@@ -48,6 +48,7 @@ module.exports = (() => {
 
   // segment outward
   router.post('/LE/segmentInfo/Outward/fetchInvoiceList', externalApiHandler.SegmentInfoOutwardFetch);
+    router.post('/LE/segmentInfo/Outward/WithoutSap/fetchInvoiceList', externalApiHandler.SegmentInfoOutwardwithoutSapFetch);
   router.post('/LE/segmentInfo/Outward/withsap/Save', externalApiHandler.SegmentInfoOutwardSave);
   router.put('/LE/segmentInfo/Outward/withoutsap/Save', externalApiHandler.SegmentInfoNonSap);
   router.get('/LE/segmentInfo/f4_getAllDetails', externalApiHandler.getssc);
