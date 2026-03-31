@@ -2860,7 +2860,7 @@ module.exports = (() => {
         <p><strong>Username:</strong> ${ZUSER}</p>  
         <p><strong>Password:</strong> ${ZPASSWORD}</p>  
         <p>For security reasons, please keep this information strictly confidential.</p>  
-        <p>Best regards,<br>Sharviinfotech</p>
+        <p>Best regards,<br>HBL Team</p>
       `,
         };
 
