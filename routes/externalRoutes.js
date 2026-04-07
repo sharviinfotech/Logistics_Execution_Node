@@ -149,6 +149,9 @@ module.exports = (() => {
   router.post('/LE/UserCreationDelete', externalApiHandler.UserCreationDelete);
 router.put('/LE/send-credentials', externalApiHandler.sendCredentials);
 
+ router.post('/LE/ServiceLevel/Outword/withsap/FeedbackCreation', externalApiHandler.FeedbackCreationwithsap);
+ router.put('/LE/ServiceLevel/Outword/WithoutSap/FeedbackCreation', externalApiHandler.FeedbackCreationwithoutsap);
+
 
 
 

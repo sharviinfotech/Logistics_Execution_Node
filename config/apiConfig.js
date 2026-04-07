@@ -172,6 +172,10 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationDelete: `${baseUrl}/le/login/login?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_ForgotDetails: `${baseUrl}/le/login/login?sap-client=234`,
 
+    THIRD_PARTY_API_URL_POST_LE_ServiceLevel_Outword_WithSap_FeedbackCreation: `${baseUrl}/le/feedback/service?sap-client=234`,
+    
+    THIRD_PARTY_API_URL_PUT_LE_ServiceLevel_Outword_WithoutSap_FeedbackCreation: `${baseUrl}/le/feedback/service?sap-client=234`,
+
 
 
   };

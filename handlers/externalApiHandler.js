@@ -119,6 +119,10 @@ module.exports = (() => {
     UserCreationDelete: (req, res) => externalApiMethods.UserCreationDelete(req.body, res),
    sendCredentials: (req, res) => externalApiMethods.sendCredentials(req, res),
 
+   FeedbackCreationwithsap: (req, res) => externalApiMethods.FeedbackCreationwithsap(req.body, res),
+
+   FeedbackCreationwithoutsap: (req, res) => externalApiMethods.FeedbackCreationwithoutsap(req.body, res),
+
 
   };
 })();
