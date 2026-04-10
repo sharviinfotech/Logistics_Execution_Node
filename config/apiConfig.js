@@ -176,6 +176,10 @@ module.exports = (() => {
     
     THIRD_PARTY_API_URL_PUT_LE_ServiceLevel_Outword_WithoutSap_FeedbackCreation: `${baseUrl}/le/feedback/service?sap-client=234`,
 
+    //Service Level Feedback Delete URLs
+    THIRD_PARTY_API_URL_POST_LE_ServiceLevel_Outward_WithSap_FeedBackInvoiceDetailsfetch: `${baseUrl}/le/feedback/service?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_ServiceLevel_Outward_WithoutSap_FeedBackInvoiceDetailsfetch: `${baseUrl}/le/feedback/service?sap-client=234`,
+
 
 
   };

@@ -122,6 +122,8 @@ module.exports = (() => {
    FeedbackCreationwithsap: (req, res) => externalApiMethods.FeedbackCreationwithsap(req.body, res),
 
    FeedbackCreationwithoutsap: (req, res) => externalApiMethods.FeedbackCreationwithoutsap(req.body, res),
+    FeedBackInvoiceDetailsfetchwithsap: (req, res) => externalApiMethods. FeedBackInvoiceDetailsfetchwithsap(req.body, res),
+    FeedBackInvoiceDetailsfetchwithoutsap: (req, res) => externalApiMethods.FeedBackInvoiceDetailsfetchwithoutsap(req.body, res),
 
 
   };
