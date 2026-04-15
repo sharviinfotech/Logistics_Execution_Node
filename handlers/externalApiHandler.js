@@ -125,6 +125,9 @@ module.exports = (() => {
     FeedBackInvoiceDetailsfetchwithsap: (req, res) => externalApiMethods. FeedBackInvoiceDetailsfetchwithsap(req.body, res),
     FeedBackInvoiceDetailsfetchwithoutsap: (req, res) => externalApiMethods.FeedBackInvoiceDetailsfetchwithoutsap(req.body, res),
 
+    //Reports
+    FetchTransitReport: (req, res) => externalApiMethods.FetchTransitReport(req.body, res),
+
 
   };
 })();

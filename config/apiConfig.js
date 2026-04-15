@@ -180,6 +180,9 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_ServiceLevel_Outward_WithSap_FeedBackInvoiceDetailsfetch: `${baseUrl}/le/feedback/service?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_ServiceLevel_Outward_WithoutSap_FeedBackInvoiceDetailsfetch: `${baseUrl}/le/feedback/service?sap-client=234`,
 
+    //Reports 
+      THIRD_PARTY_API_URL_POST_LE_Reports_FetchTransitandReport: `${baseUrl}/le/transit_eway/tway?sap-client=234`,
+
 
 
   };

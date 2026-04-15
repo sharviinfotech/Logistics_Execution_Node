@@ -154,7 +154,8 @@ router.put('/LE/send-credentials', externalApiHandler.sendCredentials);
  router.post('/LE/ServiceLevel/Outward/WithSap/InvoiceDetailsfetch', externalApiHandler.FeedBackInvoiceDetailsfetchwithsap);
  router.put('/LE/ServiceLevel/Outward/WithoutSap/InvoiceDetailsfetch', externalApiHandler.FeedBackInvoiceDetailsfetchwithoutsap);
 
-
+//Reports
+router.post('/LE/Reports/FetchTransitReport', externalApiHandler.FetchTransitReport);
 
 
 
