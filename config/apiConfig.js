@@ -182,6 +182,7 @@ module.exports = (() => {
 
     //Reports 
       THIRD_PARTY_API_URL_POST_LE_Reports_FetchTransitandReport: `${baseUrl}/le/transit_eway/tway?sap-client=234`,
+       THIRD_PARTY_API_URL_POST_LE_Reports_FetchPendingPods: `${baseUrl}/le/pending_pods/pending_pods?sap-client=234`,
 
 
 

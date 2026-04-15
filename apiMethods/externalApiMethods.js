@@ -2935,7 +2935,7 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
-     FeedBackInvoiceDetailsfetchwithsap: async (body, res) => {
+    FeedBackInvoiceDetailsfetchwithsap: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Pr Reject  API:",
@@ -2990,7 +2990,7 @@ module.exports = (() => {
     },
 
     //Reports
-     FetchTransitReport: async (body, res) => {
+    FetchTransitReport: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Pr Reject  API:",
@@ -3016,6 +3016,33 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process POST request" });
       }
     },
+    FetchPendingPods: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_Reports_FetchPendingPods,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "POST Response from Fetch Pending Pods API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Fetch Pending Pods");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+
 
 
 
