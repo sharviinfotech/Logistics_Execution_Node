@@ -2,12 +2,12 @@ module.exports = (() => {
   const server = process.env.SERVER || "dev"; //dev  //Set the server environment variable (default to 'dev')
   const baseUrls = {
     prod: "http://10.10.6.115:8000",
-     dev: "http://10.10.6.115:8000",
+    dev: "http://10.10.6.115:8000",
     // dev: "https://10.10.6.115:44300",
   };
   const login = "http://10.10.6.115:8000";
   const baseUrl = baseUrls[server];
-   
+
 
   return {
     // Credentials for 115
@@ -173,7 +173,7 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_PUT_LE_ForgotDetails: `${baseUrl}/le/login/login?sap-client=234`,
 
     THIRD_PARTY_API_URL_POST_LE_ServiceLevel_Outword_WithSap_FeedbackCreation: `${baseUrl}/le/feedback/service?sap-client=234`,
-    
+
     THIRD_PARTY_API_URL_PUT_LE_ServiceLevel_Outword_WithoutSap_FeedbackCreation: `${baseUrl}/le/feedback/service?sap-client=234`,
 
     //Service Level Feedback Delete URLs
@@ -181,8 +181,10 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_PUT_LE_ServiceLevel_Outward_WithoutSap_FeedBackInvoiceDetailsfetch: `${baseUrl}/le/feedback/service?sap-client=234`,
 
     //Reports 
-      THIRD_PARTY_API_URL_POST_LE_Reports_FetchTransitandReport: `${baseUrl}/le/transit_eway/tway?sap-client=234`,
-       THIRD_PARTY_API_URL_POST_LE_Reports_FetchPendingPods: `${baseUrl}/le/pending_pods/pending_pods?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_Reports_FetchTransitandReport: `${baseUrl}/le/transit_eway/tway?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_Reports_FetchPendingPods: `${baseUrl}/le/pending_pods/pending_pods?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_Reports_FetchLoadingFactorandCost: `${baseUrl}/le/loading_factor/loading_factor?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_Reports_FetchFreightBills: `${baseUrl}/le/freight_bills/freight_bills?sap-client=234`,
 
 
 

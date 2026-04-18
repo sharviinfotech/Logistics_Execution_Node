@@ -157,6 +157,8 @@ router.put('/LE/send-credentials', externalApiHandler.sendCredentials);
 //Reports
 router.post('/LE/Reports/FetchTransitReport', externalApiHandler.FetchTransitReport);
 router.post('/LE/Reports/FetchPendingPods', externalApiHandler.FetchPendingPods);
+router.post('/LE/Reports/FetchLoadingFactorandCost', externalApiHandler.FetchLoadingFactorandCost);
+router.post('/LE/Reports/FetchFreightBills', externalApiHandler.FetchFreightBills);
 
 
 
