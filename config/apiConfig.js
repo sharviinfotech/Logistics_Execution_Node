@@ -185,6 +185,8 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_Reports_FetchPendingPods: `${baseUrl}/le/pending_pods/pending_pods?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_Reports_FetchLoadingFactorandCost: `${baseUrl}/le/loading_factor/loading_factor?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_Reports_FetchFreightBills: `${baseUrl}/le/freight_bills/freight_bills?sap-client=234`,
+        THIRD_PARTY_API_URL_POST_LE_Reports_FetchBusinessShareMatrix: `${baseUrl}/le/business_matrix/bmatrix?sap-client=234`,
+        THIRD_PARTY_API_URL_POST_LE_Reports_FetchDamageList: `${baseUrl}/le/damage_list/damage_list?sap-client=234`,
 
 
 

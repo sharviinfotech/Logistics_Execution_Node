@@ -130,6 +130,8 @@ module.exports = (() => {
     FetchPendingPods: (req, res) => externalApiMethods.FetchPendingPods(req.body, res),
     FetchLoadingFactorandCost: (req, res) => externalApiMethods.FetchLoadingFactorandCost(req.body, res),
     FetchFreightBills: (req, res) => externalApiMethods.FetchFreightBills(req.body, res),
+    FetchBusinessShareMatrix: (req, res) => externalApiMethods.FetchBusinessShareMatrix(req.body, res),
+    FetchDamageList: (req, res) => externalApiMethods.FetchDamageList(req.body, res),
 
 
   };
