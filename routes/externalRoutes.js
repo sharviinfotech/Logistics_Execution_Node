@@ -161,8 +161,11 @@ router.post('/LE/Reports/FetchLoadingFactorandCost', externalApiHandler.FetchLoa
 router.post('/LE/Reports/FetchFreightBills', externalApiHandler.FetchFreightBills);
 router.post('/LE/Reports/FetchBusinessShareMatrix', externalApiHandler.FetchBusinessShareMatrix);
 router.post('/LE/Reports/FetchDamageList', externalApiHandler.FetchDamageList);
+router.post('/LE/Reports/FetchInsuranceReportsDetails', externalApiHandler.FetchInsuranceReportsDetails);
 
-
+//Dispatch order flow
+router.post('/LE/DispatchOrderFlow/FetchData', externalApiHandler.FetchDispatchOrderFlowData);
+router.get('/LE/DispatchOrderFlow/PendingCounts', externalApiHandler.FetchDispatchOrderFlowPendingCounts);
 
   return router;
 })();

@@ -132,7 +132,11 @@ module.exports = (() => {
     FetchFreightBills: (req, res) => externalApiMethods.FetchFreightBills(req.body, res),
     FetchBusinessShareMatrix: (req, res) => externalApiMethods.FetchBusinessShareMatrix(req.body, res),
     FetchDamageList: (req, res) => externalApiMethods.FetchDamageList(req.body, res),
+    FetchInsuranceReportsDetails: (req, res) => externalApiMethods.FetchInsuranceReportsDetails(req.body, res),
 
+    //Dispatch order flow
+    FetchDispatchOrderFlowData: (req, res) => externalApiMethods.FetchDispatchOrderFlowData(req.body, res),
+    FetchDispatchOrderFlowPendingCounts: (req, res) => externalApiMethods.FetchDispatchOrderFlowPendingCounts(req.query, res),
 
   };
 })();

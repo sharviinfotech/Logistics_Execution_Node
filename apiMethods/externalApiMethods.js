@@ -3070,7 +3070,7 @@ module.exports = (() => {
       }
     },
 
-     FetchFreightBills: async (body, res) => {
+    FetchFreightBills: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Pr Reject  API:",
@@ -3083,7 +3083,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
- 
+
           }
         );
         console.log(
@@ -3097,7 +3097,7 @@ module.exports = (() => {
       }
     },
 
-     FetchBusinessShareMatrix: async (body, res) => {
+    FetchBusinessShareMatrix: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Pr Reject  API:",
@@ -3110,7 +3110,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
- 
+
           }
         );
         console.log(
@@ -3124,7 +3124,7 @@ module.exports = (() => {
       }
     },
 
-        FetchDamageList: async (body, res) => {
+    FetchDamageList: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Pr Reject  API:",
@@ -3137,7 +3137,7 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
- 
+
           }
         );
         console.log(
@@ -3150,7 +3150,84 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process POST request" });
       }
     },
- 
+
+    FetchInsuranceReportsDetails: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_Reports_FetchInsuranceReportsDetails,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "POST Response from Fetch Insurance Reports Details API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Fetch Insurance Reports Details");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+
+    FetchDispatchOrderFlowData: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_DispatchOrderFlow_FetchData,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "POST Response from Fetch Dispatch Order Flow Data API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Fetch Dispatch Order Flow Data");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+
+    FetchDispatchOrderFlowPendingCounts: async (body, res) => {
+      try {
+        // console.log(
+        //   "Sending GET payload to plant API:",
+        //   JSON.stringify(body, null, 2)
+        // );
+        const response = await axios.get(config.THIRD_PARTY_API_URL_GET_LE_DispatchOrderFlow_PendingCounts, {
+          headers: {
+            Authorization: getAuthHeader(),
+          },
+
+        });
+        // console.log(
+        //   "GET Response from plant API:",
+        //   JSON.stringify(response.data, null, 2)
+        // );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "plant");
+        res.status(500).json({ error: "Failed to process GET request" });
+      }
+    },
+
 
 
 
