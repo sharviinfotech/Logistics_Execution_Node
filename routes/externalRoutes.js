@@ -162,6 +162,7 @@ router.post('/LE/Reports/FetchFreightBills', externalApiHandler.FetchFreightBill
 router.post('/LE/Reports/FetchBusinessShareMatrix', externalApiHandler.FetchBusinessShareMatrix);
 router.post('/LE/Reports/FetchDamageList', externalApiHandler.FetchDamageList);
 router.post('/LE/Reports/FetchInsuranceReportsDetails', externalApiHandler.FetchInsuranceReportsDetails);
+router.post('/LE/Reports/FetchServiceLevelDetails', externalApiHandler.FetchServiceLevelDetails);
 
 //Dispatch order flow
 router.post('/LE/DispatchOrderFlow/FetchData', externalApiHandler.FetchDispatchOrderFlowData);

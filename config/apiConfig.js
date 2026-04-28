@@ -188,10 +188,12 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_Reports_FetchBusinessShareMatrix: `${baseUrl}/le/business_matrix/bmatrix?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_Reports_FetchDamageList: `${baseUrl}/le/damage_list/damage_list?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_Reports_FetchInsuranceReportsDetails: `${baseUrl}/le/insurance/insurance?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_Reports_FetchServiceLevelDetails: `${baseUrl}/le/service_level/service_level?sap-client=234`,
    
     //Dispatch order flow api
     THIRD_PARTY_API_URL_POST_LE_DispatchOrderFlow_FetchData: `${baseUrl}/le/dis_order/flow?sap-client=234`,
     THIRD_PARTY_API_URL_GET_LE_DispatchOrderFlow_PendingCounts: `${baseUrl}/le/dis_order/flow?sap-client=234`,
+    
 
 
   };
