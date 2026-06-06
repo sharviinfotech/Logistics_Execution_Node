@@ -137,6 +137,9 @@ module.exports = (() => {
   router.post('/LE/orderinfo/Outward/Filter_Creation', externalApiHandler.OrderInfoFilterCreation);
   router.put('/LE/Global/Outward/Filter_Creation_NonSap', externalApiHandler.GlobalFilterCreationNonSap);
 
+  // Global File View
+  router.put('/LE/GlobalFileView', externalApiHandler.GlobalFileView);
+
   // Count APIs for Global  Outward 
 
   router.post('/LE/Outward/GlobalScreen/CountWithSap', externalApiHandler.GlobalOutwardCountWithSap);

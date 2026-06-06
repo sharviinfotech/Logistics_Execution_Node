@@ -165,6 +165,10 @@ module.exports = (() => {
     //count API URLs
     THIRD_PARTY_API_URL_POST_LE_Global_Outward_CountWithSap: `${baseUrl}/le/pending/count?sap-client=234`,
 
+    //Global File View API URLs
+    THIRD_PARTY_API_URL_PUT_LE_Global_FileView: `${baseUrl}/le/shipment_sap/det?sap-client=234`,
+    
+
     //API for getting user details
     THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationLogin: `${baseUrl}/le/login/login?sap-client=234`,
 
