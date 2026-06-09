@@ -1,18 +1,22 @@
 module.exports = (() => {
   const server = process.env.SERVER || "dev"; //dev  //Set the server environment variable (default to 'dev')
   const baseUrls = {
-    prod: "http://10.10.6.115:8000",
-    dev: "http://10.10.6.115:8000",
+    prod: "https://10.10.47.144:44300",
+    dev: "https://10.10.47.144:44300",
     // dev: "https://10.10.6.115:44300",
   };
-  const login = "http://10.10.6.115:8000";
+  const login = "https://10.10.47.144:44300";
   const baseUrl = baseUrls[server];
 
 
   return {
-    // Credentials for 115
-    THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "wfms_user", //"ims113"
-    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "R@p!d#3126",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
+    // Credentials for 115 for dev http
+    // THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "wfms_user", //"ims113"
+    // THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "R@p!d#3126",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
+
+    // Credentials for 115 for Qlty http
+    THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "SIPL_MOUNIKA", //"ims113"
+    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Answer$12345678",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
 
     // THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "110203",
     // THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Venp0rt@Hps234",
@@ -20,9 +24,13 @@ module.exports = (() => {
     // THIRD_PARTY_USERNAME2: process.env.THIRD_PARTY_USERNAME2 || "ims113",
     // THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "Ims$0425",
 
-    // Credentials for 113
-    THIRD_PARTY_USERNAME2: process.env.THIRD_PARTY_USERNAME2 || "wfms_user", //"Dev00",
-    THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "R@p!d#3126", //"HBL@2025",//"$bx#@113",
+    // Credentials for 113 dev http
+    // THIRD_PARTY_USERNAME2: process.env.THIRD_PARTY_USERNAME2 || "wfms_user", //"Dev00",
+    // THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "R@p!d#3126", //"HBL@2025",//"$bx#@113",
+
+    // Credentials for 113 Qlty http
+    THIRD_PARTY_USERNAME2: process.env.THIRD_PARTY_USERNAME2 || "SIPL_MOUNIKA", //"Dev00",
+    THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "Answer$12345678", //"HBL@2025",//"$bx#@113",
 
     // API Calls
     THIRD_PARTY_API_URL_POST_LOGIN: `${login}/login/create?sap-client=234`,
