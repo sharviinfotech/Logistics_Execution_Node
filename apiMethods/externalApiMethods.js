@@ -2,6 +2,7 @@ const { getpdb, OrderInfoNonSap, custgroup } = require("../handlers/externalApiH
 const { OrderConfirmationZcolln } = require("./PrExternalApiMethods");
 const config = require("../config/apiConfig");
 const nodemailer = require('nodemailer');
+const fileService = require('../StoreUplodedFileInTheLocation/fileService');
 
 module.exports = (() => {
   const transporter = nodemailer.createTransport({
@@ -1174,12 +1175,54 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
+    // TransitInfoSave: async (body, res) => {
+
+    //   try {
+    //     console.log(
+    //       "Sending  Post payload to Pr Reject  API:",
+    //       JSON.stringify(body, null, 2)
+    //     );
+    //     const response = await axios.post(
+    //       config.THIRD_PARTY_API_URL_POST_LE_TransitInfo_WithSap_Save,
+    //       body,
+    //       {
+    //         headers: {
+    //           Authorization: getAuthHeader(),
+    //         },
+
+    //       }
+    //     );
+    //     console.log(
+    //       "POST Response from TransitInfoSave fetch API:",
+    //       JSON.stringify(response.data, null, 2)
+    //     );
+    //     res.json(response.data);
+    //   } catch (error) {
+    //     handleAxiosError(error, "PurchaseCreate");
+    //     res.status(500).json({ error: "Failed to process POST request" });
+    //   }
+    // },
+
     TransitInfoSave: async (body, res) => {
       try {
-        console.log(
-          "Sending  Post payload to Pr Reject  API:",
-          JSON.stringify(body, null, 2)
-        );
+
+        if (body.ZPOD_FNAME) {
+
+          const savedFilePath =
+            await fileService.saveBase64File(
+              body.ZPOD_FNAME,
+              body.REFNO,
+              body.INV_NO
+            );
+
+          body.ZPATH = savedFilePath;
+
+          // optional
+          body.ZPOD_FNAME = '';
+        }
+
+        console.log("Payload:", body);
+
         const response = await axios.post(
           config.THIRD_PARTY_API_URL_POST_LE_TransitInfo_WithSap_Save,
           body,
@@ -1187,42 +1230,81 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-
           }
         );
-        console.log(
-          "POST Response from TransitInfoSave fetch API:",
-          JSON.stringify(response.data, null, 2)
-        );
+
         res.json(response.data);
+
       } catch (error) {
-        handleAxiosError(error, "PurchaseCreate");
-        res.status(500).json({ error: "Failed to process POST request" });
+        console.log(error);
+        res.status(500).json({
+          error: "Failed to process POST request"
+        });
       }
     },
+    // TransitInfoNonSap: async (body, res) => {
+    //   try {
+    //     console.log(
+    //       "Sending  Put payload to Pr Reject  API:",
+    //       JSON.stringify(body, null, 2)
+    //     );
+    //     const response = await axios.put(
+    //       config.THIRD_PARTY_API_URL_PUT_LE_TransitInfo_NonSap,
+    //       body,
+    //       {
+    //         headers: {
+    //           Authorization: getAuthHeader(),
+    //         },
+
+    //       }
+    //     );
+    //     console.log(
+    //       "PUT Response from PurchaseCreate API:",
+    //       JSON.stringify(response.data, null, 2)
+    //     );
+    //     res.json(response.data);
+    //   } catch (error) {
+    //     handleAxiosError(error, "Data Saved");
+    //     res.status(500).json({ error: "Failed to process PUT request" });
+    //   }
+    // },
+
     TransitInfoNonSap: async (body, res) => {
       try {
-        console.log(
-          "Sending  Put payload to Pr Reject  API:",
-          JSON.stringify(body, null, 2)
-        );
+        console.log("=== TRANSIT INFO NON SAP ===");
+
+        const podBase64 = body.HEAD?.ZPOD_FNAME;
+        const refNo = body.HEAD?.REFNO;
+        const fileName = body.HEAD?.ZPATH;
+
+        console.log("ZPOD_FNAME present:", !!podBase64);
+        console.log("REFNO:", refNo);
+        console.log("File Name:", fileName);
+
+        if (podBase64) {
+          const savedFilePath = await fileService.saveImageFile(podBase64, refNo, fileName);
+          console.log("File saved at:", savedFilePath);
+
+          body.HEAD.ZPOD_FNAME = '';
+          body.HEAD.ZPATH = savedFilePath;
+        }
+
+        // ✅ Add Authorization header — same as TransitInfoSave
         const response = await axios.put(
           config.THIRD_PARTY_API_URL_PUT_LE_TransitInfo_NonSap,
           body,
           {
             headers: {
-              Authorization: getAuthHeader(),
+              Authorization: getAuthHeader(),  // ✅ same as SAP save
             },
-
           }
         );
-        console.log(
-          "PUT Response from PurchaseCreate API:",
-          JSON.stringify(response.data, null, 2)
-        );
+
+        console.log("SAP Response:", response.data);
         res.json(response.data);
+
       } catch (error) {
-        handleAxiosError(error, "Data Saved");
+        console.log("Error:", error.message);
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
@@ -3278,6 +3360,60 @@ module.exports = (() => {
       } catch (error) {
         handleAxiosError(error, "plant");
         res.status(500).json({ error: "Failed to process GET request" });
+      }
+    },
+
+    FetchGateInOutInvoiceData: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Gate In Out Invoice Get API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_GateInOut_InvoiceGet,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "POST Response from Fetch Gate In Out Invoice Data API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Fetch Gate In Out Invoice Data");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+
+       SaveGateInOutWithSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Gate In Out With Sap Save API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "POST Response from Save Gate In Out With Sap API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Save Gate In Out With Sap");
+        res.status(500).json({ error: "Failed to process POST request" });
       }
     },
 

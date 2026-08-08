@@ -140,5 +140,9 @@ module.exports = (() => {
     FetchDispatchOrderFlowData: (req, res) => externalApiMethods.FetchDispatchOrderFlowData(req.body, res),
     FetchDispatchOrderFlowPendingCounts: (req, res) => externalApiMethods.FetchDispatchOrderFlowPendingCounts(req.query, res),
 
+    //Gate In and Out API
+    FetchGateInOutInvoiceData: (req, res) => externalApiMethods.FetchGateInOutInvoiceData(req.body, res),
+    SaveGateInOutWithSap: (req, res) => externalApiMethods.SaveGateInOutWithSap(req.body, res),
+
   };
 })();

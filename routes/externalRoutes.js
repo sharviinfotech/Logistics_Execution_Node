@@ -171,5 +171,9 @@ router.post('/LE/Reports/FetchServiceLevelDetails', externalApiHandler.FetchServ
 router.post('/LE/DispatchOrderFlow/FetchData', externalApiHandler.FetchDispatchOrderFlowData);
 router.get('/LE/DispatchOrderFlow/PendingCounts', externalApiHandler.FetchDispatchOrderFlowPendingCounts);
 
+//Gate In and Out API
+router.post('/LE/GateInOut/InvoiceGet', externalApiHandler.FetchGateInOutInvoiceData);
+router.post('/LE/GateInOut/WithSap/Save', externalApiHandler.SaveGateInOutWithSap);
+
   return router;
 })();

@@ -16,7 +16,7 @@ module.exports = (() => {
 
     // Credentials for 115 for Qlty http
     THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "SIPL_MOUNIKA", //"ims113"
-    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Answer$12345678",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
+    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Answer$87654321",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
 
     // THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "110203",
     // THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Venp0rt@Hps234",
@@ -30,7 +30,7 @@ module.exports = (() => {
 
     // Credentials for 113 Qlty http
     THIRD_PARTY_USERNAME2: process.env.THIRD_PARTY_USERNAME2 || "SIPL_MOUNIKA", //"Dev00",
-    THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "Answer$12345678", //"HBL@2025",//"$bx#@113",
+    THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "Answer$87654321", //"HBL@2025",//"$bx#@113",
 
     // API Calls
     THIRD_PARTY_API_URL_POST_LOGIN: `${login}/login/create?sap-client=234`,
@@ -206,7 +206,11 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_DispatchOrderFlow_FetchData: `${baseUrl}/le/dis_order/flow?sap-client=234`,
     THIRD_PARTY_API_URL_GET_LE_DispatchOrderFlow_PendingCounts: `${baseUrl}/le/dis_order/flow?sap-client=234`,
     
+   //Gate In and Out API
+    THIRD_PARTY_API_URL_POST_LE_GateInOut_InvoiceGet: `${baseUrl}/le/get_in_and_out/get?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Save: `${baseUrl}/le/get_in_and_out/get?sap-client=234`,
 
+    
 
   };
 })();
