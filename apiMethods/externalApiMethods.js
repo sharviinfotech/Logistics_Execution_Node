@@ -3498,6 +3498,35 @@ module.exports = (() => {
       }
     },
 
+    ChangeGateInOutWithSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Gate In Out With Sap Change API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Change,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "POST Response from Gate In Out With Sap Change API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Gate In Out With Sap Change");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+
+
+
 
 
 
