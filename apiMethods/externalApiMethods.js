@@ -2,7 +2,7 @@ const { getpdb, OrderInfoNonSap, custgroup } = require("../handlers/externalApiH
 const { OrderConfirmationZcolln } = require("./PrExternalApiMethods");
 const config = require("../config/apiConfig");
 const nodemailer = require('nodemailer');
-const fileService = require('../StoreUplodedFileInTheLocation/fileService');
+// const fileService = require('../StoreUplodedFileInTheLocation/fileService');
 
 module.exports = (() => {
   const transporter = nodemailer.createTransport({
@@ -3390,7 +3390,7 @@ module.exports = (() => {
       }
     },
 
-       SaveGateInOutWithSap: async (body, res) => {
+    SaveGateInOutWithSap: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Gate In Out With Sap Save API:",
@@ -3413,6 +3413,87 @@ module.exports = (() => {
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "Save Gate In Out With Sap");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+
+    SearchGateInOutWithSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Gate In Out With Sap Search API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Search,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "POST Response from Gate In Out With Sap Search API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Gate In Out With Sap Search");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+
+    DeleteGateInOutWithSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Gate In Out With Sap Delete API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Delete,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "POST Response from Gate In Out With Sap Delete API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Gate In Out With Sap Delete");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+
+    FilterRecordsGateInOutWithSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Gate In Out With Sap Filter Records API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_FilterRecords,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "POST Response from Gate In Out With Sap Filter Records API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Gate In Out With Sap Filter Records");
         res.status(500).json({ error: "Failed to process POST request" });
       }
     },

@@ -175,7 +175,7 @@ module.exports = (() => {
 
     //Global File View API URLs
     THIRD_PARTY_API_URL_PUT_LE_Global_FileView: `${baseUrl}/le/shipment_sap/det?sap-client=234`,
-    
+
 
     //API for getting user details
     THIRD_PARTY_API_URL_POST_LE_GlobalUserCreationLogin: `${baseUrl}/le/login/login?sap-client=234`,
@@ -201,16 +201,20 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_Reports_FetchDamageList: `${baseUrl}/le/damage_list/damage_list?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_Reports_FetchInsuranceReportsDetails: `${baseUrl}/le/insurance/insurance?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_Reports_FetchServiceLevelDetails: `${baseUrl}/le/service_level/service_level?sap-client=234`,
-   
+
     //Dispatch order flow api
     THIRD_PARTY_API_URL_POST_LE_DispatchOrderFlow_FetchData: `${baseUrl}/le/dis_order/flow?sap-client=234`,
     THIRD_PARTY_API_URL_GET_LE_DispatchOrderFlow_PendingCounts: `${baseUrl}/le/dis_order/flow?sap-client=234`,
-    
-   //Gate In and Out API
+
+    //Gate In and Out API
     THIRD_PARTY_API_URL_POST_LE_GateInOut_InvoiceGet: `${baseUrl}/le/get_in_and_out/get?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Save: `${baseUrl}/le/get_in_and_out/get?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Search: `${baseUrl}/le/search/display?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Delete: `${baseUrl}/le/get_in_and_out/get?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_FilterRecords: `${baseUrl}/le/filter/api?sap-client=234`,
 
-    
+
+
 
   };
 })();

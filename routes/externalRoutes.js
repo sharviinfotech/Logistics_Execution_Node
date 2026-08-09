@@ -48,7 +48,7 @@ module.exports = (() => {
 
   // segment outward
   router.post('/LE/segmentInfo/Outward/fetchInvoiceList', externalApiHandler.SegmentInfoOutwardFetch);
-    router.post('/LE/segmentInfo/Outward/WithoutSap/fetchInvoiceList', externalApiHandler.SegmentInfoOutwardwithoutSapFetch);
+  router.post('/LE/segmentInfo/Outward/WithoutSap/fetchInvoiceList', externalApiHandler.SegmentInfoOutwardwithoutSapFetch);
   router.post('/LE/segmentInfo/Outward/withsap/Save', externalApiHandler.SegmentInfoOutwardSave);
   router.put('/LE/segmentInfo/Outward/withoutsap/Save', externalApiHandler.SegmentInfoNonSap);
   router.get('/LE/segmentInfo/f4_getAllDetails', externalApiHandler.getssc);
@@ -150,30 +150,33 @@ module.exports = (() => {
   router.get('/LE/UserCreation/DisplayTable', externalApiHandler.UserCreationDisplayTable);
 
   router.post('/LE/UserCreationDelete', externalApiHandler.UserCreationDelete);
-router.put('/LE/send-credentials', externalApiHandler.sendCredentials);
+  router.put('/LE/send-credentials', externalApiHandler.sendCredentials);
 
- router.post('/LE/ServiceLevel/Outword/withsap/FeedbackCreation', externalApiHandler.FeedbackCreationwithsap);
- router.put('/LE/ServiceLevel/Outword/WithoutSap/FeedbackCreation', externalApiHandler.FeedbackCreationwithoutsap);
- router.post('/LE/ServiceLevel/Outward/WithSap/InvoiceDetailsfetch', externalApiHandler.FeedBackInvoiceDetailsfetchwithsap);
- router.put('/LE/ServiceLevel/Outward/WithoutSap/InvoiceDetailsfetch', externalApiHandler.FeedBackInvoiceDetailsfetchwithoutsap);
+  router.post('/LE/ServiceLevel/Outword/withsap/FeedbackCreation', externalApiHandler.FeedbackCreationwithsap);
+  router.put('/LE/ServiceLevel/Outword/WithoutSap/FeedbackCreation', externalApiHandler.FeedbackCreationwithoutsap);
+  router.post('/LE/ServiceLevel/Outward/WithSap/InvoiceDetailsfetch', externalApiHandler.FeedBackInvoiceDetailsfetchwithsap);
+  router.put('/LE/ServiceLevel/Outward/WithoutSap/InvoiceDetailsfetch', externalApiHandler.FeedBackInvoiceDetailsfetchwithoutsap);
 
-//Reports
-router.post('/LE/Reports/FetchTransitReport', externalApiHandler.FetchTransitReport);
-router.post('/LE/Reports/FetchPendingPods', externalApiHandler.FetchPendingPods);
-router.post('/LE/Reports/FetchLoadingFactorandCost', externalApiHandler.FetchLoadingFactorandCost);
-router.post('/LE/Reports/FetchFreightBills', externalApiHandler.FetchFreightBills);
-router.post('/LE/Reports/FetchBusinessShareMatrix', externalApiHandler.FetchBusinessShareMatrix);
-router.post('/LE/Reports/FetchDamageList', externalApiHandler.FetchDamageList);
-router.post('/LE/Reports/FetchInsuranceReportsDetails', externalApiHandler.FetchInsuranceReportsDetails);
-router.post('/LE/Reports/FetchServiceLevelDetails', externalApiHandler.FetchServiceLevelDetails);
+  //Reports
+  router.post('/LE/Reports/FetchTransitReport', externalApiHandler.FetchTransitReport);
+  router.post('/LE/Reports/FetchPendingPods', externalApiHandler.FetchPendingPods);
+  router.post('/LE/Reports/FetchLoadingFactorandCost', externalApiHandler.FetchLoadingFactorandCost);
+  router.post('/LE/Reports/FetchFreightBills', externalApiHandler.FetchFreightBills);
+  router.post('/LE/Reports/FetchBusinessShareMatrix', externalApiHandler.FetchBusinessShareMatrix);
+  router.post('/LE/Reports/FetchDamageList', externalApiHandler.FetchDamageList);
+  router.post('/LE/Reports/FetchInsuranceReportsDetails', externalApiHandler.FetchInsuranceReportsDetails);
+  router.post('/LE/Reports/FetchServiceLevelDetails', externalApiHandler.FetchServiceLevelDetails);
 
-//Dispatch order flow
-router.post('/LE/DispatchOrderFlow/FetchData', externalApiHandler.FetchDispatchOrderFlowData);
-router.get('/LE/DispatchOrderFlow/PendingCounts', externalApiHandler.FetchDispatchOrderFlowPendingCounts);
+  //Dispatch order flow
+  router.post('/LE/DispatchOrderFlow/FetchData', externalApiHandler.FetchDispatchOrderFlowData);
+  router.get('/LE/DispatchOrderFlow/PendingCounts', externalApiHandler.FetchDispatchOrderFlowPendingCounts);
 
-//Gate In and Out API
-router.post('/LE/GateInOut/InvoiceGet', externalApiHandler.FetchGateInOutInvoiceData);
-router.post('/LE/GateInOut/WithSap/Save', externalApiHandler.SaveGateInOutWithSap);
+  //Gate In and Out API
+  router.post('/LE/GateInOut/InvoiceGet', externalApiHandler.FetchGateInOutInvoiceData);
+  router.post('/LE/GateInOut/WithSap/Save', externalApiHandler.SaveGateInOutWithSap);
+  router.post('/LE/GateInOut/WithSap/Search', externalApiHandler.SearchGateInOutWithSap);
+  router.post('/LE/GateInOut/WithSap/Delete', externalApiHandler.DeleteGateInOutWithSap);
+  router.post('/LE/GateInOut/WithSap/FilterRecords', externalApiHandler.FilterRecordsGateInOutWithSap);
 
   return router;
 })();

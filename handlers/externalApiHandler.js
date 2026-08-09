@@ -118,12 +118,12 @@ module.exports = (() => {
     GlobalUserAuth: (req, res) => externalApiMethods.GlobalUserAuth(req.body, res),
     UserCreationDisplayTable: (req, res) => externalApiMethods.UserCreationDisplayTable(req.query, res),
     UserCreationDelete: (req, res) => externalApiMethods.UserCreationDelete(req.body, res),
-   sendCredentials: (req, res) => externalApiMethods.sendCredentials(req, res),
+    sendCredentials: (req, res) => externalApiMethods.sendCredentials(req, res),
 
-   FeedbackCreationwithsap: (req, res) => externalApiMethods.FeedbackCreationwithsap(req.body, res),
+    FeedbackCreationwithsap: (req, res) => externalApiMethods.FeedbackCreationwithsap(req.body, res),
 
-   FeedbackCreationwithoutsap: (req, res) => externalApiMethods.FeedbackCreationwithoutsap(req.body, res),
-    FeedBackInvoiceDetailsfetchwithsap: (req, res) => externalApiMethods. FeedBackInvoiceDetailsfetchwithsap(req.body, res),
+    FeedbackCreationwithoutsap: (req, res) => externalApiMethods.FeedbackCreationwithoutsap(req.body, res),
+    FeedBackInvoiceDetailsfetchwithsap: (req, res) => externalApiMethods.FeedBackInvoiceDetailsfetchwithsap(req.body, res),
     FeedBackInvoiceDetailsfetchwithoutsap: (req, res) => externalApiMethods.FeedBackInvoiceDetailsfetchwithoutsap(req.body, res),
 
     //Reports
@@ -143,6 +143,9 @@ module.exports = (() => {
     //Gate In and Out API
     FetchGateInOutInvoiceData: (req, res) => externalApiMethods.FetchGateInOutInvoiceData(req.body, res),
     SaveGateInOutWithSap: (req, res) => externalApiMethods.SaveGateInOutWithSap(req.body, res),
+    SearchGateInOutWithSap: (req, res) => externalApiMethods.SearchGateInOutWithSap(req.body, res),
+    DeleteGateInOutWithSap: (req, res) => externalApiMethods.DeleteGateInOutWithSap(req.body, res),
+    FilterRecordsGateInOutWithSap: (req, res) => externalApiMethods.FilterRecordsGateInOutWithSap(req.body, res),
 
   };
 })();
