@@ -178,6 +178,7 @@ module.exports = (() => {
   router.post('/LE/GateInOut/WithSap/Delete', externalApiHandler.DeleteGateInOutWithSap);
   router.post('/LE/GateInOut/WithSap/FilterRecords', externalApiHandler.FilterRecordsGateInOutWithSap);
   router.post('/LE/GateInOut/WithSap/Change', externalApiHandler.ChangeGateInOutWithSap);
+  router.put('/LE/GateInOut/WithoutSap/InvoiceGet', externalApiHandler.FetchGateInOutInvoiceDataWithoutSap);
 
   return router;
 })();

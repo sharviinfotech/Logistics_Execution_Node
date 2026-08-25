@@ -3498,14 +3498,41 @@ module.exports = (() => {
       }
     },
 
-    ChangeGateInOutWithSap: async (body, res) => {
+      ChangeGateInOutWithSap: async (body, res) => {
+        try {
+          console.log(
+            "Sending  Post payload to Gate In Out With Sap Change API:",
+            JSON.stringify(body, null, 2)
+          );
+          const response = await axios.post(
+            config.THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Change,
+            body,
+            {
+              headers: {
+                Authorization: getAuthHeader(),
+              },
+
+            }
+          );
+          console.log(
+            "POST Response from Gate In Out With Sap Change API:",
+            JSON.stringify(response.data, null, 2)
+          );
+          res.json(response.data);
+        } catch (error) {
+          handleAxiosError(error, "Gate In Out With Sap Change");
+          res.status(500).json({ error: "Failed to process POST request" });
+        }
+      },
+
+          FetchGateInOutInvoiceDataWithoutSap: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Gate In Out With Sap Change API:",
           JSON.stringify(body, null, 2)
         );
-        const response = await axios.post(
-          config.THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Change,
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_InvoiceGet,
           body,
           {
             headers: {
@@ -3515,15 +3542,17 @@ module.exports = (() => {
           }
         );
         console.log(
-          "POST Response from Gate In Out With Sap Change API:",
+          "PUT Response from Gate In Out Without Sap Invoice Get API:",
           JSON.stringify(response.data, null, 2)
         );
         res.json(response.data);
       } catch (error) {
-        handleAxiosError(error, "Gate In Out With Sap Change");
-        res.status(500).json({ error: "Failed to process POST request" });
+        handleAxiosError(error, "Gate In Out Without Sap Invoice Get");
+        res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
+
+
 
 
 

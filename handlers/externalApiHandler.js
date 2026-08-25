@@ -147,6 +147,7 @@ module.exports = (() => {
     DeleteGateInOutWithSap: (req, res) => externalApiMethods.DeleteGateInOutWithSap(req.body, res),
     FilterRecordsGateInOutWithSap: (req, res) => externalApiMethods.FilterRecordsGateInOutWithSap(req.body, res),
     ChangeGateInOutWithSap: (req, res) => externalApiMethods.ChangeGateInOutWithSap(req.body, res),
+    FetchGateInOutInvoiceDataWithoutSap: (req, res) => externalApiMethods.FetchGateInOutInvoiceDataWithoutSap(req.body, res),
 
   };
 })();
