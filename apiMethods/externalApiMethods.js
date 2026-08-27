@@ -3498,34 +3498,34 @@ module.exports = (() => {
       }
     },
 
-      ChangeGateInOutWithSap: async (body, res) => {
-        try {
-          console.log(
-            "Sending  Post payload to Gate In Out With Sap Change API:",
-            JSON.stringify(body, null, 2)
-          );
-          const response = await axios.post(
-            config.THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Change,
-            body,
-            {
-              headers: {
-                Authorization: getAuthHeader(),
-              },
+    ChangeGateInOutWithSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Gate In Out With Sap Change API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Change,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
 
-            }
-          );
-          console.log(
-            "POST Response from Gate In Out With Sap Change API:",
-            JSON.stringify(response.data, null, 2)
-          );
-          res.json(response.data);
-        } catch (error) {
-          handleAxiosError(error, "Gate In Out With Sap Change");
-          res.status(500).json({ error: "Failed to process POST request" });
-        }
-      },
+          }
+        );
+        console.log(
+          "POST Response from Gate In Out With Sap Change API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Gate In Out With Sap Change");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
 
-          FetchGateInOutInvoiceDataWithoutSap: async (body, res) => {
+    FetchGateInOutInvoiceDataWithoutSap: async (body, res) => {
       try {
         console.log(
           "Sending  Post payload to Gate In Out With Sap Change API:",
@@ -3551,6 +3551,136 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
+    SaveGateInOutWithoutSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Gate In Out Without Sap Save API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "PUT Response from Gate In Out Without Sap Save API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Gate In Out Without Sap Save");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    SearchGateInOutWithoutSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Gate In Out Without Sap Search API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_Search,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "PUT Response from Gate In Out Without Sap Search API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Gate In Out Without Sap Search");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+
+    DeleteGateInOutWithoutSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Gate In Out Without Sap Delete API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_Delete,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "PUT Response from Gate In Out Without Sap Delete API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Gate In Out Without Sap Delete");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    FilterRecordsGateInOutWithoutSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Gate In Out Without Sap Filter Records API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_FilterRecords,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from Gate In Out Without Sap Filter Records API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Gate In Out Without Sap Filter Records");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    ChangeGateInOutWithoutSap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Gate In Out Without Sap Change API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_Change,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from Gate In Out Without Sap Change API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Gate In Out Without Sap Change");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+
 
 
 

@@ -148,6 +148,11 @@ module.exports = (() => {
     FilterRecordsGateInOutWithSap: (req, res) => externalApiMethods.FilterRecordsGateInOutWithSap(req.body, res),
     ChangeGateInOutWithSap: (req, res) => externalApiMethods.ChangeGateInOutWithSap(req.body, res),
     FetchGateInOutInvoiceDataWithoutSap: (req, res) => externalApiMethods.FetchGateInOutInvoiceDataWithoutSap(req.body, res),
+    SaveGateInOutWithoutSap: (req, res) => externalApiMethods.SaveGateInOutWithoutSap(req.body, res),
+    SearchGateInOutWithoutSap: (req, res) => externalApiMethods.SearchGateInOutWithoutSap(req.body, res),
+    DeleteGateInOutWithoutSap: (req, res) => externalApiMethods.DeleteGateInOutWithoutSap(req.body, res),
+    FilterRecordsGateInOutWithoutSap: (req, res) => externalApiMethods.FilterRecordsGateInOutWithoutSap(req.body, res),
+    ChangeGateInOutWithoutSap: (req, res) => externalApiMethods.ChangeGateInOutWithoutSap(req.body, res),
 
   };
 })();

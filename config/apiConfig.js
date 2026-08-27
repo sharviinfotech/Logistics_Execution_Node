@@ -214,6 +214,11 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_FilterRecords: `${baseUrl}/le/filter/api?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_GateInOut_WithSap_Change: `${baseUrl}/le/get_in_and_out/get?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_InvoiceGet: `${baseUrl}/le/get_in_and_out/get?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_Save: `${baseUrl}/le/get_in_and_out/get?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_Search: `${baseUrl}/le/search/display?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_Delete: `${baseUrl}/le/get_in_and_out/get?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_FilterRecords: `${baseUrl}/le/filter/api?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_Change: `${baseUrl}/le/get_in_and_out/get?sap-client=234`,
 
 
 
