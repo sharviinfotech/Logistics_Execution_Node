@@ -135,8 +135,8 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_Save: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outword_fetchinvoicelistnonsap: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outword_Nonsapsave: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
-    THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_DeleteWithSap: `${baseUrl}/le/transit_info/info?sap-client=234`,
-    THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outword_DeleteWithoutSap: `${baseUrl}/le/transit_info/info?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_DeleteWithSap: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outword_DeleteWithoutSap: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_InsuranceClaimTracking_Outward_Change_WithSap: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_InsuranceClaimTracking_Outward_Change_WithoutSap: `${baseUrl}/le/insurance_cs/status?sap-client=234`,
 

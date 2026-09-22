@@ -2,7 +2,7 @@ const { getpdb, OrderInfoNonSap, custgroup } = require("../handlers/externalApiH
 const { OrderConfirmationZcolln } = require("./PrExternalApiMethods");
 const config = require("../config/apiConfig");
 const nodemailer = require('nodemailer');
-// const fileService = require('../StoreUplodedFileInTheLocation/fileService');
+const fileService = require('../StoreUplodedFileInTheLocation/fileService');
 
 module.exports = (() => {
   const transporter = nodemailer.createTransport({
@@ -79,6 +79,90 @@ module.exports = (() => {
         return postWithRetry(url, body, options, retries - 1);
       }
       throw err;
+    }
+  };
+
+  // Transit Info multi-invoice save: the request body is an array,
+  //   [ { HEAD: {...}, ITEM: [...] }, { HEAD: {...}, ITEM: [...] }, ... ]
+  // one entry per invoice. Before the body is forwarded to SAP unchanged, store each
+  // invoice's POD file (named <refNo>_<invNo>_<doc>) and put the saved path in that
+  // entry's ZPATH.
+  const transitSaveArrayFiles = async (entries, mode) => {
+    for (const entry of entries) {
+      const head = entry && entry.HEAD;
+      if (head && head.ZPOD_FNAME) {
+        const savedFilePath = await fileService.saveImageFile(
+          head.ZPOD_FNAME,
+          head.REFNO,
+          head.INV_NO,
+          head.ZPOD_DOCNAME,
+          mode,
+          "Transit_Info",
+          "POD"
+        );
+        head.ZPATH = savedFilePath;
+        head.ZPOD_FNAME = '';
+      }
+    }
+  };
+
+  // Transit Info change (edit): the request body is an array of the usual change record,
+  //   [ { REFNO, INV_NO, ZPOD_FNAME, ZPOD_DOCNAME, ZPATH, HEADER: {...}, ITEM: [...] }, ... ]
+  // For each entry that carries a newly chosen POD file, replace the stored file the same
+  // way the single-record change does, and put the saved path in ZPATH (entry + HEADER).
+  // Freight Billing multi-invoice save: SAVE / CREATE can hold one record per invoice.
+  // The existing handlers store the documents of the FIRST record only; this stores the
+  // documents of every remaining record (same field map, named <refNo>_<invNo>_<doc>).
+  const freightSaveExtraRecordFiles = async (records, mode) => {
+    if (!Array.isArray(records)) return;
+    for (const rec of records.slice(1)) {
+      await fileService.saveDocuments(
+        rec || {},
+        {
+          FRBILLUP: { field: "Freight_Bill", pathKey: "ZFRB_PATH" },
+          UNLOADAPP: { field: "Unloading_Charges_Approval", pathKey: "ZUNAPP_PATH" },
+          DETENTUP: { field: "Detention_Charges", pathKey: "ZDUP_PATH" },
+          WORDUP: { field: "Work_Order", pathKey: "ZWORDUP_PATH" },
+        },
+        { refNo: rec && rec.REFNO, invNo: rec && rec.INV_NO, mode, screen: "Freight_Billing" }
+      );
+    }
+  };
+
+  const transitChangeArrayFiles = async (entries, mode) => {
+    for (const entry of entries) {
+      if (!entry) continue;
+      const podData = entry.ZPOD_FNAME || (entry.HEADER && entry.HEADER.ZPOD_FNAME);
+      const refNo = (entry.HEADER && entry.HEADER.ZREFNO) || entry.REFNO || entry.REF_NO;
+      const invNo = (entry.HEADER && entry.HEADER.ZINV_NO) || entry.INV_NO || entry.INVNO;
+      const docName = entry.ZPOD_DOCNAME || (entry.HEADER && entry.HEADER.ZPOD_DOCNAME) || "POD";
+
+      if (podData && typeof podData === "string" && podData.startsWith("data:")) {
+        fileService.deleteExistingFiles({
+          refNo,
+          invNo,
+          mode,
+          screen: "Transit_Info",
+          field: "POD",
+        });
+
+        const savedFilePath = await fileService.saveImageFile(
+          podData,
+          refNo,
+          invNo,
+          docName,
+          mode,
+          "Transit_Info",
+          "POD"
+        );
+
+        entry.ZPATH = savedFilePath;
+        entry.ZPOD_FNAME = '';
+        if (entry.HEADER) {
+          entry.HEADER.ZPATH = savedFilePath;
+          entry.HEADER.ZPOD_FNAME = '';
+        }
+      }
     }
   };
 
@@ -1206,19 +1290,24 @@ module.exports = (() => {
     TransitInfoSave: async (body, res) => {
       try {
 
-        if (body.ZPOD_FNAME) {
+        if (Array.isArray(body)) {
+          await transitSaveArrayFiles(body, "SAP");
+        }
 
-          const savedFilePath =
-            await fileService.saveBase64File(
-              body.ZPOD_FNAME,
-              body.REFNO,
-              body.INV_NO
-            );
+        if (body.HEAD && body.HEAD.ZPOD_FNAME) {
 
-          body.ZPATH = savedFilePath;
+          const savedFilePath = await fileService.saveImageFile(
+            body.HEAD.ZPOD_FNAME,   // base64 file from the frontend
+            body.HEAD.REFNO,        // reference number
+            body.HEAD.INV_NO,       // invoice number
+            body.HEAD.ZPOD_DOCNAME, // original document name
+            "SAP",                  // mode  -> D:\Pravah\SAP\Transit_Info\POD
+            "Transit_Info",
+            "POD"
+          );
 
-          // optional
-          body.ZPOD_FNAME = '';
+          body.HEAD.ZPATH = savedFilePath;
+          body.HEAD.ZPOD_FNAME = '';
         }
 
         console.log("Payload:", body);
@@ -1271,18 +1360,28 @@ module.exports = (() => {
 
     TransitInfoNonSap: async (body, res) => {
       try {
+        if (Array.isArray(body)) {
+          await transitSaveArrayFiles(body, "Without Sap");
+        }
         console.log("=== TRANSIT INFO NON SAP ===");
 
         const podBase64 = body.HEAD?.ZPOD_FNAME;
         const refNo = body.HEAD?.REFNO;
-        const fileName = body.HEAD?.ZPATH;
+        const invNo = body.HEAD?.INV_NO;
+        const docName = body.HEAD?.ZPOD_DOCNAME;
 
         console.log("ZPOD_FNAME present:", !!podBase64);
         console.log("REFNO:", refNo);
-        console.log("File Name:", fileName);
+        console.log("INV_NO:", invNo);
+        console.log("Document Name:", docName);
 
         if (podBase64) {
-          const savedFilePath = await fileService.saveImageFile(podBase64, refNo, fileName);
+          const savedFilePath = await fileService.saveImageFile(
+            podBase64, refNo, invNo, docName,
+            "Without Sap",          // mode  -> D:\Pravah\Without Sap\Transit_Info\POD
+            "Transit_Info",
+            "POD"
+          );
           console.log("File saved at:", savedFilePath);
 
           body.HEAD.ZPOD_FNAME = '';
@@ -1328,6 +1427,15 @@ module.exports = (() => {
           "POST Response from TransitInfoSave fetch API:",
           JSON.stringify(response.data, null, 2)
         );
+        const delItem = (body.DELETE && body.DELETE[0]) || (body.HEADER && body.HEADER[0]) || body.HEADER || body;
+        const refNo = delItem?.ZREFNO || delItem?.REFNO || delItem?.REF_NO || body?.REFNO;
+        const invNo = delItem?.ZINV_NO || delItem?.INV_NO || delItem?.INVNO || body?.INV_NO;
+        if (refNo && invNo) {
+          const isSuccess = response.data?.STATUS === true || String(response.data?.STATUS ?? '').toUpperCase() === 'TRUE' || String(response.data?.NUMBER ?? '') === '200' || String(response.data?.STATUS ?? '').toUpperCase() === 'S';
+          if (isSuccess) {
+            fileService.deleteExistingFiles({ refNo, invNo, mode: 'SAP', screen: 'Transit_Info' });
+          }
+        }
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "PurchaseCreate");
@@ -1354,6 +1462,15 @@ module.exports = (() => {
           "PUT Response from TransitInfoSave fetch API:",
           JSON.stringify(response.data, null, 2)
         );
+        const delItem = (body.DELETE && body.DELETE[0]) || (body.HEADER && body.HEADER[0]) || body.HEADER || body;
+        const refNo = delItem?.ZREFNO || delItem?.REFNO || delItem?.REF_NO || body?.REFNO;
+        const invNo = delItem?.ZINV_NO || delItem?.INV_NO || delItem?.INVNO || body?.INV_NO;
+        if (refNo && invNo) {
+          const isSuccess = response.data?.STATUS === true || String(response.data?.STATUS ?? '').toUpperCase() === 'TRUE' || String(response.data?.NUMBER ?? '') === '200' || String(response.data?.STATUS ?? '').toUpperCase() === 'S';
+          if (isSuccess) {
+            fileService.deleteExistingFiles({ refNo, invNo, mode: 'Without Sap', screen: 'Transit_Info' });
+          }
+        }
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "To Delete Without Sap");
@@ -1362,8 +1479,43 @@ module.exports = (() => {
     },
     TransitInfoChangeWithSap: async (body, res) => {
       try {
+        if (Array.isArray(body)) {
+          await transitChangeArrayFiles(body, "SAP");
+        }
+        const podData = body.ZPOD_FNAME || (body.HEADER && body.HEADER.ZPOD_FNAME);
+        const refNo = body.HEADER?.ZREFNO || body.REFNO || body.REF_NO;
+        const invNo = body.HEADER?.ZINV_NO || body.INV_NO || body.INVNO;
+        const docName = body.ZPOD_DOCNAME || (body.HEADER && body.HEADER.ZPOD_DOCNAME) || "POD";
+
+        if (podData && typeof podData === "string" && podData.startsWith("data:")) {
+          fileService.deleteExistingFiles({
+            refNo,
+            invNo,
+            mode: "SAP",
+            screen: "Transit_Info",
+            field: "POD",
+          });
+
+          const savedFilePath = await fileService.saveImageFile(
+            podData,
+            refNo,
+            invNo,
+            docName,
+            "SAP",
+            "Transit_Info",
+            "POD"
+          );
+
+          body.ZPATH = savedFilePath;
+          body.ZPOD_FNAME = '';
+          if (body.HEADER) {
+            body.HEADER.ZPATH = savedFilePath;
+            body.HEADER.ZPOD_FNAME = '';
+          }
+        }
+
         console.log(
-          "Sending  Post payload to Pr Reject  API:",
+          "Sending Post payload to TransitInfoChangeWithSap API:",
           JSON.stringify(body, null, 2)
         );
         const response = await axios.post(
@@ -1373,23 +1525,57 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-
           }
         );
         console.log(
-          "POST Response from TransitInfoSave fetch API:",
+          "POST Response from TransitInfoChangeWithSap API:",
           JSON.stringify(response.data, null, 2)
         );
         res.json(response.data);
       } catch (error) {
-        handleAxiosError(error, "To Change");
+        handleAxiosError(error, "TransitInfoChangeWithSap");
         res.status(500).json({ error: "Failed to process POST request" });
       }
     },
     TransitInfoChangeWithoutSap: async (body, res) => {
       try {
+        if (Array.isArray(body)) {
+          await transitChangeArrayFiles(body, "Without Sap");
+        }
+        const podData = body.ZPOD_FNAME || (body.HEADER && body.HEADER.ZPOD_FNAME);
+        const refNo = body.HEADER?.ZREFNO || body.REFNO || body.REF_NO;
+        const invNo = body.HEADER?.ZINV_NO || body.INV_NO || body.INVNO;
+        const docName = body.ZPOD_DOCNAME || (body.HEADER && body.HEADER.ZPOD_DOCNAME) || "POD";
+
+        if (podData && typeof podData === "string" && podData.startsWith("data:")) {
+          fileService.deleteExistingFiles({
+            refNo,
+            invNo,
+            mode: "Without Sap",
+            screen: "Transit_Info",
+            field: "POD",
+          });
+
+          const savedFilePath = await fileService.saveImageFile(
+            podData,
+            refNo,
+            invNo,
+            docName,
+            "Without Sap",
+            "Transit_Info",
+            "POD"
+          );
+
+          body.ZPATH = savedFilePath;
+          body.ZPOD_FNAME = '';
+          if (body.HEADER) {
+            body.HEADER.ZPATH = savedFilePath;
+            body.HEADER.ZPOD_FNAME = '';
+          }
+        }
+
         console.log(
-          "Sending  Put payload to Pr Reject  API:",
+          "Sending Put payload to TransitInfoChangeWithoutSap API:",
           JSON.stringify(body, null, 2)
         );
         const response = await axios.put(
@@ -1399,22 +1585,33 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-
           }
         );
         console.log(
-          "PUT Response from TransitInfoChange fetch API:",
+          "PUT Response from TransitInfoChangeWithoutSap API:",
           JSON.stringify(response.data, null, 2)
         );
         res.json(response.data);
       } catch (error) {
-        handleAxiosError(error, "To Change Without Sap");
+        handleAxiosError(error, "TransitInfoChangeWithoutSap");
         res.status(500).json({ error: "Failed to process PUT request" });
       }
     },
 
     FreightBillingSave: async (body, res) => {
       try {
+        const _fbRec = (body.SAVE && body.SAVE[0]) || {};
+        await fileService.saveDocuments(
+          _fbRec,
+          {
+            FRBILLUP: { field: "Freight_Bill", pathKey: "ZFRB_PATH" },
+            UNLOADAPP: { field: "Unloading_Charges_Approval", pathKey: "ZUNAPP_PATH" },
+            DETENTUP: { field: "Detention_Charges", pathKey: "ZDUP_PATH" },
+            WORDUP: { field: "Work_Order", pathKey: "ZWORDUP_PATH" },
+          },
+          { refNo: _fbRec.REFNO, invNo: _fbRec.INV_NO, mode: "SAP", screen: "Freight_Billing" }
+        );
+        await freightSaveExtraRecordFiles(body.SAVE, "SAP");
         console.log(
           "Sending  Post payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
@@ -1441,6 +1638,18 @@ module.exports = (() => {
     },
     FreightBillingNonSap: async (body, res) => {
       try {
+        const _fbRec = (body.CREATE && body.CREATE[0]) || {};
+        await fileService.saveDocuments(
+          _fbRec,
+          {
+            FRBILLUP: { field: "Freight_Bill", pathKey: "ZFRB_PATH" },
+            UNLOADAPP: { field: "Unloading_Charges_Approval", pathKey: "ZUNAPP_PATH" },
+            DETENTUP: { field: "Detention_Charges", pathKey: "ZDUP_PATH" },
+            WORDUP: { field: "Work_Order", pathKey: "ZWORDUP_PATH" },
+          },
+          { refNo: _fbRec.REFNO, invNo: _fbRec.INV_NO, mode: "Without Sap", screen: "Freight_Billing" }
+        );
+        await freightSaveExtraRecordFiles(body.CREATE, "Without Sap");
         console.log(
           "Sending  Put payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
@@ -1467,6 +1676,23 @@ module.exports = (() => {
     },
     FreightBillingChangeWithSap: async (body, res) => {
       try {
+        const _fbRec = (body.CHANGE && body.CHANGE[0]) || (body.UPDATE && body.UPDATE[0]) || {};
+        const _fbRefNo = _fbRec.ZREFNO || _fbRec.REFNO || body.REFNO;
+        const _fbInvNo = _fbRec.ZINV_NO || _fbRec.INV_NO || body.INV_NO;
+        await fileService.updateDocuments(
+          _fbRec,
+          {
+            FRBILLUP: { field: "Freight_Bill", pathKey: "ZFRB_PATH" },
+            ZFRBILLUP: { field: "Freight_Bill", pathKey: "ZFRB_PATH" },
+            UNLOADAPP: { field: "Unloading_Charges_Approval", pathKey: "ZUNAPP_PATH" },
+            ZUNLOADAPP: { field: "Unloading_Charges_Approval", pathKey: "ZUNAPP_PATH" },
+            DETENTUP: { field: "Detention_Charges", pathKey: "ZDUP_PATH" },
+            ZDETENTUP: { field: "Detention_Charges", pathKey: "ZDUP_PATH" },
+            WORDUP: { field: "Work_Order", pathKey: "ZWORDUP_PATH" },
+            ZWORDUP: { field: "Work_Order", pathKey: "ZWORDUP_PATH" },
+          },
+          { refNo: _fbRefNo, invNo: _fbInvNo, mode: "SAP", screen: "Freight_Billing" }
+        );
         console.log(
           "Sending  Post payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
@@ -1493,6 +1719,23 @@ module.exports = (() => {
     },
     FreightBillingChangeWithoutSap: async (body, res) => {
       try {
+        const _fbRec = (body.CHANGE && body.CHANGE[0]) || (body.UPDATE && body.UPDATE[0]) || {};
+        const _fbRefNo = _fbRec.ZREFNO || _fbRec.REFNO || body.REFNO;
+        const _fbInvNo = _fbRec.ZINV_NO || _fbRec.INV_NO || body.INV_NO;
+        await fileService.updateDocuments(
+          _fbRec,
+          {
+            FRBILLUP: { field: "Freight_Bill", pathKey: "ZFRB_PATH" },
+            ZFRBILLUP: { field: "Freight_Bill", pathKey: "ZFRB_PATH" },
+            UNLOADAPP: { field: "Unloading_Charges_Approval", pathKey: "ZUNAPP_PATH" },
+            ZUNLOADAPP: { field: "Unloading_Charges_Approval", pathKey: "ZUNAPP_PATH" },
+            DETENTUP: { field: "Detention_Charges", pathKey: "ZDUP_PATH" },
+            ZDETENTUP: { field: "Detention_Charges", pathKey: "ZDUP_PATH" },
+            WORDUP: { field: "Work_Order", pathKey: "ZWORDUP_PATH" },
+            ZWORDUP: { field: "Work_Order", pathKey: "ZWORDUP_PATH" },
+          },
+          { refNo: _fbRefNo, invNo: _fbInvNo, mode: "Without Sap", screen: "Freight_Billing" }
+        );
         console.log(
           "Sending  Put payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
@@ -1537,6 +1780,17 @@ module.exports = (() => {
           "POST Response from TransitInfoSave fetch API:",
           JSON.stringify(response.data, null, 2)
         );
+        const deleteItems = Array.isArray(body.DELETE) ? body.DELETE : (body.DELETE ? [body.DELETE] : [body.HEADER || body]);
+        const isSuccess = response.data?.STATUS === true || String(response.data?.STATUS ?? '').toUpperCase() === 'TRUE' || String(response.data?.NUMBER ?? '') === '200' || String(response.data?.STATUS ?? '').toUpperCase() === 'S' || String(response.data?.TYPE ?? '').toUpperCase() === 'S';
+        if (isSuccess) {
+          for (const item of deleteItems) {
+            const refNo = item?.ZREFNO || item?.REFNO || item?.REF_NO || body?.REFNO || body?.ZREFNO;
+            const invNo = item?.ZINV_NO || item?.INV_NO || item?.INVNO || item?.VBELN || body?.INV_NO || body?.ZINV_NO;
+            if (refNo || invNo) {
+              fileService.deleteExistingFiles({ refNo, invNo, mode: 'SAP', screen: 'Freight_Billing' });
+            }
+          }
+        }
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "PurchaseCreate");
@@ -1563,6 +1817,17 @@ module.exports = (() => {
           "PUT Response from PurchaseCreate API:",
           JSON.stringify(response.data, null, 2)
         );
+        const deleteItems = Array.isArray(body.DELETE) ? body.DELETE : (body.DELETE ? [body.DELETE] : [body.HEADER || body]);
+        const isSuccess = response.data?.STATUS === true || String(response.data?.STATUS ?? '').toUpperCase() === 'TRUE' || String(response.data?.NUMBER ?? '') === '200' || String(response.data?.STATUS ?? '').toUpperCase() === 'S' || String(response.data?.TYPE ?? '').toUpperCase() === 'S';
+        if (isSuccess) {
+          for (const item of deleteItems) {
+            const refNo = item?.ZREFNO || item?.REFNO || item?.REF_NO || body?.REFNO || body?.ZREFNO;
+            const invNo = item?.ZINV_NO || item?.INV_NO || item?.INVNO || item?.VBELN || body?.INV_NO || body?.ZINV_NO;
+            if (refNo || invNo) {
+              fileService.deleteExistingFiles({ refNo, invNo, mode: 'Without Sap', screen: 'Freight_Billing' });
+            }
+          }
+        }
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "PurchaseCreate");
@@ -2038,6 +2303,14 @@ module.exports = (() => {
     },
     InsuranceClaimTrackingSave: async (body, res) => {
       try {
+        await fileService.saveDocuments(
+          body.HEADER,
+          {
+            ZSUPT_DOC: { field: "Supporting_Document", pathKey: "ZSUPT_PATH" },
+            ZAPP_DOC: { field: "Approve_Document", pathKey: "ZAPP_PATH" },
+          },
+          { refNo: body.HEADER && body.HEADER.REFNO, invNo: body.HEADER && body.HEADER.INV_NO, mode: "SAP", screen: "Insurance_Claim" }
+        );
         console.log(
           "Sending  Post payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
@@ -2090,6 +2363,14 @@ module.exports = (() => {
     },
     Nonsapsave: async (body, res) => {
       try {
+        await fileService.saveDocuments(
+          body.HEADER,
+          {
+            ZSUPT_DOC: { field: "Supporting_Document", pathKey: "ZSUPT_PATH" },
+            ZAPP_DOC: { field: "Approve_Document", pathKey: "ZAPP_PATH" },
+          },
+          { refNo: body.HEADER && body.HEADER.REFNO, invNo: body.HEADER && body.HEADER.INV_NO, mode: "Without Sap", screen: "Insurance_Claim" }
+        );
         console.log(
           "Sending  Put payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
@@ -2135,6 +2416,15 @@ module.exports = (() => {
           "POST Response from Insurance Claim API:",
           JSON.stringify(response.data, null, 2)
         );
+        const delItem = (body.DELETE && body.DELETE[0]) || (body.HEADER && body.HEADER[0]) || body.HEADER || body;
+        const refNo = delItem?.ZREFNO || delItem?.REFNO || delItem?.REF_NO || body?.REFNO;
+        const invNo = delItem?.ZINV_NO || delItem?.INV_NO || delItem?.INVNO || body?.INV_NO;
+        if (refNo && invNo) {
+          const isSuccess = response.data?.STATUS === true || String(response.data?.STATUS ?? '').toUpperCase() === 'TRUE' || String(response.data?.NUMBER ?? '') === '200' || String(response.data?.STATUS ?? '').toUpperCase() === 'S';
+          if (isSuccess) {
+            fileService.deleteExistingFiles({ refNo, invNo, mode: 'SAP', screen: 'Insurance_Claim' });
+          }
+        }
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "Insurance Claim");
@@ -2162,6 +2452,15 @@ module.exports = (() => {
           "PUT Response from PurchaseCreate API:",
           JSON.stringify(response.data, null, 2)
         );
+        const delItem = (body.DELETE && body.DELETE[0]) || (body.HEADER && body.HEADER[0]) || body.HEADER || body;
+        const refNo = delItem?.ZREFNO || delItem?.REFNO || delItem?.REF_NO || body?.REFNO;
+        const invNo = delItem?.ZINV_NO || delItem?.INV_NO || delItem?.INVNO || body?.INV_NO;
+        if (refNo && invNo) {
+          const isSuccess = response.data?.STATUS === true || String(response.data?.STATUS ?? '').toUpperCase() === 'TRUE' || String(response.data?.NUMBER ?? '') === '200' || String(response.data?.STATUS ?? '').toUpperCase() === 'S';
+          if (isSuccess) {
+            fileService.deleteExistingFiles({ refNo, invNo, mode: 'Without Sap', screen: 'Insurance_Claim' });
+          }
+        }
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "Data Saved");
@@ -2170,6 +2469,39 @@ module.exports = (() => {
     },
     InsuranceClaimTrackingChangeWithSap: async (body, res) => {
       try {
+        const _icHead = body.HEAD || body.HEADER || body;
+        const _icRefNo = _icHead.ZREFNO || _icHead.REFNO || body.REFNO || _icHead.REF_NO || body.REF_NO;
+        const _icInvNo = _icHead.ZINV_NO || _icHead.INV_NO || body.INV_NO || _icHead.INVNO || body.INVNO;
+        const _icMap = {
+          ZSUPT_DOC: { field: "Supporting_Document", pathKey: "ZSUPT_PATH" },
+          ZAPP_DOC: { field: "Approve_Document", pathKey: "ZAPP_PATH" },
+        };
+        for (const k of Object.keys(_icMap)) {
+          if (body[k] && typeof body[k] === "string" && body[k].startsWith("data:")) {
+            _icHead[k] = body[k];
+          }
+          if (body[`${k}_NAME`]) {
+            _icHead[`${k}_NAME`] = body[`${k}_NAME`];
+          }
+        }
+        await fileService.updateDocuments(
+          _icHead,
+          _icMap,
+          { refNo: _icRefNo, invNo: _icInvNo, mode: "SAP", screen: "Insurance_Claim" }
+        );
+        for (const [k, cfg] of Object.entries(_icMap)) {
+          if (_icHead[cfg.pathKey]) {
+            body[cfg.pathKey] = _icHead[cfg.pathKey];
+            if (body.HEAD) body.HEAD[cfg.pathKey] = _icHead[cfg.pathKey];
+            if (body.HEADER) body.HEADER[cfg.pathKey] = _icHead[cfg.pathKey];
+          }
+          if (body[k] && typeof body[k] === "string" && body[k].startsWith("data:")) {
+            body[k] = "";
+          }
+          if (body[`${k}_NAME`]) {
+            body[`${k}_NAME`] = "";
+          }
+        }
         console.log(
           "Sending  Post payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
@@ -2196,6 +2528,39 @@ module.exports = (() => {
     },
     InsuranceClaimTrackingChangeWithoutSap: async (body, res) => {
       try {
+        const _icHead = body.HEAD || body.HEADER || body;
+        const _icRefNo = _icHead.ZREFNO || _icHead.REFNO || body.REFNO || _icHead.REF_NO || body.REF_NO;
+        const _icInvNo = _icHead.ZINV_NO || _icHead.INV_NO || body.INV_NO || _icHead.INVNO || body.INVNO;
+        const _icMap = {
+          ZSUPT_DOC: { field: "Supporting_Document", pathKey: "ZSUPT_PATH" },
+          ZAPP_DOC: { field: "Approve_Document", pathKey: "ZAPP_PATH" },
+        };
+        for (const k of Object.keys(_icMap)) {
+          if (body[k] && typeof body[k] === "string" && body[k].startsWith("data:")) {
+            _icHead[k] = body[k];
+          }
+          if (body[`${k}_NAME`]) {
+            _icHead[`${k}_NAME`] = body[`${k}_NAME`];
+          }
+        }
+        await fileService.updateDocuments(
+          _icHead,
+          _icMap,
+          { refNo: _icRefNo, invNo: _icInvNo, mode: "Without Sap", screen: "Insurance_Claim" }
+        );
+        for (const [k, cfg] of Object.entries(_icMap)) {
+          if (_icHead[cfg.pathKey]) {
+            body[cfg.pathKey] = _icHead[cfg.pathKey];
+            if (body.HEAD) body.HEAD[cfg.pathKey] = _icHead[cfg.pathKey];
+            if (body.HEADER) body.HEADER[cfg.pathKey] = _icHead[cfg.pathKey];
+          }
+          if (body[k] && typeof body[k] === "string" && body[k].startsWith("data:")) {
+            body[k] = "";
+          }
+          if (body[`${k}_NAME`]) {
+            body[`${k}_NAME`] = "";
+          }
+        }
         console.log(
           "Sending  Put payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
@@ -2248,6 +2613,16 @@ module.exports = (() => {
     },
     TransitDamageInfoSave: async (body, res) => {
       try {
+        await fileService.saveDocuments(
+          body.HEADER,
+          {
+            ZDIMAGES: { field: "Images", pathKey: "ZDIMG_PATH" },
+            ZFSRREP: { field: "FSR_Report", pathKey: "ZFSRREP_PATH" },
+            ZFIRREP: { field: "FIR_Report", pathKey: "ZFIRREP_PATH" },
+            ZCOF: { field: "COF", pathKey: "ZCOF_PATH" },
+          },
+          { refNo: body.HEADER && body.HEADER.REFNO, invNo: body.HEADER && body.HEADER.INV_NO, mode: "SAP", screen: "Transit_Damage_Info" }
+        );
         console.log(
           "Sending  Post payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
@@ -2300,6 +2675,16 @@ module.exports = (() => {
     },
     withoutsapSave: async (body, res) => {
       try {
+        await fileService.saveDocuments(
+          body.HEADER,
+          {
+            ZDIMAGES: { field: "Images", pathKey: "ZDIMG_PATH" },
+            ZFSRREP: { field: "FSR_Report", pathKey: "ZFSRREP_PATH" },
+            ZFIRREP: { field: "FIR_Report", pathKey: "ZFIRREP_PATH" },
+            ZCOF: { field: "COF", pathKey: "ZCOF_PATH" },
+          },
+          { refNo: body.HEADER && body.HEADER.REFNO, invNo: body.HEADER && body.HEADER.INV_NO, mode: "Without Sap", screen: "Transit_Damage_Info" }
+        );
         console.log(
           "Sending  Put payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
@@ -2344,6 +2729,15 @@ module.exports = (() => {
           "POST Response from Insurance Claim API:",
           JSON.stringify(response.data, null, 2)
         );
+        const delItem = (body.DELETE && body.DELETE[0]) || (body.HEADER && body.HEADER[0]) || body.HEADER || body;
+        const refNo = delItem?.ZREFNO || delItem?.REFNO || delItem?.REF_NO || body?.REFNO;
+        const invNo = delItem?.ZINV_NO || delItem?.INV_NO || delItem?.INVNO || body?.INV_NO;
+        if (refNo && invNo) {
+          const isSuccess = response.data?.STATUS === true || String(response.data?.STATUS ?? '').toUpperCase() === 'TRUE' || String(response.data?.NUMBER ?? '') === '200' || String(response.data?.STATUS ?? '').toUpperCase() === 'S';
+          if (isSuccess) {
+            fileService.deleteExistingFiles({ refNo, invNo, mode: 'SAP', screen: 'Transit_Damage_Info' });
+          }
+        }
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "Insurance Claim");
@@ -2370,6 +2764,15 @@ module.exports = (() => {
           "PUT Response from PurchaseCreate API:",
           JSON.stringify(response.data, null, 2)
         );
+        const delItem = (body.DELETE && body.DELETE[0]) || (body.HEADER && body.HEADER[0]) || body.HEADER || body;
+        const refNo = delItem?.ZREFNO || delItem?.REFNO || delItem?.REF_NO || body?.REFNO;
+        const invNo = delItem?.ZINV_NO || delItem?.INV_NO || delItem?.INVNO || body?.INV_NO;
+        if (refNo && invNo) {
+          const isSuccess = response.data?.STATUS === true || String(response.data?.STATUS ?? '').toUpperCase() === 'TRUE' || String(response.data?.NUMBER ?? '') === '200' || String(response.data?.STATUS ?? '').toUpperCase() === 'S';
+          if (isSuccess) {
+            fileService.deleteExistingFiles({ refNo, invNo, mode: 'Without Sap', screen: 'Transit_Damage_Info' });
+          }
+        }
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "Data Saved");
@@ -2379,6 +2782,41 @@ module.exports = (() => {
 
     TransitDamageInfoChangeWithSap: async (body, res) => {
       try {
+        const _tdHead = body.HEAD || body.HEADER || body;
+        const _tdRefNo = _tdHead.ZREFNO || _tdHead.REFNO || body.REFNO || _tdHead.REF_NO || body.REF_NO;
+        const _tdInvNo = _tdHead.ZINV_NO || _tdHead.INV_NO || body.INV_NO || _tdHead.INVNO || body.INVNO;
+        const _tdMap = {
+          ZDIMAGES: { field: "Images", pathKey: "ZDIMG_PATH" },
+          ZFSRREP: { field: "FSR_Report", pathKey: "ZFSRREP_PATH" },
+          ZFIRREP: { field: "FIR_Report", pathKey: "ZFIRREP_PATH" },
+          ZCOF: { field: "COF", pathKey: "ZCOF_PATH" },
+        };
+        for (const k of Object.keys(_tdMap)) {
+          if (body[k] && typeof body[k] === "string" && body[k].startsWith("data:")) {
+            _tdHead[k] = body[k];
+          }
+          if (body[`${k}_NAME`]) {
+            _tdHead[`${k}_NAME`] = body[`${k}_NAME`];
+          }
+        }
+        await fileService.updateDocuments(
+          _tdHead,
+          _tdMap,
+          { refNo: _tdRefNo, invNo: _tdInvNo, mode: "SAP", screen: "Transit_Damage_Info" }
+        );
+        for (const [k, cfg] of Object.entries(_tdMap)) {
+          if (_tdHead[cfg.pathKey]) {
+            body[cfg.pathKey] = _tdHead[cfg.pathKey];
+            if (body.HEAD) body.HEAD[cfg.pathKey] = _tdHead[cfg.pathKey];
+            if (body.HEADER) body.HEADER[cfg.pathKey] = _tdHead[cfg.pathKey];
+          }
+          if (body[k] && typeof body[k] === "string" && body[k].startsWith("data:")) {
+            body[k] = "";
+          }
+          if (body[`${k}_NAME`]) {
+            body[`${k}_NAME`] = "";
+          }
+        }
         console.log(
           "Sending  Post payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
@@ -2406,6 +2844,41 @@ module.exports = (() => {
 
     TransitDamageInfoChangeWithoutSap: async (body, res) => {
       try {
+        const _tdHead = body.HEAD || body.HEADER || body;
+        const _tdRefNo = _tdHead.ZREFNO || _tdHead.REFNO || body.REFNO || _tdHead.REF_NO || body.REF_NO;
+        const _tdInvNo = _tdHead.ZINV_NO || _tdHead.INV_NO || body.INV_NO || _tdHead.INVNO || body.INVNO;
+        const _tdMap = {
+          ZDIMAGES: { field: "Images", pathKey: "ZDIMG_PATH" },
+          ZFSRREP: { field: "FSR_Report", pathKey: "ZFSRREP_PATH" },
+          ZFIRREP: { field: "FIR_Report", pathKey: "ZFIRREP_PATH" },
+          ZCOF: { field: "COF", pathKey: "ZCOF_PATH" },
+        };
+        for (const k of Object.keys(_tdMap)) {
+          if (body[k] && typeof body[k] === "string" && body[k].startsWith("data:")) {
+            _tdHead[k] = body[k];
+          }
+          if (body[`${k}_NAME`]) {
+            _tdHead[`${k}_NAME`] = body[`${k}_NAME`];
+          }
+        }
+        await fileService.updateDocuments(
+          _tdHead,
+          _tdMap,
+          { refNo: _tdRefNo, invNo: _tdInvNo, mode: "Without Sap", screen: "Transit_Damage_Info" }
+        );
+        for (const [k, cfg] of Object.entries(_tdMap)) {
+          if (_tdHead[cfg.pathKey]) {
+            body[cfg.pathKey] = _tdHead[cfg.pathKey];
+            if (body.HEAD) body.HEAD[cfg.pathKey] = _tdHead[cfg.pathKey];
+            if (body.HEADER) body.HEADER[cfg.pathKey] = _tdHead[cfg.pathKey];
+          }
+          if (body[k] && typeof body[k] === "string" && body[k].startsWith("data:")) {
+            body[k] = "";
+          }
+          if (body[`${k}_NAME`]) {
+            body[`${k}_NAME`] = "";
+          }
+        }
         console.log(
           "Sending  Put payload to Pr Reject  API:",
           JSON.stringify(body, null, 2)
@@ -2654,7 +3127,8 @@ module.exports = (() => {
           "PUT Response from order info create API:",
           JSON.stringify(response.data, null, 2)
         );
-        res.json(response.data);
+        // Additive: attach the on-disk document file names for each record.
+        res.json(fileService.attachLocalFileNames(response.data, { mode: "SAP", screen: body.global }));
       } catch (error) {
         handleAxiosError(error, "order info create");
         res.status(500).json({ error: "Failed to process PUT request" });
@@ -2680,7 +3154,8 @@ module.exports = (() => {
           "PUT Response from order info create API:",
           JSON.stringify(response.data, null, 2)
         );
-        res.json(response.data);
+        // Additive: attach the on-disk document file names for each record.
+        res.json(fileService.attachLocalFileNames(response.data, { mode: "Without Sap", screen: body.global }));
       } catch (error) {
         handleAxiosError(error, "order info create");
         res.status(500).json({ error: "Failed to process PUT request" });
@@ -2758,7 +3233,8 @@ module.exports = (() => {
           "POST Response from order info create API:",
           JSON.stringify(response.data, null, 2)
         );
-        res.json(response.data);
+        // Additive: attach the on-disk document file names for each record.
+        res.json(fileService.attachLocalFileNames(response.data, { mode: "SAP", screen: body.GLOBAL }));
       } catch (error) {
         handleAxiosError(error, "Order Info Filter Creation");
         res.status(500).json({ error: "Failed to process POST request" });
@@ -2784,7 +3260,8 @@ module.exports = (() => {
           "PUT Response from Global Filter Creation NonSap API:",
           JSON.stringify(response.data, null, 2)
         );
-        res.json(response.data);
+        // Additive: attach the on-disk document file names for each record.
+        res.json(fileService.attachLocalFileNames(response.data, { mode: "Without Sap", screen: body.GLOBAL }));
       } catch (error) {
         handleAxiosError(error, "Global  NonSap Filter Creation");
         res.status(500).json({ error: "Failed to process PUT request" });
