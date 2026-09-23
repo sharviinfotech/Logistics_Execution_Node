@@ -124,6 +124,8 @@ module.exports = (() => {
   router.post('/LE/Dispatch/Outward/ReferenceNumber/fetch', externalApiHandler.DispatchReferenceNumber);
   router.put('/LE/Dispatch/Outward/ReferenceNumber/WithoutSap/fetch', externalApiHandler.DispatchReferenceNumberWithoutsap);
   router.post('/LE/Dispatch/Outward/ReferenceNumber/edit', externalApiHandler.DispatchReferenceNumberEdit);
+  router.post('/LE/Dispatch/Outward/ReferenceNumber/delete', externalApiHandler.DispatchReferenceNumberDelete);
+  router.put('/LE/Dispatch/Outward/ReferenceNumber/withoutsap/delete', externalApiHandler.DispatchWithoutSapDelete);
   router.post('/LE/orderinfo/GlobalReferenceNoFetch', externalApiHandler.ReferenceNoFetch);
   router.put('/LE/orderinfo/GlobalReferenceNoFetchwithoutsap', externalApiHandler.ReferenceNoFetch_Withoutsap);
   router.post('/LE/orderinfo/global_Fields_SearchOption', externalApiHandler.global_Fields_SearchOption);

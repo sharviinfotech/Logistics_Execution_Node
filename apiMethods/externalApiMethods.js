@@ -166,6 +166,28 @@ module.exports = (() => {
     }
   };
 
+  // The Dispatch Filter Creation SAP endpoint sometimes sends its array double-encoded as a
+  // JSON string (e.g. "[{\"ZREFNO\":...}]") instead of a real array, and some records in it
+  // have a field with no value at all (e.g. "ZNO_TRUCKS":,"ZNO_LRS":1 — nothing between the
+  // colon and the comma), which is invalid JSON on its own. Repair and parse that so the
+  // response this API sends back to the browser is a clean, valid array instead of the raw
+  // string SAP returned.
+  const repairDispatchFilterResponse = (data) => {
+    if (typeof data !== 'string') return data;
+    const tryParse = (text) => {
+      try {
+        return { ok: true, value: JSON.parse(text) };
+      } catch (e) {
+        return { ok: false };
+      }
+    };
+    const direct = tryParse(data);
+    if (direct.ok) return direct.value;
+    const repaired = data.replace(/"([A-Za-z0-9_]+)":(\s*)([,}])/g, '"$1":null$3');
+    const afterRepair = tryParse(repaired);
+    return afterRepair.ok ? afterRepair.value : data;
+  };
+
   return {
     Login: async (body, res) => {
       try {
@@ -3055,6 +3077,58 @@ module.exports = (() => {
         res.status(500).json({ error: "Failed to process Post request" });
       }
     },
+    DispatchReferenceNumberDelete: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_Dispatch_Outward_Delete_ReferenceNumber,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "POST Response from Dispatch  API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Dispatch With Sap Reference Number Delete");
+        res.status(500).json({ error: "Failed to process Post request" });
+      }
+    },
+    DispatchWithoutSapDelete: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_Dispatch_Outward_WithoutSap_Delete_ReferenceNumber,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from Dispatch  API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      }
+      catch (error) {
+        handleAxiosError(error, "Dispatch Without Sap Reference Number Delete");
+        res.status(500).json({ error: "Failed to process Put request" });
+      }
+    },
     ReferenceNoFetch: async (body, res) => {
       try {
         console.log(
@@ -3177,11 +3251,12 @@ module.exports = (() => {
 
           }
         );
+        const repairedFilterData = repairDispatchFilterResponse(response.data);
         console.log(
           "POST Response from order info create API:",
-          JSON.stringify(response.data, null, 2)
+          JSON.stringify(repairedFilterData, null, 2)
         );
-        res.json(response.data);
+        res.json(repairedFilterData);
       } catch (error) {
         handleAxiosError(error, "Dispatch Filter Creation");
         res.status(500).json({ error: "Failed to process POST request" });
@@ -3203,11 +3278,12 @@ module.exports = (() => {
 
           }
         );
+        const repairedFilterData = repairDispatchFilterResponse(response.data);
         console.log(
           "PUT Response from Dispatch Filter Creation NonSap API:",
-          JSON.stringify(response.data, null, 2)
+          JSON.stringify(repairedFilterData, null, 2)
         );
-        res.json(response.data);
+        res.json(repairedFilterData);
       } catch (error) {
         handleAxiosError(error, "Dispatch Filter Creation");
         res.status(500).json({ error: "Failed to process PUT request" });
