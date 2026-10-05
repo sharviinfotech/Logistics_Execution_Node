@@ -3292,9 +3292,10 @@ module.exports = (() => {
     OrderInfoFilterCreation: async (body, res) => {
       try {
         console.log(
-          "Sending  Post payload to Pr Reject  API:",
+          "Sending Post payload to Order Info Filter Creation API:",
           JSON.stringify(body, null, 2)
         );
+
         const response = await axios.post(
           config.THIRD_PARTY_API_URL_POST_LE_OrderInfo_Outward_Filter_Creation,
           body,
@@ -3302,18 +3303,37 @@ module.exports = (() => {
             headers: {
               Authorization: getAuthHeader(),
             },
-
           }
         );
+
+        let responseData = response.data;
+
+        if (typeof responseData === "string") {
+          // Fix invalid empty JSON values returned by SAP
+          responseData = responseData.replace(/:\s*,/g, ": null,");
+
+          // Convert string response into JSON
+          responseData = JSON.parse(responseData);
+        }
+
         console.log(
           "POST Response from order info create API:",
-          JSON.stringify(response.data, null, 2)
+          JSON.stringify(responseData, null, 2)
         );
-        // Additive: attach the on-disk document file names for each record.
-        res.json(fileService.attachLocalFileNames(response.data, { mode: "SAP", screen: body.GLOBAL }));
+
+        // Attach local file names using the parsed response
+        res.json(
+          fileService.attachLocalFileNames(responseData, {
+            mode: "SAP",
+            screen: body.GLOBAL,
+          })
+        );
+
       } catch (error) {
         handleAxiosError(error, "Order Info Filter Creation");
-        res.status(500).json({ error: "Failed to process POST request" });
+        res.status(500).json({
+          error: "Failed to process POST request",
+        });
       }
     },
     GlobalFilterCreationNonSap: async (body, res) => {
@@ -4044,7 +4064,22 @@ module.exports = (() => {
           "POST Response from Gate In Out With Sap Filter Records API:",
           JSON.stringify(response.data, null, 2)
         );
-        res.json(response.data);
+        console.log("Response data type:", typeof response.data);
+        console.log("Is Array:", Array.isArray(response.data));
+
+        let responseData = response.data;
+
+        if (typeof responseData === "string") {
+          responseData = responseData.replace(/:\s*,/g, ": null,");
+          responseData = JSON.parse(responseData);
+        }
+
+        console.log(
+          "POST Response from Gate In Out With Sap Filter Records API:",
+          JSON.stringify(responseData, null, 2)
+        );
+
+        res.json(responseData);
       } catch (error) {
         handleAxiosError(error, "Gate In Out With Sap Filter Records");
         res.status(500).json({ error: "Failed to process POST request" });
