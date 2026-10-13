@@ -259,6 +259,7 @@ const GLOBAL_SCREEN_FOLDERS = {
     'INSURANCE CLAIM STATUS': 'Insurance_Claim',
     'TRANSIT DAMAGE INFO': 'Transit_Damage_Info',
     'FREIGHT BILLING': 'Freight_Billing',
+    'GATE IN OUT': 'Gate_In_Out',
 };
 
 /**

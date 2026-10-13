@@ -129,6 +129,63 @@ module.exports = (() => {
     }
   };
 
+  // Gate In-Out "Dispatch Documents Uploading": each DATA[] record has HEADER + ITEMS, and an
+  // item can carry a document (DISPATCH_DOC + DISPATCH_DOC_NAME). Stored with the same
+  // fileService field map as Freight Billing, named <refNo>_<invNo>_<doc> under
+  //   <BASE_UPLOAD_PATH>\<SAP | Without Sap>\Gate_In_Out\Dispatch_Documents
+  const GATE_DOC_MAP = {
+    DISPATCH_DOC: { field: "Dispatch_Documents", pathKey: "ZDISPATCH_PATH" },
+  };
+  const gateRecords = (body) => (body && Array.isArray(body.DATA) ? body.DATA : []);
+  // Save (saveDocuments) / Change (updateDocuments).
+  const gateRecordFiles = async (body, mode, isChange) => {
+    for (const rec of gateRecords(body)) {
+      const head = (rec && rec.HEADER) || {};
+      const items = rec && Array.isArray(rec.ITEMS) ? rec.ITEMS : [];
+      for (const item of items) {
+        const opts = {
+          refNo: (item && item.REFERENCE_NUMBER) || head.REFERENCE_NUMBER,
+          invNo: (item && item.ZINV_NO) || head.ZINV_NO,
+          mode,
+          screen: "Gate_In_Out",
+        };
+        if (isChange) await fileService.updateDocuments(item || {}, GATE_DOC_MAP, opts);
+        else await fileService.saveDocuments(item || {}, GATE_DOC_MAP, opts);
+      }
+    }
+  };
+  // Delete: remove the record's stored documents once SAP confirms (same as Freight Billing).
+  const gateDeleteRecordFiles = (body, responseData, mode) => {
+    const isSuccess = responseData?.STATUS === true || String(responseData?.STATUS ?? '').toUpperCase() === 'TRUE' || String(responseData?.NUMBER ?? '') === '200' || String(responseData?.STATUS ?? '').toUpperCase() === 'S' || String(responseData?.TYPE ?? '').toUpperCase() === 'S';
+    if (!isSuccess) return;
+    for (const rec of gateRecords(body)) {
+      const head = (rec && rec.HEADER) || {};
+      const refNo = head.REFERENCE_NUMBER || head.ZREFNO || head.REFNO;
+      const invNo = head.ZINV_NO || head.INV_NO;
+      if (refNo || invNo) {
+        fileService.deleteExistingFiles({ refNo, invNo, mode, screen: 'Gate_In_Out' });
+      }
+    }
+  };
+  // Search / Filter: attach the on-disk document file names (attachLocalFileNames) to every
+  // record — the Gate response can be an array of { HEADER, ITEMS } records. Gate records
+  // carry HEADER as a single object (often with no ITEMS), while attachLocalFileNames reads
+  // HEADER only as a list, so it is handed the same header object inside a one-item list:
+  // the header itself then gets ZLOCALFILES, and its items can use the header's Ref/Invoice.
+  const gateAttachRecord = (rec, opts) => {
+    if (rec && rec.HEADER && !Array.isArray(rec.HEADER) && typeof rec.HEADER === "object") {
+      fileService.attachLocalFileNames({ HEADER: [rec.HEADER], ITEMS: rec.ITEMS }, opts);
+    } else {
+      fileService.attachLocalFileNames(rec, opts);
+    }
+  };
+  const gateAttachLocalFileNames = (data, opts) => {
+    if (Array.isArray(data)) data.forEach((rec) => gateAttachRecord(rec, opts));
+    else if (data && Array.isArray(data.DATA)) data.DATA.forEach((rec) => gateAttachRecord(rec, opts));
+    else gateAttachRecord(data, opts);
+    return data;
+  };
+
   const transitChangeArrayFiles = async (entries, mode) => {
     for (const entry of entries) {
       if (!entry) continue;
@@ -3670,6 +3727,111 @@ module.exports = (() => {
       }
     },
 
+    FeedBackChangewithsap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_ServiceLevel_Outward_WithSap_FeedBackChange,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "POST Response from Feedback Change API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Feedback Change");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+    FeedBackChangewithoutsap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_ServiceLevel_Outward_WithoutSap_FeedBackChange,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from Feedback Change API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Feedback Change");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+
+    FeedBackDeletewithsap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_ServiceLevel_Outward_WithSap_FeedBackDelete,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Feedback Delete API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      }
+      catch (error) {
+        handleAxiosError(error, "Feedback Delete");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+    FeedBackDeletewithoutsap: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_ServiceLevel_Outward_WithoutSap_FeedBackDelete,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "PUT Response from Feedback Delete API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Feedback Delete");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+    
+
     //Reports
     FetchTransitReport: async (body, res) => {
       try {
@@ -3965,6 +4127,7 @@ module.exports = (() => {
 
     SaveGateInOutWithSap: async (body, res) => {
       try {
+        await gateRecordFiles(body, "SAP", false);
         console.log(
           "Sending  Post payload to Gate In Out With Sap Save API:",
           JSON.stringify(body, null, 2)
@@ -4010,7 +4173,7 @@ module.exports = (() => {
           "POST Response from Gate In Out With Sap Search API:",
           JSON.stringify(response.data, null, 2)
         );
-        res.json(response.data);
+        res.json(gateAttachLocalFileNames(response.data, { mode: "SAP", screen: body.GLOBAL }));
       } catch (error) {
         handleAxiosError(error, "Gate In Out With Sap Search");
         res.status(500).json({ error: "Failed to process POST request" });
@@ -4037,6 +4200,7 @@ module.exports = (() => {
           "POST Response from Gate In Out With Sap Delete API:",
           JSON.stringify(response.data, null, 2)
         );
+        gateDeleteRecordFiles(body, response.data, "SAP");
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "Gate In Out With Sap Delete");
@@ -4079,7 +4243,8 @@ module.exports = (() => {
           JSON.stringify(responseData, null, 2)
         );
 
-        res.json(responseData);
+        // Additive: attach the on-disk Dispatch Documents file names for each record.
+        res.json(gateAttachLocalFileNames(responseData, { mode: "SAP", screen: body.GLOBAL }));
       } catch (error) {
         handleAxiosError(error, "Gate In Out With Sap Filter Records");
         res.status(500).json({ error: "Failed to process POST request" });
@@ -4088,6 +4253,7 @@ module.exports = (() => {
 
     ChangeGateInOutWithSap: async (body, res) => {
       try {
+        await gateRecordFiles(body, "SAP", true);
         console.log(
           "Sending  Post payload to Gate In Out With Sap Change API:",
           JSON.stringify(body, null, 2)
@@ -4141,6 +4307,7 @@ module.exports = (() => {
     },
     SaveGateInOutWithoutSap: async (body, res) => {
       try {
+        await gateRecordFiles(body, "Without Sap", false);
         console.log(
           "Sending  Put payload to Gate In Out Without Sap Save API:",
           JSON.stringify(body, null, 2)
@@ -4185,7 +4352,7 @@ module.exports = (() => {
           "PUT Response from Gate In Out Without Sap Search API:",
           JSON.stringify(response.data, null, 2)
         );
-        res.json(response.data);
+        res.json(gateAttachLocalFileNames(response.data, { mode: "Without Sap", screen: body.GLOBAL }));
       } catch (error) {
         handleAxiosError(error, "Gate In Out Without Sap Search");
         res.status(500).json({ error: "Failed to process PUT request" });
@@ -4212,6 +4379,7 @@ module.exports = (() => {
           "PUT Response from Gate In Out Without Sap Delete API:",
           JSON.stringify(response.data, null, 2)
         );
+        gateDeleteRecordFiles(body, response.data, "Without Sap");
         res.json(response.data);
       } catch (error) {
         handleAxiosError(error, "Gate In Out Without Sap Delete");
@@ -4237,7 +4405,8 @@ module.exports = (() => {
           "PUT Response from Gate In Out Without Sap Filter Records API:",
           JSON.stringify(response.data, null, 2)
         );
-        res.json(response.data);
+        // Additive: attach the on-disk Dispatch Documents file names for each record.
+        res.json(gateAttachLocalFileNames(response.data, { mode: "Without Sap", screen: body.GLOBAL }));
       } catch (error) {
         handleAxiosError(error, "Gate In Out Without Sap Filter Records");
         res.status(500).json({ error: "Failed to process PUT request" });
@@ -4245,6 +4414,7 @@ module.exports = (() => {
     },
     ChangeGateInOutWithoutSap: async (body, res) => {
       try {
+        await gateRecordFiles(body, "Without Sap", true);
         console.log(
           "Sending  Put payload to Gate In Out Without Sap Change API:",
           JSON.stringify(body, null, 2)

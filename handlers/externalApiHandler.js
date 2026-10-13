@@ -127,6 +127,10 @@ module.exports = (() => {
     FeedbackCreationwithoutsap: (req, res) => externalApiMethods.FeedbackCreationwithoutsap(req.body, res),
     FeedBackInvoiceDetailsfetchwithsap: (req, res) => externalApiMethods.FeedBackInvoiceDetailsfetchwithsap(req.body, res),
     FeedBackInvoiceDetailsfetchwithoutsap: (req, res) => externalApiMethods.FeedBackInvoiceDetailsfetchwithoutsap(req.body, res),
+    FeedBackChangewithsap: (req, res) => externalApiMethods.FeedBackChangewithsap(req.body, res),
+    FeedBackChangewithoutsap: (req, res) => externalApiMethods.FeedBackChangewithoutsap(req.body, res),
+    FeedBackDeletewithsap: (req, res) => externalApiMethods.FeedBackDeletewithsap(req.body, res),
+    FeedBackDeletewithoutsap: (req, res) => externalApiMethods.FeedBackDeletewithoutsap(req.body, res),
 
     //Reports
     FetchTransitReport: (req, res) => externalApiMethods.FetchTransitReport(req.body, res),

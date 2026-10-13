@@ -158,6 +158,10 @@ module.exports = (() => {
   router.put('/LE/ServiceLevel/Outword/WithoutSap/FeedbackCreation', externalApiHandler.FeedbackCreationwithoutsap);
   router.post('/LE/ServiceLevel/Outward/WithSap/InvoiceDetailsfetch', externalApiHandler.FeedBackInvoiceDetailsfetchwithsap);
   router.put('/LE/ServiceLevel/Outward/WithoutSap/InvoiceDetailsfetch', externalApiHandler.FeedBackInvoiceDetailsfetchwithoutsap);
+  router.post('/LE/ServiceLevel/Outward/WithSap/FeedBackChange', externalApiHandler.FeedBackChangewithsap);
+  router.put('/LE/ServiceLevel/Outward/WithoutSap/FeedBackChange', externalApiHandler.FeedBackChangewithoutsap);
+  router.post('/LE/ServiceLevel/Outward/WithSap/FeedBackDelete', externalApiHandler.FeedBackDeletewithsap);
+  router.put('/LE/ServiceLevel/Outward/WithoutSap/FeedBackDelete', externalApiHandler.FeedBackDeletewithoutsap);
 
   //Reports
   router.post('/LE/Reports/FetchTransitReport', externalApiHandler.FetchTransitReport);
