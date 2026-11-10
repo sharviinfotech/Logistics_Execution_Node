@@ -164,14 +164,17 @@ module.exports = (() => {
   router.put('/LE/ServiceLevel/Outward/WithoutSap/FeedBackDelete', externalApiHandler.FeedBackDeletewithoutsap);
 
   //Reports
-  router.post('/LE/Reports/FetchTransitReport', externalApiHandler.FetchTransitReport);
-  router.post('/LE/Reports/FetchPendingPods', externalApiHandler.FetchPendingPods);
-  router.post('/LE/Reports/FetchLoadingFactorandCost', externalApiHandler.FetchLoadingFactorandCost);
-  router.post('/LE/Reports/FetchFreightBills', externalApiHandler.FetchFreightBills);
-  router.post('/LE/Reports/FetchBusinessShareMatrix', externalApiHandler.FetchBusinessShareMatrix);
-  router.post('/LE/Reports/FetchDamageList', externalApiHandler.FetchDamageList);
-  router.post('/LE/Reports/FetchInsuranceReportsDetails', externalApiHandler.FetchInsuranceReportsDetails);
-  router.post('/LE/Reports/FetchServiceLevelDetails', externalApiHandler.FetchServiceLevelDetails);
+  // router.post('/LE/Reports/FetchTransitReport', externalApiHandler.FetchTransitReport);
+  // router.post('/LE/Reports/FetchPendingPods', externalApiHandler.FetchPendingPods);
+  // router.post('/LE/Reports/FetchLoadingFactorandCost', externalApiHandler.FetchLoadingFactorandCost);
+  // router.post('/LE/Reports/FetchFreightBills', externalApiHandler.FetchFreightBills);
+  // router.post('/LE/Reports/FetchBusinessShareMatrix', externalApiHandler.FetchBusinessShareMatrix);
+  // router.post('/LE/Reports/FetchDamageList', externalApiHandler.FetchDamageList);
+  // router.post('/LE/Reports/FetchInsuranceReportsDetails', externalApiHandler.FetchInsuranceReportsDetails);
+  // router.post('/LE/Reports/FetchServiceLevelDetails', externalApiHandler.FetchServiceLevelDetails);
+
+  router.put('/LE/Reports/FetchBusinessShareMatrix', externalApiHandler.FetchBusinessShareMatrix);
+  router.put('/LE/Reports/FetchEwayBillReports', externalApiHandler.FetchEwayBillReports);
 
   //Dispatch order flow
   router.post('/LE/DispatchOrderFlow/FetchData', externalApiHandler.FetchDispatchOrderFlowData);
@@ -190,6 +193,11 @@ module.exports = (() => {
   router.put('/LE/GateInOut/WithoutSap/Delete', externalApiHandler.DeleteGateInOutWithoutSap);
   router.put('/LE/GateInOut/WithoutSap/FilterRecords', externalApiHandler.FilterRecordsGateInOutWithoutSap);
   router.put('/LE/GateInOut/WithoutSap/Change', externalApiHandler.ChangeGateInOutWithoutSap);
+
+  //Driver Number Blocking Screen APIs
+  router.post('/LE/DriverNumberBlockingScreen/Save', externalApiHandler.SaveDriverNumberBlockingScreen);
+  router.get('/LE/DriverNumberBlockingScreen/Display', externalApiHandler.DisplayDriverNumberBlockingScreen);
+  router.post('/LE/DriverNumberBlockingScreen/Delete', externalApiHandler.DeleteDriverNumberBlockingScreen);
 
   return router;
 })();

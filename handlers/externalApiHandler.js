@@ -133,14 +133,17 @@ module.exports = (() => {
     FeedBackDeletewithoutsap: (req, res) => externalApiMethods.FeedBackDeletewithoutsap(req.body, res),
 
     //Reports
-    FetchTransitReport: (req, res) => externalApiMethods.FetchTransitReport(req.body, res),
-    FetchPendingPods: (req, res) => externalApiMethods.FetchPendingPods(req.body, res),
-    FetchLoadingFactorandCost: (req, res) => externalApiMethods.FetchLoadingFactorandCost(req.body, res),
-    FetchFreightBills: (req, res) => externalApiMethods.FetchFreightBills(req.body, res),
+    // FetchTransitReport: (req, res) => externalApiMethods.FetchTransitReport(req.body, res),
+    // FetchPendingPods: (req, res) => externalApiMethods.FetchPendingPods(req.body, res),
+    // FetchLoadingFactorandCost: (req, res) => externalApiMethods.FetchLoadingFactorandCost(req.body, res),
+    // FetchFreightBills: (req, res) => externalApiMethods.FetchFreightBills(req.body, res),
+    // FetchBusinessShareMatrix: (req, res) => externalApiMethods.FetchBusinessShareMatrix(req.body, res),
+    // FetchDamageList: (req, res) => externalApiMethods.FetchDamageList(req.body, res),
+    // FetchInsuranceReportsDetails: (req, res) => externalApiMethods.FetchInsuranceReportsDetails(req.body, res),
+    // FetchServiceLevelDetails: (req, res) => externalApiMethods.FetchServiceLevelDetails(req.body, res),
+
     FetchBusinessShareMatrix: (req, res) => externalApiMethods.FetchBusinessShareMatrix(req.body, res),
-    FetchDamageList: (req, res) => externalApiMethods.FetchDamageList(req.body, res),
-    FetchInsuranceReportsDetails: (req, res) => externalApiMethods.FetchInsuranceReportsDetails(req.body, res),
-    FetchServiceLevelDetails: (req, res) => externalApiMethods.FetchServiceLevelDetails(req.body, res),
+    FetchEwayBillReports: (req, res) => externalApiMethods.FetchEwayBillReports(req.body, res),
 
     //Dispatch order flow
     FetchDispatchOrderFlowData: (req, res) => externalApiMethods.FetchDispatchOrderFlowData(req.body, res),
@@ -159,6 +162,11 @@ module.exports = (() => {
     DeleteGateInOutWithoutSap: (req, res) => externalApiMethods.DeleteGateInOutWithoutSap(req.body, res),
     FilterRecordsGateInOutWithoutSap: (req, res) => externalApiMethods.FilterRecordsGateInOutWithoutSap(req.body, res),
     ChangeGateInOutWithoutSap: (req, res) => externalApiMethods.ChangeGateInOutWithoutSap(req.body, res),
+
+    //Driver Number Blocking Screen APIs
+    SaveDriverNumberBlockingScreen: (req, res) => externalApiMethods.SaveDriverNumberBlockingScreen(req.body, res),
+    DisplayDriverNumberBlockingScreen: (req, res) => externalApiMethods.DisplayDriverNumberBlockingScreen(req.query, res),
+    DeleteDriverNumberBlockingScreen: (req, res) => externalApiMethods.DeleteDriverNumberBlockingScreen(req.body, res),
 
   };
 })();

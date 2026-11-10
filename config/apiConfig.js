@@ -16,7 +16,7 @@ module.exports = (() => {
 
     // Credentials for 115 for Qlty http
     THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "SIPL_MOUNIKA", //"ims113"
-    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Answer$87654321",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
+    THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Answer$12345678",//"$anB@0625",//"Sh@rv1512", //"Sh@rv1511",
 
     // THIRD_PARTY_USERNAME: process.env.THIRD_PARTY_USERNAME || "110203",
     // THIRD_PARTY_PASSWORD: process.env.THIRD_PARTY_PASSWORD || "Venp0rt@Hps234",
@@ -30,7 +30,7 @@ module.exports = (() => {
 
     // Credentials for 113 Qlty http
     THIRD_PARTY_USERNAME2: process.env.THIRD_PARTY_USERNAME2 || "SIPL_MOUNIKA", //"Dev00",
-    THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "Answer$87654321", //"HBL@2025",//"$bx#@113",
+    THIRD_PARTY_PASSWORD2: process.env.THIRD_PARTY_PASSWORD2 || "Answer$12345678", //"HBL@2025",//"$bx#@113",
 
     // API Calls
     THIRD_PARTY_API_URL_POST_LOGIN: `${login}/login/create?sap-client=234`,
@@ -202,14 +202,19 @@ module.exports = (() => {
 
 
     //Reports 
-    THIRD_PARTY_API_URL_POST_LE_Reports_FetchTransitandReport: `${baseUrl}/le/transit_eway/tway?sap-client=234`,
-    THIRD_PARTY_API_URL_POST_LE_Reports_FetchPendingPods: `${baseUrl}/le/pending_pods/pending_pods?sap-client=234`,
-    THIRD_PARTY_API_URL_POST_LE_Reports_FetchLoadingFactorandCost: `${baseUrl}/le/loading_factor/loading_factor?sap-client=234`,
-    THIRD_PARTY_API_URL_POST_LE_Reports_FetchFreightBills: `${baseUrl}/le/freight_bills/freight_bills?sap-client=234`,
-    THIRD_PARTY_API_URL_POST_LE_Reports_FetchBusinessShareMatrix: `${baseUrl}/le/business_matrix/bmatrix?sap-client=234`,
-    THIRD_PARTY_API_URL_POST_LE_Reports_FetchDamageList: `${baseUrl}/le/damage_list/damage_list?sap-client=234`,
-    THIRD_PARTY_API_URL_POST_LE_Reports_FetchInsuranceReportsDetails: `${baseUrl}/le/insurance/insurance?sap-client=234`,
-    THIRD_PARTY_API_URL_POST_LE_Reports_FetchServiceLevelDetails: `${baseUrl}/le/service_level/service_level?sap-client=234`,
+    // THIRD_PARTY_API_URL_POST_LE_Reports_FetchTransitandReport: `${baseUrl}/le/transit_eway/tway?sap-client=234`,
+    // THIRD_PARTY_API_URL_POST_LE_Reports_FetchPendingPods: `${baseUrl}/le/pending_pods/pending_pods?sap-client=234`,
+    // THIRD_PARTY_API_URL_POST_LE_Reports_FetchLoadingFactorandCost: `${baseUrl}/le/loading_factor/loading_factor?sap-client=234`,
+    // THIRD_PARTY_API_URL_POST_LE_Reports_FetchFreightBills: `${baseUrl}/le/freight_bills/freight_bills?sap-client=234`,
+    // THIRD_PARTY_API_URL_POST_LE_Reports_FetchBusinessShareMatrix: `${baseUrl}/le/business_matrix/bmatrix?sap-client=234`,
+    // THIRD_PARTY_API_URL_POST_LE_Reports_FetchDamageList: `${baseUrl}/le/damage_list/damage_list?sap-client=234`,
+    // THIRD_PARTY_API_URL_POST_LE_Reports_FetchInsuranceReportsDetails: `${baseUrl}/le/insurance/insurance?sap-client=234`,
+    // THIRD_PARTY_API_URL_POST_LE_Reports_FetchServiceLevelDetails: `${baseUrl}/le/service_level/service_level?sap-client=234`,
+
+    THIRD_PARTY_API_URL_PUT_LE_Reports_FetchBusinessShareMatrix: `${baseUrl}/le/business_matrix/bmatrix?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_Reports_FetchEwayBillReports: `${baseUrl}/le/transit_eway/tway?sap-client=234`,
+
+
 
     //Dispatch order flow api
     THIRD_PARTY_API_URL_POST_LE_DispatchOrderFlow_FetchData: `${baseUrl}/le/dis_order/flow?sap-client=234`,
@@ -228,6 +233,11 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_Delete: `${baseUrl}/le/get_in_and_out/get?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_FilterRecords: `${baseUrl}/le/filter/api?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_GateInOut_WithoutSap_Change: `${baseUrl}/le/get_in_and_out/get?sap-client=234`,
+
+  //Driver Number Blocking Screen APIs
+    THIRD_PARTY_API_URL_POST_LE_DriverNumberBlockingScreen_Save: `${baseUrl}/le/login/contact_block?sap-client=234`,
+    THIRD_PARTY_API_URL_GET_LE_DriverNumberBlockingScreen_Display: `${baseUrl}/le/login/contact_block?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_DriverNumberBlockingScreen_Delete: `${baseUrl}/le/login/contact_block?sap-client=234`,
 
 
 
