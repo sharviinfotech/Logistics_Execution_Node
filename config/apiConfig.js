@@ -213,7 +213,10 @@ module.exports = (() => {
 
     THIRD_PARTY_API_URL_PUT_LE_Reports_FetchBusinessShareMatrix: `${baseUrl}/le/business_matrix/bmatrix?sap-client=234`,
     THIRD_PARTY_API_URL_PUT_LE_Reports_FetchEwayBillReports: `${baseUrl}/le/transit_eway/tway?sap-client=234`,
-
+    THIRD_PARTY_API_URL_POST_LE_Reports_FetchMasterReports: `${baseUrl}/le/masterreport/Master?sap-client=234`,
+    THIRD_PARTY_API_URL_PUT_LE_Reports_FetchPodStatusReports: `${baseUrl}/le/pending_pods/pending_pods?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_Reports_FetchProductWiseReports: `${baseUrl}/le/product_pvw/product?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_Reports_FetchProvisionReports: `${baseUrl}/le/prov_statement/provision?sap-client=234`,
 
 
     //Dispatch order flow api
@@ -238,8 +241,9 @@ module.exports = (() => {
     THIRD_PARTY_API_URL_POST_LE_DriverNumberBlockingScreen_Save: `${baseUrl}/le/login/contact_block?sap-client=234`,
     THIRD_PARTY_API_URL_GET_LE_DriverNumberBlockingScreen_Display: `${baseUrl}/le/login/contact_block?sap-client=234`,
     THIRD_PARTY_API_URL_POST_LE_DriverNumberBlockingScreen_Delete: `${baseUrl}/le/login/contact_block?sap-client=234`,
-
-
+    THIRD_PARTY_API_URL_POST_LE_VehicleNumberBlocking_Save: `${baseUrl}/le/login/vehicle_block?sap-client=234`,
+    THIRD_PARTY_API_URL_GET_LE_VehicleNumberBlocking_Display: `${baseUrl}/le/login/vehicle_block?sap-client=234`,
+    THIRD_PARTY_API_URL_POST_LE_VehicleNumberBlocking_Delete: `${baseUrl}/le/login/vehicle_block?sap-client=234`,
 
 
   };

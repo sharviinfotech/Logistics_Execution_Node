@@ -175,6 +175,10 @@ module.exports = (() => {
 
   router.put('/LE/Reports/FetchBusinessShareMatrix', externalApiHandler.FetchBusinessShareMatrix);
   router.put('/LE/Reports/FetchEwayBillReports', externalApiHandler.FetchEwayBillReports);
+  router.post('/LE/Reports/FetchMasterReports', externalApiHandler.FetchMasterReports);
+  router.put('/LE/Reports/FetchPodStatusReports', externalApiHandler.FetchPodStatusReports);
+  router.post('/LE/Reports/FetchProductWiseReports', externalApiHandler.FetchProductWiseReports);
+  router.post('/LE/Reports/FetchProvisionReports', externalApiHandler.FetchProvisionReports);
 
   //Dispatch order flow
   router.post('/LE/DispatchOrderFlow/FetchData', externalApiHandler.FetchDispatchOrderFlowData);
@@ -198,6 +202,9 @@ module.exports = (() => {
   router.post('/LE/DriverNumberBlockingScreen/Save', externalApiHandler.SaveDriverNumberBlockingScreen);
   router.get('/LE/DriverNumberBlockingScreen/Display', externalApiHandler.DisplayDriverNumberBlockingScreen);
   router.post('/LE/DriverNumberBlockingScreen/Delete', externalApiHandler.DeleteDriverNumberBlockingScreen);
+  router.post('/LE/VehicleNumberBlocking/Save', externalApiHandler.SaveVehicleNumberBlocking);
+  router.get('/LE/VehicleNumberBlocking/Display', externalApiHandler.DisplayVehicleNumberBlocking);
+  router.post('/LE/VehicleNumberBlocking/Delete', externalApiHandler.DeleteVehicleNumberBlocking);
 
   return router;
 })();

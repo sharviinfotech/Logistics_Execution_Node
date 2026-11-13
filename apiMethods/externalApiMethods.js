@@ -4102,6 +4102,112 @@ module.exports = (() => {
       }
     },
 
+    FetchMasterReports: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Fetch Master Reports API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_Reports_FetchMasterReports,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "POST Response from Fetch Master Reports API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Fetch Master Reports");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+
+    FetchPodStatusReports: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Put payload to Pr Reject  API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.put(
+          config.THIRD_PARTY_API_URL_PUT_LE_Reports_FetchPodStatusReports,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+
+          }
+        );
+        console.log(
+          "PUT Response from Fetch Pod Status Reports API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Fetch Pod Status Reports");
+        res.status(500).json({ error: "Failed to process PUT request" });
+      }
+    },
+
+    FetchProductWiseReports: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Fetch Product Wise Reports API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_Reports_FetchProductWiseReports,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Fetch Product Wise Reports API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Fetch Product Wise Reports");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+
+    FetchProvisionReports: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Fetch Provision Reports API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_Reports_FetchProvisionReports,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Fetch Provision Reports API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Fetch Provision Reports");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
+
     FetchDispatchOrderFlowData: async (body, res) => {
       try {
         console.log(
@@ -4493,94 +4599,163 @@ module.exports = (() => {
       }
     },
 
-      SaveDriverNumberBlockingScreen: async (body, res) => {
-        try {
-          await gateRecordFiles(body, "Without Sap", true);
-          console.log(
-            "Sending  Post payload to Driver Number Blocking Screen Save API:",
-            JSON.stringify(body, null, 2)
-          );
-          const response = await axios.post(
-            config.THIRD_PARTY_API_URL_POST_LE_DriverNumberBlockingScreen_Save,
-            body,
-            {
-              headers: {
-                Authorization: getAuthHeader(),
-              },
-            }
-          );
-          console.log(
-            "POST Response from Driver Number Blocking Screen Save API:",
-            JSON.stringify(response.data, null, 2)
-          );
-          res.json(response.data);
-        } catch (error) {
-          handleAxiosError(error, "Driver Number Blocking Screen Save");
-          res.status(500).json({ error: "Failed to process POST request" });
-        }
-      },
+    SaveDriverNumberBlockingScreen: async (body, res) => {
+      try {
+        await gateRecordFiles(body, "Without Sap", true);
+        console.log(
+          "Sending  Post payload to Driver Number Blocking Screen Save API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_DriverNumberBlockingScreen_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Driver Number Blocking Screen Save API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Driver Number Blocking Screen Save");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
 
-      DisplayDriverNumberBlockingScreen: async (query, res) => {
-        try {
-          console.log(
-            "Sending  Get payload to Driver Number Blocking Screen Display API:",
-            JSON.stringify(query, null, 2)
-          );
-          const response = await axios.get(
-            config.THIRD_PARTY_API_URL_GET_LE_DriverNumberBlockingScreen_Display,
-            {
-              headers: {
-                Authorization: getAuthHeader(),
-              },
-              params: query, // Pass the query parameters here
-            }
-          );
-          console.log(
-            "GET Response from Driver Number Blocking Screen Display API:",
-            JSON.stringify(response.data, null, 2)
-          );
-          res.json(response.data);
-        } catch (error) {
-          handleAxiosError(error, "Driver Number Blocking Screen Display");
-          res.status(500).json({ error: "Failed to process GET request" });
-        }
-      },
+    DisplayDriverNumberBlockingScreen: async (query, res) => {
+      try {
+        console.log(
+          "Sending  Get payload to Driver Number Blocking Screen Display API:",
+          JSON.stringify(query, null, 2)
+        );
+        const response = await axios.get(
+          config.THIRD_PARTY_API_URL_GET_LE_DriverNumberBlockingScreen_Display,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+            params: query, // Pass the query parameters here
+          }
+        );
+        console.log(
+          "GET Response from Driver Number Blocking Screen Display API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Driver Number Blocking Screen Display");
+        res.status(500).json({ error: "Failed to process GET request" });
+      }
+    },
 
-      DeleteDriverNumberBlockingScreen: async (body, res) => {
-        try {
-          console.log(
-            "Sending  Post payload to Driver Number Blocking Screen Delete API:",
-            JSON.stringify(body, null, 2)
-          );
-          const response = await axios.post(
-            config.THIRD_PARTY_API_URL_POST_LE_DriverNumberBlockingScreen_Delete,
-            body,
-            {
-              headers: {
-                Authorization: getAuthHeader(),
-              },
-            }
-          );
-          console.log(
-            "POST Response from Driver Number Blocking Screen Delete API:",
-            JSON.stringify(response.data, null, 2)
-          );
-          res.json(response.data);
-        } catch (error) {
-          handleAxiosError(error, "Driver Number Blocking Screen Delete");
-          res.status(500).json({ error: "Failed to process POST request" });
-        }
-      },
-      
+    DeleteDriverNumberBlockingScreen: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Driver Number Blocking Screen Delete API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_DriverNumberBlockingScreen_Delete,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Driver Number Blocking Screen Delete API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Driver Number Blocking Screen Delete");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
 
+    SaveVehicleNumberBlocking: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Vehicle Number Blocking Save API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_VehicleNumberBlocking_Save,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Vehicle Number Blocking Save API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      }
+      catch (error) {
+        handleAxiosError(error, "Vehicle Number Blocking Save");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
 
+    DisplayVehicleNumberBlocking: async (query, res) => {
+      try {
+        console.log(
+          "Sending  Get payload to Vehicle Number Blocking Display API:",
+          JSON.stringify(query, null, 2)
+        );
+        const response = await axios.get(
+          config.THIRD_PARTY_API_URL_GET_LE_VehicleNumberBlocking_Display,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+            params: query, // Pass the query parameters here
+          }
+        );
+        console.log(
+          "GET Response from Vehicle Number Blocking Display API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Vehicle Number Blocking Display");
+        res.status(500).json({ error: "Failed to process GET request" });
+      }
+    },
 
-
-
-
-
-
-
+    DeleteVehicleNumberBlocking: async (body, res) => {
+      try {
+        console.log(
+          "Sending  Post payload to Vehicle Number Blocking Delete API:",
+          JSON.stringify(body, null, 2)
+        );
+        const response = await axios.post(
+          config.THIRD_PARTY_API_URL_POST_LE_VehicleNumberBlocking_Delete,
+          body,
+          {
+            headers: {
+              Authorization: getAuthHeader(),
+            },
+          }
+        );
+        console.log(
+          "POST Response from Vehicle Number Blocking Delete API:",
+          JSON.stringify(response.data, null, 2)
+        );
+        res.json(response.data);
+      } catch (error) {
+        handleAxiosError(error, "Vehicle Number Blocking Delete");
+        res.status(500).json({ error: "Failed to process POST request" });
+      }
+    },
 
   };
 })();

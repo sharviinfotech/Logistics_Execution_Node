@@ -144,6 +144,10 @@ module.exports = (() => {
 
     FetchBusinessShareMatrix: (req, res) => externalApiMethods.FetchBusinessShareMatrix(req.body, res),
     FetchEwayBillReports: (req, res) => externalApiMethods.FetchEwayBillReports(req.body, res),
+    FetchMasterReports: (req, res) => externalApiMethods.FetchMasterReports(req.body, res),
+    FetchPodStatusReports: (req, res) => externalApiMethods.FetchPodStatusReports(req.body, res),
+    FetchProductWiseReports: (req, res) => externalApiMethods.FetchProductWiseReports(req.body, res),
+    FetchProvisionReports: (req, res) => externalApiMethods.FetchProvisionReports(req.body, res),
 
     //Dispatch order flow
     FetchDispatchOrderFlowData: (req, res) => externalApiMethods.FetchDispatchOrderFlowData(req.body, res),
@@ -167,6 +171,9 @@ module.exports = (() => {
     SaveDriverNumberBlockingScreen: (req, res) => externalApiMethods.SaveDriverNumberBlockingScreen(req.body, res),
     DisplayDriverNumberBlockingScreen: (req, res) => externalApiMethods.DisplayDriverNumberBlockingScreen(req.query, res),
     DeleteDriverNumberBlockingScreen: (req, res) => externalApiMethods.DeleteDriverNumberBlockingScreen(req.body, res),
+    SaveVehicleNumberBlocking: (req, res) => externalApiMethods.SaveVehicleNumberBlocking(req.body, res),
+    DisplayVehicleNumberBlocking: (req, res) => externalApiMethods.DisplayVehicleNumberBlocking(req.query, res),
+    DeleteVehicleNumberBlocking: (req, res) => externalApiMethods.DeleteVehicleNumberBlocking(req.body, res),
 
   };
 })();
